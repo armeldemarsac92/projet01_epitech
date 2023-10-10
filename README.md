@@ -29,8 +29,6 @@ For the nerds and geeks, we're building this beast using:
 - **PHP**: Yeah, it's not dead. Deal with it.
 - **JavaScript?**: Maybe. But if we do, it's going to make your browser dance.
 
----
-
 ## Database Blueprint 🗃
 
 No project is complete without some solid database architecture. Here's what our data dungeon looks like:
@@ -39,37 +37,41 @@ No project is complete without some solid database architecture. Here's what our
 
 ### Relationships That Make The Matrix 💎🔗
 
-🔥 **HasExperience**: `0N CANDIDAT, 11 PROFESSIONNAL_EXPERIENCE`  
-- Your resume is your lore; a candidate may or may not have epic tales of past work.
-- Each tale of professional heroism is inked to one and only one champion, a.k.a., the candidate.
-
-🔥 **WorkedAt**: `0N ENTREPRISE, 11 PROFESSIONNAL_EXPERIENCE`  
-- An enterprise can be a startup battlefield or an established kingdom; might not have any war stories yet.
-- Every work battle is fought under the banner of one enterprise. Always.
-
-🔥 **PublishedBy**: `0N ENTREPRISE, 11 JOB_OFFER`  
-- The enterprise either shouts job quests from the mountaintops or remains an enigma.
-- Each job quest has a herald; published by one and only one enterprise.
-
-🔥 **HasCertification**: `0N CANDIDAT, 0N CERTIFICATION`  
-- A candidate might wield certifications like Excalibur or simply trust their raw skill.
-- A certification might be collecting dust in an archive or adorning a candidate's wall.
-
-🔥 **HasSkill**: `0N CANDIDAT, 0N COMPETENCE`  
-- Skill trees? A candidate may or may not have unlocked any.
-- A skill can be the stuff of legend or yet to be discovered.
-
-🔥 **UsesTool**: `0N CANDIDAT, 0N TOOL`  
-- Toolbelt full or empty? A candidate's choice.
-- Each tool awaits its master. Could be you, could be no one.
+🔥 **HasDegree**: `0N CANDIDAT, 11 DEGREE`  
+- A candidate might wear academic medals from various institutions.
+- Each degree is uniquely earned and belongs to one candidate's scholarly journey.
 
 🔥 **HasFaved**: `0N CANDIDAT, 0N JOB_OFFER`  
-- Ever faved something just because it looked cool? A candidate might or might not have.
-- Each job offer is like a tweet, awaiting your precious fave.
+- To favorite or not to favorite, that is the question. A candidate might have a few prized job offers they've starred.
+- Each job offer might have caught the eye of a candidate, waiting to be a potential match.
+
+🔥 **PublishedBy**: `0N ENTREPRISE, 11 JOB_OFFER`  
+- An enterprise may have several job challenges awaiting worthy candidates.
+- Each job offer heralds from one unique enterprise, echoing its values and missions.
 
 🔥 **HasApplied**: `0N CANDIDAT, 0N JOB_OFFER`  
-- Swipe right or left? A candidate might not have chosen their quests yet.
-- Every quest (job offer) waits for its hero (candidate). Are you the one?
+- A candidate's quest might involve applying to various job challenges. Or perhaps, they're just surveying the landscape.
+- Each job offer waits in anticipation, hoping to be the chosen quest for a candidate.
+
+🔥 **WasAt**: `0N ENTREPRISE, 11 PROFESSIONNAL_EXPERIENCE`  
+- An enterprise serves as the backdrop to many a professional tale. From short stints to legendary careers.
+- Each professional chapter is set in one enterprise, marking its influence on a candidate's journey.
+
+🔥 **UsedSkill**: `0N PROFESSIONNAL_EXPERIENCE, 0N COMPETENCE`  
+- Every professional chapter sees the use of various skills, be it mastery in a tool or strategic prowess.
+- A skill can be a protagonist in several professional tales, shaping the outcomes.
+
+🔥 **HasCertification**: `0N CANDIDAT, 0N CERTIFICATION`  
+- A candidate might possess certifications, badges of honor in their professional realm.
+- Certifications can be companions to one or many candidates, vouching for their expertise.
+
+🔥 **HasExperience**: `0N CANDIDAT, 11 PROFESSIONNAL_EXPERIENCE`  
+- Chronicles of a candidate's professional journey, each experience adds to their saga.
+- Each professional experience is a chapter in a candidate's book, narrating their challenges and triumphs.
+
+🔥 **UsedTool**: `0N PROFESSIONNAL_EXPERIENCE, 0N TOOL`  
+- Tools are the trusted sidekicks in a professional's journey, aiding them in their quests.
+- A tool might be part of numerous tales, its story interwoven with that of the professionals who wielded it.
 
 ---
 
