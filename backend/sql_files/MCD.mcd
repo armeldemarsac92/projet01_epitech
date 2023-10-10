@@ -1,0 +1,17 @@
+Published_By, 0N ENTREPRISE, 11 JOB_OFFER
+JOB_OFFER : offer_id, offer_title, offer_contract_length, offer_publication_date, offer_about, offer_expected_work
+Has_Applied, 0N CANDIDAT, 0N JOB_OFFER
+Has_Certification, 0N CANDIDAT, 0N CERTIFICATION
+CERTIFICATION : certification_name, certification_icon
+
+ENTREPRISE : entreprise_id, entreprise_name, entreprise_field, entreprise_about, entreprise_number_of_workers, entreprise_date_of_creation, entreprise_localisation, entreprise_desired_profiles, entreprise_average_age, entreprise_profile_picture, entreprise_cover_picture
+Has_Faved, 0N CANDIDAT, 0N JOB_OFFER
+CANDIDAT : candidate_id, candidate_first_name, candidate_last_name, candidate_sex, candidate_email, candidate_phone_number, candidate_localisation, candidate_about, candidate_profile_picture, candidate_cover_picture, candidate_status
+Uses_Tool, 0N CANDIDAT, 0N TOOL
+TOOL : tool_name, tool_icon
+
+Worked_At, 0N ENTREPRISE, 11 PROFESSIONNAL_EXPERIENCE
+PROFESSIONNAL_EXPERIENCE : experience_id, experience_start_date, experience_end_date, experience_job_title, experience_description
+Has_Experience, 0N CANDIDAT, 11 PROFESSIONNAL_EXPERIENCE
+Has_Skill, 0N CANDIDAT, 0N COMPETENCE
+COMPETENCE : competence_name, competence_icon
