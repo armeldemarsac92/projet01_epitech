@@ -13,8 +13,8 @@ CREATE TABLE CANDIDAT (
 );
 
 CREATE TABLE CERTIFICATION (
-  certification_name VARCHAR(42) NOT NULL PRIMARY KEY,
-  certification_icon VARCHAR(42)
+  certification_name VARCHAR(80) NOT NULL PRIMARY KEY,
+  certification_icon VARCHAR(255)
 );
 
 CREATE TABLE COMPETENCE (
@@ -58,7 +58,7 @@ CREATE TABLE Has_Applied (
 
 CREATE TABLE Has_Certification (
   candidate_id INT NOT NULL,
-  certification_name VARCHAR(42) NOT NULL,
+  certification_name VARCHAR(80) NOT NULL,
   PRIMARY KEY (candidate_id, certification_name)
 );
 
@@ -112,9 +112,9 @@ CREATE TABLE TOOL (
   tool_icon VARCHAR(42)
 );
 
-CREATE TABLE Used_Skill (
+CREATE TABLE Used_Competence (
   experience_id INT NOT NULL,
-  competence_name VARCHAR(42) NOT NULL,
+  competence_name VARCHAR(80) NOT NULL,
   PRIMARY KEY (experience_id, competence_name)
 );
 
