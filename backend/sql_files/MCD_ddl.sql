@@ -52,6 +52,12 @@ CREATE TABLE ENTREPRISE (
   entreprise_cover_picture VARCHAR(42)
 );
 
+CREATE TABLE HOBBY (
+  PRIMARY KEY (hobby_name),
+  hobby_name VARCHAR(42) NOT NULL,
+  hobby_about VARCHAR(42)
+);
+
 CREATE TABLE Has_Applied (
   PRIMARY KEY (candidate_id, offer_id),
   candidate_id VARCHAR(42) NOT NULL,
@@ -70,6 +76,12 @@ CREATE TABLE Has_Faved (
   offer_id VARCHAR(42) NOT NULL
 );
 
+CREATE TABLE Has_hobby (
+  PRIMARY KEY (candidate_id, hobby_name),
+  candidate_id VARCHAR(42) NOT NULL,
+  hobby_name VARCHAR(42) NOT NULL
+);
+
 CREATE TABLE JOB_OFFER (
   PRIMARY KEY (offer_id),
   offer_id VARCHAR(42) NOT NULL,
@@ -83,6 +95,12 @@ CREATE TABLE JOB_OFFER (
   entreprise_id VARCHAR(42) NOT NULL
 );
 
+CREATE TABLE LANGUAGE (
+  PRIMARY KEY (language_name),
+  language_name VARCHAR(42) NOT NULL,
+  language_level VARCHAR(42)
+);
+
 CREATE TABLE PROFESSIONNAL_EXPERIENCE (
   PRIMARY KEY (experience_id),
   experience_id VARCHAR(42) NOT NULL,
@@ -90,8 +108,14 @@ CREATE TABLE PROFESSIONNAL_EXPERIENCE (
   experience_end_date VARCHAR(42),
   experience_job_title VARCHAR(42),
   experience_description VARCHAR(42),
-  entreprise_id VARCHAR(42) NOT NULL,
-  candidate_id VARCHAR(42) NOT NULL
+  candidate_id VARCHAR(42) NOT NULL,
+  entreprise_id VARCHAR(42) NOT NULL
+);
+
+CREATE TABLE Speaks_language (
+  PRIMARY KEY (candidate_id, language_name),
+  candidate_id VARCHAR(42) NOT NULL,
+  language_name VARCHAR(42) NOT NULL
 );
 
 CREATE TABLE TOOL (
@@ -123,10 +147,16 @@ ALTER TABLE Has_Certification ADD FOREIGN KEY (candidate_id) REFERENCES CANDIDAT
 ALTER TABLE Has_Faved ADD FOREIGN KEY (offer_id) REFERENCES JOB_OFFER (offer_id);
 ALTER TABLE Has_Faved ADD FOREIGN KEY (candidate_id) REFERENCES CANDIDAT (candidate_id);
 
+ALTER TABLE Has_hobby ADD FOREIGN KEY (hobby_name) REFERENCES HOBBY (hobby_name);
+ALTER TABLE Has_hobby ADD FOREIGN KEY (candidate_id) REFERENCES CANDIDAT (candidate_id);
+
 ALTER TABLE JOB_OFFER ADD FOREIGN KEY (entreprise_id) REFERENCES ENTREPRISE (entreprise_id);
 
-ALTER TABLE PROFESSIONNAL_EXPERIENCE ADD FOREIGN KEY (candidate_id) REFERENCES CANDIDAT (candidate_id);
 ALTER TABLE PROFESSIONNAL_EXPERIENCE ADD FOREIGN KEY (entreprise_id) REFERENCES ENTREPRISE (entreprise_id);
+ALTER TABLE PROFESSIONNAL_EXPERIENCE ADD FOREIGN KEY (candidate_id) REFERENCES CANDIDAT (candidate_id);
+
+ALTER TABLE Speaks_language ADD FOREIGN KEY (language_name) REFERENCES LANGUAGE (language_name);
+ALTER TABLE Speaks_language ADD FOREIGN KEY (candidate_id) REFERENCES CANDIDAT (candidate_id);
 
 ALTER TABLE Used_Skill ADD FOREIGN KEY (competence_name) REFERENCES COMPETENCE (competence_name);
 ALTER TABLE Used_Skill ADD FOREIGN KEY (experience_id) REFERENCES PROFESSIONNAL_EXPERIENCE (experience_id);
