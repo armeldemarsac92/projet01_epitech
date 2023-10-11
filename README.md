@@ -29,47 +29,50 @@ For the nerds and geeks, we're building this beast using:
 - **PHP**: Yeah, it's not dead. Deal with it.
 - **JavaScript?**: Maybe. But if we do, it's going to make your browser dance.
 
----
-
 ## Database Blueprint 🗃
 
 No project is complete without some solid database architecture. Here's what our data dungeon looks like:
 
-![Database Dungeon](https://raw.githubusercontent.com/armeldemarsac92/projet01_epitech/main/informations/MCD.svg)
+![Database Dungeon](https://raw.githubusercontent.com/armeldemarsac92/projet01_epitech/new-version-branch/informations/MCD.svg)
 
-### Relationships That Make The Matrix 💎🔗
+## Relationships Unraveled 🌀🔗
 
-🔥 **HasExperience**: `0N CANDIDAT, 11 PROFESSIONNAL_EXPERIENCE`  
-- Your resume is your lore; a candidate may or may not have epic tales of past work.
-- Each tale of professional heroism is inked to one and only one champion, a.k.a., the candidate.
+- 🔥 **Has_Degree**: `0N CANDIDAT, 11 DEGREE`  
+    - A candidate's backpack of academic trophies.
+    - Every degree is an emblem of one champion's quest.
 
-🔥 **WorkedAt**: `0N ENTREPRISE, 11 PROFESSIONNAL_EXPERIENCE`  
-- An enterprise can be a startup battlefield or an established kingdom; might not have any war stories yet.
-- Every work battle is fought under the banner of one enterprise. Always.
+- 🔥 **Has_Hobby**: `0N CANDIDAT, 0N HOBBY`  
+    - Does a candidate juggle fireballs or knit ethereal scarves?
+    - Each hobby is a chapter in a candidate's personal epic.
 
-🔥 **PublishedBy**: `0N ENTREPRISE, 11 JOB_OFFER`  
-- The enterprise either shouts job quests from the mountaintops or remains an enigma.
-- Each job quest has a herald; published by one and only one enterprise.
+- 🔥 **Has_Certification**: `0N CANDIDAT, 0N CERTIFICATION`  
+    - Some wield these like legendary artifacts, some await their first.
+    - Every certification belongs to a vault, either revered or yet to be claimed.
 
-🔥 **HasCertification**: `0N CANDIDAT, 0N CERTIFICATION`  
-- A candidate might wield certifications like Excalibur or simply trust their raw skill.
-- A certification might be collecting dust in an archive or adorning a candidate's wall.
+- 🔥 **Has_Faved**: `0N CANDIDAT, 0N JOB_OFFER`  
+    - Ever favored a quest because it sparkled? A candidate might or might not have.
+    - Each job offer is a star in the jobiverse, waiting to be favored.
 
-🔥 **HasSkill**: `0N CANDIDAT, 0N COMPETENCE`  
-- Skill trees? A candidate may or may not have unlocked any.
-- A skill can be the stuff of legend or yet to be discovered.
+- 🔥 **Speaks_Language**: `0N CANDIDAT, 0N LANGUAGE`  
+    - How many languages has the hero tamed? The tale is told here.
 
-🔥 **UsesTool**: `0N CANDIDAT, 0N TOOL`  
-- Toolbelt full or empty? A candidate's choice.
-- Each tool awaits its master. Could be you, could be no one.
+- 🔥 **Has_Experience**: `0N CANDIDAT, 11 PROFESSIONNAL_EXPERIENCE`  
+    - Every champion has tales; some more epic than others.
 
-🔥 **HasFaved**: `0N CANDIDAT, 0N JOB_OFFER`  
-- Ever faved something just because it looked cool? A candidate might or might not have.
-- Each job offer is like a tweet, awaiting your precious fave.
+- 🔥 **Has_Applied**: `0N CANDIDAT, 0N JOB_OFFER`  
+    - Every quest awaits its hero. Will the candidate pick the gauntlet?
 
-🔥 **HasApplied**: `0N CANDIDAT, 0N JOB_OFFER`  
-- Swipe right or left? A candidate might not have chosen their quests yet.
-- Every quest (job offer) waits for its hero (candidate). Are you the one?
+- 🔥 **Used_Tool**: `0N PROFESSIONNAL_EXPERIENCE, 0N TOOL`  
+    - Every craftsman has their favorite tool; the stories of which are told here.
+
+- 🔥 **Published_By**: `0N ENTREPRISE, 11 JOB_OFFER`  
+    - From which kingdom do the quests emanate? The saga unfolds here.
+
+- 🔥 **Was_At**: `0N ENTREPRISE, 11 PROFESSIONNAL_EXPERIENCE`  
+    - Every tale of valor is sung under a banner; the enterprise's.
+
+- 🔥 **Used_Skill**: `0N PROFESSIONNAL_EXPERIENCE, 0N COMPETENCE`  
+    - The tales of where and how these skills were wielded in battle.
 
 ---
 
