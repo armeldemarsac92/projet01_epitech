@@ -35,43 +35,44 @@ No project is complete without some solid database architecture. Here's what our
 
 ![Database Dungeon](https://raw.githubusercontent.com/armeldemarsac92/projet01_epitech/main/informations/MCD.svg)
 
-### Relationships That Make The Matrix 💎🔗
+## Relationships Unraveled 🌀🔗
 
-🔥 **HasDegree**: `0N CANDIDAT, 11 DEGREE`  
-- A candidate might wear academic medals from various institutions.
-- Each degree is uniquely earned and belongs to one candidate's scholarly journey.
+- 🔥 **Has_Degree**: `0N CANDIDAT, 11 DEGREE`  
+    - A candidate's backpack of academic trophies.
+    - Every degree is an emblem of one champion's quest.
 
-🔥 **HasFaved**: `0N CANDIDAT, 0N JOB_OFFER`  
-- To favorite or not to favorite, that is the question. A candidate might have a few prized job offers they've starred.
-- Each job offer might have caught the eye of a candidate, waiting to be a potential match.
+- 🔥 **Has_Hobby**: `0N CANDIDAT, 0N HOBBY`  
+    - Does a candidate juggle fireballs or knit ethereal scarves?
+    - Each hobby is a chapter in a candidate's personal epic.
 
-🔥 **PublishedBy**: `0N ENTREPRISE, 11 JOB_OFFER`  
-- An enterprise may have several job challenges awaiting worthy candidates.
-- Each job offer heralds from one unique enterprise, echoing its values and missions.
+- 🔥 **Has_Certification**: `0N CANDIDAT, 0N CERTIFICATION`  
+    - Some wield these like legendary artifacts, some await their first.
+    - Every certification belongs to a vault, either revered or yet to be claimed.
 
-🔥 **HasApplied**: `0N CANDIDAT, 0N JOB_OFFER`  
-- A candidate's quest might involve applying to various job challenges. Or perhaps, they're just surveying the landscape.
-- Each job offer waits in anticipation, hoping to be the chosen quest for a candidate.
+- 🔥 **Has_Faved**: `0N CANDIDAT, 0N JOB_OFFER`  
+    - Ever favored a quest because it sparkled? A candidate might or might not have.
+    - Each job offer is a star in the jobiverse, waiting to be favored.
 
-🔥 **WasAt**: `0N ENTREPRISE, 11 PROFESSIONNAL_EXPERIENCE`  
-- An enterprise serves as the backdrop to many a professional tale. From short stints to legendary careers.
-- Each professional chapter is set in one enterprise, marking its influence on a candidate's journey.
+- 🔥 **Speaks_Language**: `0N CANDIDAT, 0N LANGUAGE`  
+    - How many languages has the hero tamed? The tale is told here.
 
-🔥 **UsedSkill**: `0N PROFESSIONNAL_EXPERIENCE, 0N COMPETENCE`  
-- Every professional chapter sees the use of various skills, be it mastery in a tool or strategic prowess.
-- A skill can be a protagonist in several professional tales, shaping the outcomes.
+- 🔥 **Has_Experience**: `0N CANDIDAT, 11 PROFESSIONNAL_EXPERIENCE`  
+    - Every champion has tales; some more epic than others.
 
-🔥 **HasCertification**: `0N CANDIDAT, 0N CERTIFICATION`  
-- A candidate might possess certifications, badges of honor in their professional realm.
-- Certifications can be companions to one or many candidates, vouching for their expertise.
+- 🔥 **Has_Applied**: `0N CANDIDAT, 0N JOB_OFFER`  
+    - Every quest awaits its hero. Will the candidate pick the gauntlet?
 
-🔥 **HasExperience**: `0N CANDIDAT, 11 PROFESSIONNAL_EXPERIENCE`  
-- Chronicles of a candidate's professional journey, each experience adds to their saga.
-- Each professional experience is a chapter in a candidate's book, narrating their challenges and triumphs.
+- 🔥 **Used_Tool**: `0N PROFESSIONNAL_EXPERIENCE, 0N TOOL`  
+    - Every craftsman has their favorite tool; the stories of which are told here.
 
-🔥 **UsedTool**: `0N PROFESSIONNAL_EXPERIENCE, 0N TOOL`  
-- Tools are the trusted sidekicks in a professional's journey, aiding them in their quests.
-- A tool might be part of numerous tales, its story interwoven with that of the professionals who wielded it.
+- 🔥 **Published_By**: `0N ENTREPRISE, 11 JOB_OFFER`  
+    - From which kingdom do the quests emanate? The saga unfolds here.
+
+- 🔥 **Was_At**: `0N ENTREPRISE, 11 PROFESSIONNAL_EXPERIENCE`  
+    - Every tale of valor is sung under a banner; the enterprise's.
+
+- 🔥 **Used_Skill**: `0N PROFESSIONNAL_EXPERIENCE, 0N COMPETENCE`  
+    - The tales of where and how these skills were wielded in battle.
 
 ---
 
