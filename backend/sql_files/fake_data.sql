@@ -492,3 +492,765 @@ INSERT INTO Has_Certification (candidate_id, certification_name) VALUES
 (19, 'Google Android Developer Certification'),
 
 (20, 'Certified DevOps Engineer');
+
+INSERT INTO COMPETENCE (competence_name, competence_icon) VALUES
+('Project Management', 'project_management.png'),
+('Front-End Development', 'frontend_dev.png'),
+('Back-End Development', 'backend_dev.png'),
+('System Administration', 'sys_admin.png'),
+('Artificial Intelligence', 'ai.png'),
+('Machine Learning', 'machine_learning.png'),
+('Relational Database', 'relational_db.png'),
+('NoSQL Databases', 'nosql.png'),
+('Cybersecurity', 'cybersecurity.png'),
+('iOS Mobile Development', 'ios_dev.png'),
+('Android Mobile Development', 'android_dev.png'),
+('UI/UX Design', 'uiux_design.png'),
+('DevOps', 'devops.png'),
+('Continuous Integration', 'ci.png'),
+('Cloud Computing', 'cloud_computing.png'),
+('Networking & Infrastructure', 'networking.png'),
+('Blockchain', 'blockchain.png'),
+('Data Analysis', 'data_analysis.png'),
+('Big Data', 'big_data.png'),
+('Virtual Reality', 'vr.png'),
+('Augmented Reality', 'ar.png'),
+('E-commerce', 'ecommerce.png'),
+('SEO/SEM Marketing', 'seo_sem.png'),
+('Game Development', 'game_dev.png'),
+('ERP & CRM Systems', 'erp_crm.png'),
+('Team Management', 'team_management.png'),
+('Business Intelligence', 'bi.png'),
+('IoT (Internet of Things)', 'iot.png'),
+('Content Management', 'cms.png'),
+('Testing & QA', 'testing_qa.png'),
+('Automation', 'automation.png'),
+('Scripting Languages', 'scripting.png'),
+('Virtualization', 'virtualization.png'),
+('Infrastructure as Code', 'iac.png'),
+('Microservices', 'microservices.png'),
+('Docker & Containers', 'docker.png'),
+('Kubernetes', 'kubernetes.png'),
+('Web APIs', 'web_api.png'),
+('System Integration', 'system_integration.png'),
+('Configuration Management', 'config_management.png'),
+('Performance Optimization', 'performance_optimization.png'),
+('Web Sockets', 'web_sockets.png'),
+('Graph Databases', 'graph_db.png'),
+('Agile Methodologies', 'agile.png'),
+('Design Systems', 'design_systems.png'),
+('PWA (Progressive Web Apps)', 'pwa.png'),
+('Serverless Architecture', 'serverless.png'),
+('Digital Marketing', 'digital_marketing.png'),
+('Database Optimization', 'database_optimization.png'),
+('Database Management', 'database_management.png'),
+('Network Management', 'network_management.png'),
+('Web Development', 'web_development.png');
+
+
+INSERT INTO Used_Competence(experience_id, competence_name) VALUES
+-- Associations for Candidate 1's experiences
+(1, 'Front-End Development'),
+(1, 'Back-End Development'),
+(1, 'Relational Database'),
+(2, 'Team Management'),
+(2, 'DevOps'),
+(3, 'Front-End Development'),
+(3, 'System Administration'),
+
+-- Associations for Candidate 2's experiences
+(4, 'Data Analysis'),
+(4, 'Big Data'),
+(5, 'Business Intelligence'),
+(5, 'Data Analysis'),
+(6, 'Relational Database'),
+
+-- Associations for Candidate 3's experiences
+(7, 'Cloud Computing'),
+(7, 'Networking & Infrastructure'),
+(8, 'Cybersecurity'),
+(9, 'Cloud Computing'),
+
+-- Associations for Candidate 4's experiences
+(10, 'UI/UX Design'),
+(10, 'Front-End Development'),
+(11, 'UI/UX Design'),
+(12, 'Web APIs'),
+
+-- Associations for Candidate 5's experiences
+(13, 'System Administration'),
+(13, 'Networking & Infrastructure'),
+(14, 'Team Management'),
+(15, 'IoT (Internet of Things)'),
+
+-- Associations for Candidate 6's experiences
+(16, 'Relational Database'),
+(16, 'Database Optimization'),
+(17, 'NoSQL Databases'),
+(18, 'Database Management'),
+
+-- Associations for Candidate 7's experiences
+(19, 'Networking & Infrastructure'),
+(20, 'Network Management'),
+(21, 'Cloud Computing'),
+
+-- Associations for Candidate 8's experiences
+(22, 'Front-End Development'),
+(22, 'Microservices'),
+(23, 'Web Development'),
+(24, 'Web APIs'),
+
+-- Associations for Candidate 9's experiences
+(25, 'Back-End Development'),
+(25, 'Microservices'),
+(26, 'Serverless Architecture'),
+(27, 'System Integration'),
+
+-- Associations for Candidate 10's experiences
+(28, 'DevOps'),
+(29, 'Continuous Integration'),
+(30, 'Serverless Architecture'),
+
+-- Associations for Candidate 11's experiences
+(31, 'Testing & QA'),
+(31, 'Automation'),
+(32, 'Performance Optimization'),
+(33, 'Continuous Integration'),
+
+-- Associations for Candidate 12's experiences
+(34, 'iOS Mobile Development'),
+(34, 'Android Mobile Development'),
+(35, 'UI/UX Design'),
+(36, 'Front-End Development'),
+
+-- Associations for Candidate 13's experiences
+(37, 'Cybersecurity'),
+(37, 'IoT (Internet of Things)'),
+(38, 'Serverless Architecture'),
+(39, 'Network Management'),
+
+-- Associations for Candidate 14's experiences
+(40, 'Cloud Computing'),
+(40, 'Kubernetes'),
+(41, 'Microservices'),
+(42, 'Networking & Infrastructure'),
+
+-- Associations for Candidate 15's experiences
+(43, 'Data Analysis'),
+(43, 'Business Intelligence'),
+(44, 'Data Analysis'),
+(45, 'Big Data'),
+
+-- Associations for Candidate 16's experiences
+(46, 'System Administration'),
+(46, 'Configuration Management'),
+(47, 'Networking & Infrastructure'),
+(48, 'Infrastructure as Code'),
+
+-- Associations for Candidate 17's experiences
+(49, 'UI/UX Design'),
+(49, 'Front-End Development'),
+(50, 'PWA (Progressive Web Apps)'),
+(51, 'Design Systems'),
+
+-- Associations for Candidate 18's experiences
+(52, 'Testing & QA'),
+(53, 'Automation'),
+(54, 'Performance Optimization'),
+
+-- Associations for Candidate 19's experiences
+(55, 'Machine Learning'),
+(56, 'Artificial Intelligence'),
+(57, 'Data Analysis'),
+
+-- Associations for Candidate 20's experiences
+(58, 'Blockchain'),
+(59, 'Cloud Computing'),
+(60, 'Serverless Architecture');
+
+INSERT INTO Has_hobby (candidate_id, hobby_name) VALUES
+-- Associations for Candidate 1
+(1, 'Photography'),
+(1, 'Cooking'),
+
+-- Associations for Candidate 2
+(2, 'Hiking'),
+(2, 'Reading'),
+
+-- Associations for Candidate 3
+(3, 'Playing Musical Instruments'),
+(3, 'Gardening'),
+
+-- Associations for Candidate 4
+(4, 'Astronomy'),
+(4, 'Dancing'),
+(4, 'Traveling'),
+
+-- Associations for Candidate 5
+(5, 'DIY Crafts'),
+(5, 'Biking'),
+
+-- Associations for Candidate 6
+(6, 'Writing'),
+(6, 'Board Games'),
+(6, 'Cooking'),
+
+-- Associations for Candidate 7
+(7, 'Photography'),
+(7, 'Astronomy'),
+
+-- Associations for Candidate 8
+(8, 'Hiking'),
+(8, 'Painting'),
+(8, 'Yoga'),
+
+-- Associations for Candidate 9
+(9, 'Traveling'),
+(9, 'Biking'),
+
+-- Associations for Candidate 10
+(10, 'Photography'),
+(10, 'Writing'),
+(10, 'Cooking'),
+
+-- Associations for Candidate 11
+(11, 'Astronomy'),
+(11, 'Reading'),
+
+-- Associations for Candidate 12
+(12, 'Playing Musical Instruments'),
+
+-- Associations for Candidate 13
+(13, 'Gardening'),
+(13, 'DIY Crafts'),
+
+-- Associations for Candidate 14
+(14, 'Yoga'),
+(14, 'Dancing'),
+
+-- Associations for Candidate 15
+(15, 'Biking'),
+(15, 'Painting'),
+(15, 'Reading'),
+
+-- Associations for Candidate 16
+(16, 'Cooking'),
+(16, 'Hiking'),
+
+-- Associations for Candidate 17
+(17, 'Writing'),
+(17, 'Photography'),
+
+-- Associations for Candidate 18
+(18, 'DIY Crafts'),
+(18, 'Playing Musical Instruments'),
+(18, 'Reading'),
+
+-- Associations for Candidate 19
+(19, 'Yoga'),
+
+-- Associations for Candidate 20
+(20, 'Biking'),
+(20, 'Photography');
+
+INSERT INTO TOOL(tool_name, tool_icon) VALUES
+('Python', 'python_icon.png'),
+('Java', 'java_icon.png'),
+('C++', 'cpp_icon.png'),
+('JavaScript', 'javascript_icon.png'),
+('HTML/CSS', 'html_css_icon.png'),
+('SQL', 'sql_icon.png'),
+('Ruby', 'ruby_icon.png'),
+('Swift', 'swift_icon.png'),
+('MATLAB', 'matlab_icon.png'),
+('Docker', 'docker_icon.png'),
+('Kubernetes', 'kubernetes_icon.png'),
+('Git', 'git_icon.png'),
+('Jenkins', 'jenkins_icon.png'),
+('React', 'react_icon.png'),
+('Angular', 'angular_icon.png'),
+('Vue.js', 'vue_icon.png'),
+('PostgreSQL', 'postgresql_icon.png'),
+('MongoDB', 'mongodb_icon.png'),
+('Redis', 'redis_icon.png'),
+('AWS', 'aws_icon.png'),
+('Azure', 'azure_icon.png'),
+('GCP', 'gcp_icon.png'),
+('Tableau', 'tableau_icon.png'),
+('Excel', 'excel_icon.png'),
+('R', 'r_icon.png'),
+('SAS', 'sas_icon.png'),
+('Node.js', 'nodejs_icon.png'),
+('TensorFlow', 'tensorflow_icon.png'),
+('PyTorch', 'pytorch_icon.png'),
+('.NET', 'dotnet_icon.png'),
+('Unity', 'unity_icon.png'),
+('Unreal Engine', 'unreal_icon.png'),
+('Photoshop', 'photoshop_icon.png'),
+('Illustrator', 'illustrator_icon.png'),
+('Figma', 'figma_icon.png'),
+('Android Studio', 'android_studio_icon.png'),
+('Xcode', 'xcode_icon.png'),
+('Visual Studio Code', 'vscode_icon.png'),
+('Eclipse', 'eclipse_icon.png'),
+('IntelliJ IDEA', 'intellij_icon.png'),
+('Selenium', 'selenium_icon.png'),
+('Automated Testing', 'automated_testing_icon.png'),
+('VBA', 'vba_icon.png'),
+('Microsoft Office', 'microsoft_office_icon.png'),
+('Maven', 'maven_icon.png'),
+('Gradle', 'gradle_icon.png'),
+('Clojure', 'clojure_icon.png'),
+('Functional Programming', 'functional_programming_icon.png'),
+('Fortran', 'fortran_icon.png'),
+('Scientific Computing', 'scientific_computing_icon.png'),
+('Cobalt', 'cobalt_icon.png'),
+('Legacy Systems', 'legacy_systems_icon.png'),
+('Crystal', 'crystal_icon.png'),
+('Concurrency', 'concurrency_icon.png'),
+('LabVIEW', 'labview_icon.png'),
+('Instrument Control', 'instrument_control_icon.png'),
+('MapReduce', 'mapreduce_icon.png'),
+('Big Data Processing', 'big_data_processing_icon.png'),
+('Erlang', 'erlang_icon.png'),
+('Distributed Systems', 'distributed_systems_icon.png'),
+('Pascal', 'pascal_icon.png'),
+('Structured Programming', 'structured_programming_icon.png'),
+('Octave', 'octave_icon.png'),
+('Numerical Analysis', 'numerical_analysis_icon.png'),
+('Puppet', 'puppet_icon.png'),
+('Infrastructure Automation', 'infrastructure_automation_icon.png'),
+('Chef', 'chef_icon.png'),
+('Configuration Management', 'configuration_management_icon.png'),
+('Ocaml', 'ocaml_icon.png'),
+('Type Inference', 'type_inference_icon.png'),
+('MySQL', 'mysql_icon.png'),
+('PHP', 'php_icon.png'),
+('Laravel', 'laravel_icon.png'),
+('C#', 'csharp_icon.png'),
+('Golang', 'golang_icon.png'),
+('Spring Boot', 'spring_boot_icon.png'),
+('Kotlin', 'kotlin_icon.png'),
+('PowerBI', 'powerbi_icon.png'),
+('SASS', 'sass_icon.png'),
+('Bootstrap', 'bootstrap_icon.png'),
+('Elixir', 'elixir_icon.png'),
+('Phoenix', 'phoenix_icon.png'),
+('TypeScript', 'typescript_icon.png'),
+('Flutter', 'flutter_icon.png'),
+('Dart', 'dart_icon.png'),
+('ASP.NET', 'aspnet_icon.png'),
+('MSSQL', 'mssql_icon.png'),
+('GraphQL', 'graphql_icon.png'),
+('Apollo', 'apollo_icon.png'),
+('Rust', 'rust_icon.png'),
+('Cargo', 'cargo_icon.png'),
+('Scala', 'scala_icon.png'),
+('Play Framework', 'play_framework_icon.png'),
+('InDesign', 'indesign_icon.png'),
+('Perl', 'perl_icon.png'),
+('Oracle DB', 'oracle_db_icon.png'),
+('Webpack', 'webpack_icon.png'),
+('Yarn', 'yarn_icon.png'),
+('NPM', 'npm_icon.png'),
+('Julia', 'julia_icon.png'),
+('Elasticsearch', 'elasticsearch_icon.png'),
+('Logstash', 'logstash_icon.png'),
+('Kibana', 'kibana_icon.png'),
+('Nginx', 'nginx_icon.png'),
+('Apache', 'apache_icon.png'),
+('Hadoop', 'hadoop_icon.png'),
+('Spark', 'spark_icon.png'),
+('Solidity', 'solidity_icon.png'),
+('Ethereum', 'ethereum_icon.png'),
+('Bash', 'bash_icon.png'),
+('Shell Scripting', 'shell_scripting_icon.png'),
+('Groovy', 'groovy_icon.png'),
+('Grails', 'grails_icon.png'),
+('C', 'c_icon.png'),
+('Makefile', 'makefile_icon.png'),
+('Postman', 'postman_icon.png'),
+('JIRA', 'jira_icon.png'),
+('Drupal', 'drupal_icon.png'),
+('WordPress', 'wordpress_icon.png'),
+('Haskell', 'haskell_icon.png'),
+('Stack', 'stack_icon.png'),
+('VHDL', 'vhdl_icon.png'),
+('Verilog', 'verilog_icon.png'),
+('Prolog', 'prolog_icon.png'),
+('RabbitMQ', 'rabbitmq_icon.png'),
+('ROS', 'ros_icon.png'),
+('Robotics', 'robotics_icon.png'),
+('Zig', 'zig_icon.png'),
+('Embedded Systems', 'embedded_systems_icon.png'),
+('Lua', 'lua_icon.png'),
+('Game Scripting', 'game_scripting_icon.png'),
+('Firebase', 'firebase_icon.png'),
+('Django', 'django_icon.png');
+
+
+
+INSERT INTO Used_Tool(experience_id, tool_name) VALUES
+-- Associations for Experience 1
+(1, 'Python'),
+(1, 'Java'),
+(1, 'SQL'),
+(1, 'Docker'),
+
+-- Associations for Experience 2
+(2, 'JavaScript'),
+(2, 'HTML/CSS'),
+(2, 'Node.js'),
+(2, 'Git'),
+
+-- Associations for Experience 3
+(3, 'Ruby'),
+(3, 'Docker'),
+(3, 'Kubernetes'),
+
+-- Associations for Experience 4
+(4, 'Angular'),
+(4, 'TypeScript'),
+(4, 'Redis'),
+
+-- Associations for Experience 5
+(5, 'AWS'),
+(5, 'Java'),
+(5, 'MySQL'),
+
+-- Associations for Experience 6
+(6, 'Git'),
+(6, 'Vue.js'),
+(6, 'MongoDB'),
+(6, 'Redis'),
+
+-- Associations for Experience 7
+(7, 'Kubernetes'),
+(7, 'Docker'),
+(7, 'Jenkins'),
+(7, 'Python'),
+
+-- Associations for Experience 8
+(8, 'PHP'),
+(8, 'Laravel'),
+(8, 'MySQL'),
+
+-- Associations for Experience 9
+(9, 'TensorFlow'),
+(9, 'Python'),
+(9, 'PyTorch'),
+
+-- Associations for Experience 10
+(10, 'Unity'),
+(10, 'C#'),
+
+-- Associations for Experience 11
+(11, 'Golang'),
+(11, 'Docker'),
+(11, 'Redis'),
+
+-- Associations for Experience 12
+(12, 'Spring Boot'),
+(12, 'Java'),
+(12, 'Kotlin'),
+
+-- Associations for Experience 13
+(13, 'R'),
+(13, 'PowerBI'),
+(13, 'Tableau'),
+
+-- Associations for Experience 14
+(14, 'SASS'),
+(14, 'Bootstrap'),
+(14, 'JavaScript'),
+
+-- Associations for Experience 15
+(15, 'Elixir'),
+(15, 'Phoenix'),
+(15, 'Redis'),
+
+-- Associations for Experience 16
+(16, 'TypeScript'),
+(16, 'React'),
+(16, 'HTML/CSS'),
+
+-- Associations for Experience 17
+(17, 'MATLAB'),
+(17, 'C++'),
+
+-- Associations for Experience 18
+(18, 'Flutter'),
+(18, 'Dart'),
+(18, 'Firebase'),
+
+-- Associations for Experience 19
+(19, 'ASP.NET'),
+(19, 'C#'),
+(19, 'MSSQL'),
+
+-- Associations for Experience 20
+(20, 'GraphQL'),
+(20, 'Apollo'),
+(20, 'React'),
+
+-- Associations for Experience 21
+(21, 'Rust'),
+(21, 'Cargo'),
+(21, 'Git'),
+
+-- Associations for Experience 22
+(22, 'Swift'),
+(22, 'Xcode'),
+
+-- Associations for Experience 23
+(23, 'Scala'),
+(23, 'Play Framework'),
+(23, 'Java'),
+
+-- Associations for Experience 24
+(24, 'Photoshop'),
+(24, 'InDesign'),
+(24, 'Illustrator'),
+
+-- Associations for Experience 25
+(25, 'Perl'),
+(25, 'Oracle DB'),
+(25, 'SQL'),
+
+-- Associations for Experience 26
+(26, 'Webpack'),
+(26, 'Yarn'),
+(26, 'NPM'),
+(26, 'Vue.js'),
+
+-- Associations for Experience 27
+(27, 'Illustrator'),
+(27, 'Figma'),
+(27, 'Photoshop'),
+
+-- Associations for Experience 28
+(28, 'Julia'),
+(28, 'Python'),
+(28, 'PyTorch'),
+
+-- Associations for Experience 29
+(29, 'Elasticsearch'),
+(29, 'Logstash'),
+(29, 'Kibana'),
+
+-- Associations for Experience 30
+(30, 'Nginx'),
+(30, 'Apache'),
+(30, 'Docker'),
+
+-- Associations for Experience 31
+(31, 'Hadoop'),
+(31, 'Spark'),
+(31, 'Java'),
+
+-- Associations for Experience 32
+(32, 'Solidity'),
+(32, 'Ethereum'),
+
+-- Associations for Experience 33
+(33, 'Tableau'),
+(33, 'Excel'),
+(33, 'Python'),
+
+-- Associations for Experience 34
+(34, 'Bash'),
+(34, 'Shell Scripting'),
+(34, 'Python'),
+
+-- Associations for Experience 35
+(35, 'Groovy'),
+(35, 'Grails'),
+(35, 'Java'),
+
+-- Associations for Experience 36
+(36, 'C'),
+(36, 'Makefile'),
+(36, 'Python'),
+
+-- Associations for Experience 37
+(37, 'Postman'),
+(37, 'JIRA'),
+(37, 'Git'),
+
+-- Associations for Experience 38
+(38, 'Drupal'),
+(38, 'WordPress'),
+(38, 'PHP'),
+
+-- Associations for Experience 39
+(39, 'Haskell'),
+(39, 'Stack'),
+(39, 'Python'),
+
+-- Associations for Experience 40
+(40, 'VHDL'),
+(40, 'Verilog'),
+
+-- Associations for Experience 41
+(41, 'Prolog'),
+(41, 'RabbitMQ'),
+(41, 'Java'),
+
+-- Associations for Experience 42
+(42, 'ROS'),
+(42, 'Robotics'),
+(42, 'Python'),
+
+-- Associations for Experience 43
+(43, 'Zig'),
+(43, 'Embedded Systems'),
+(43, 'C++'),
+
+-- Associations for Experience 44
+(44, 'Lua'),
+(44, 'Game Scripting'),
+(44, 'C++'),
+
+-- Associations for Experience 45
+(45, 'Python'),
+(45, 'Django'),
+(45, 'PostgreSQL'),
+
+-- Associations for Experience 46
+(46, 'Selenium'),
+(46, 'Automated Testing'),
+(46, 'Java'),
+
+-- Associations for Experience 47
+(47, 'VBA'),
+(47, 'Microsoft Office'),
+(47, 'Excel'),
+
+-- Associations for Experience 48
+(48, 'Maven'),
+(48, 'Gradle'),
+(48, 'Java'),
+
+-- Associations for Experience 49
+(49, 'Clojure'),
+(49, 'Functional Programming'),
+(49, 'Java'),
+
+-- Associations for Experience 50
+(50, 'Fortran'),
+(50, 'Scientific Computing'),
+(50, 'MATLAB'),
+
+-- Associations for Experience 51
+(51, 'Cobalt'),
+(51, 'Legacy Systems'),
+
+-- Associations for Experience 52
+(52, 'Crystal'),
+(52, 'Concurrency'),
+(52, 'Python'),
+
+-- Associations for Experience 53
+(53, 'LabVIEW'),
+(53, 'Instrument Control'),
+(53, 'MATLAB'),
+
+-- Associations for Experience 54
+(54, 'MapReduce'),
+(54, 'Big Data Processing'),
+(54, 'Java'),
+
+-- Associations for Experience 55
+(55, 'Erlang'),
+(55, 'Distributed Systems'),
+(55, 'Python'),
+
+-- Associations for Experience 56
+(56, 'Pascal'),
+(56, 'Structured Programming'),
+(56, 'C++'),
+
+-- Associations for Experience 57
+(57, 'Octave'),
+(57, 'Numerical Analysis'),
+(57, 'MATLAB'),
+
+-- Associations for Experience 58
+(58, 'Puppet'),
+(58, 'Infrastructure Automation'),
+(58, 'Docker'),
+
+-- Associations for Experience 59
+(59, 'Chef'),
+(59, 'Configuration Management'),
+(59, 'Python'),
+
+-- Associations for Experience 60
+(60, 'Ocaml'),
+(60, 'Type Inference');
+
+INSERT INTO LANGUAGE (language_name) VALUES
+('English'),
+('Spanish'),
+('French'),
+('German'),
+('Chinese'),
+('Russian'),
+('Japanese'),
+('Korean'),
+('Arabic'),
+('Hindi'),
+('Italian'),
+('Portuguese'),
+('Dutch'),
+('Swedish'),
+('Danish'),
+('Norwegian'),
+('Finnish'),
+('Turkish'),
+('Greek'),
+('Mandarin'),
+('Hebrew');
+
+INSERT INTO Language_Level (language_level) VALUES
+('Beginner'),
+('Elementary'),
+('Pre-Intermediate'),
+('Intermediate'),
+('Upper Intermediate'),
+('Advanced'),
+('Proficient'),
+('Native Speaker');
+
+INSERT INTO Speaks_Language (candidate_id, language_name, language_level) VALUES
+(1, 'English', 'Native Speaker'),
+(1, 'Spanish', 'Intermediate'),
+(2, 'French', 'Beginner'),
+(2, 'English', 'Upper Intermediate'),
+(3, 'German', 'Advanced'),
+(3, 'Spanish', 'Pre-Intermediate'),
+(4, 'English', 'Native Speaker'),
+(5, 'Portuguese', 'Intermediate'),
+(6, 'Italian', 'Beginner'),
+(6, 'Spanish', 'Advanced'),
+(7, 'Japanese', 'Elementary'),
+(8, 'English', 'Upper Intermediate'),
+(8, 'Russian', 'Beginner'),
+(9, 'Mandarin', 'Advanced'),
+(10, 'English', 'Native Speaker'),
+(11, 'Spanish', 'Intermediate'),
+(11, 'German', 'Beginner'),
+(12, 'French', 'Upper Intermediate'),
+(12, 'Japanese', 'Pre-Intermediate'),
+(13, 'English', 'Native Speaker'),
+(14, 'Korean', 'Elementary'),
+(14, 'Spanish', 'Intermediate'),
+(15, 'English', 'Advanced'),
+(16, 'Arabic', 'Elementary'),
+(17, 'Spanish', 'Upper Intermediate'),
+(17, 'English', 'Native Speaker'),
+(18, 'Portuguese', 'Beginner'),
+(19, 'Hindi', 'Intermediate'),
+(19, 'Spanish', 'Advanced'),
+(20, 'English', 'Native Speaker'),
+(20, 'Italian', 'Elementary');

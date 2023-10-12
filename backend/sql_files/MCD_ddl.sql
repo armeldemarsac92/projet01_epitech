@@ -88,7 +88,10 @@ CREATE TABLE JOB_OFFER (
 
 CREATE TABLE LANGUAGE (
   language_name VARCHAR(42) NOT NULL PRIMARY KEY,
-  language_level VARCHAR(42)
+);
+
+CREATE TABLE Language_Level (
+  language_level VARCHAR(42) NOT NULL PRIMARY KEY,
 );
 
 CREATE TABLE PROFESSIONNAL_EXPERIENCE (
@@ -101,11 +104,16 @@ CREATE TABLE PROFESSIONNAL_EXPERIENCE (
   entreprise_id INT NOT NULL
 );
 
-CREATE TABLE Speaks_language (
+CREATE TABLE Speaks_Language (
   candidate_id INT NOT NULL,
   language_name VARCHAR(42) NOT NULL,
-  PRIMARY KEY (candidate_id, language_name)
+  language_level VARCHAR(42) NOT NULL,
+  PRIMARY KEY (candidate_id, language_name),
+  FOREIGN KEY (candidate_id) REFERENCES CANDIDAT(candidate_id),
+  FOREIGN KEY (language_name) REFERENCES LANGUAGE(language_name),
+  FOREIGN KEY (language_level) REFERENCES Language_Level(language_level)
 );
+
 
 CREATE TABLE TOOL (
   tool_name VARCHAR(42) NOT NULL PRIMARY KEY,
