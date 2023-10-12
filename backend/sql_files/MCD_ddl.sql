@@ -87,21 +87,11 @@ CREATE TABLE JOB_OFFER (
 );
 
 CREATE TABLE LANGUAGE (
-  language_name VARCHAR(42) NOT NULL PRIMARY KEY,
+  language_name VARCHAR(42) NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE Language_Level (
-  language_level VARCHAR(42) NOT NULL PRIMARY KEY,
-);
-
-CREATE TABLE PROFESSIONNAL_EXPERIENCE (
-  experience_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  experience_start_date DATE,
-  experience_end_date DATE,
-  experience_job_title VARCHAR(42),
-  experience_description MEDIUMTEXT,
-  candidate_id INT NOT NULL,
-  entreprise_id INT NOT NULL
+  language_level VARCHAR(42) NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE Speaks_Language (
@@ -112,6 +102,16 @@ CREATE TABLE Speaks_Language (
   FOREIGN KEY (candidate_id) REFERENCES CANDIDAT(candidate_id),
   FOREIGN KEY (language_name) REFERENCES LANGUAGE(language_name),
   FOREIGN KEY (language_level) REFERENCES Language_Level(language_level)
+);
+
+CREATE TABLE PROFESSIONNAL_EXPERIENCE (
+  experience_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  experience_start_date DATE,
+  experience_end_date DATE,
+  experience_job_title VARCHAR(42),
+  experience_description MEDIUMTEXT,
+  candidate_id INT NOT NULL,
+  entreprise_id INT NOT NULL
 );
 
 
@@ -145,8 +145,6 @@ ALTER TABLE Has_hobby ADD FOREIGN KEY (candidate_id) REFERENCES CANDIDAT (candid
 ALTER TABLE JOB_OFFER ADD FOREIGN KEY (entreprise_id) REFERENCES ENTREPRISE (entreprise_id);
 ALTER TABLE PROFESSIONNAL_EXPERIENCE ADD FOREIGN KEY (entreprise_id) REFERENCES ENTREPRISE (entreprise_id);
 ALTER TABLE PROFESSIONNAL_EXPERIENCE ADD FOREIGN KEY (candidate_id) REFERENCES CANDIDAT (candidate_id);
-ALTER TABLE Speaks_language ADD FOREIGN KEY (language_name) REFERENCES LANGUAGE (language_name);
-ALTER TABLE Speaks_language ADD FOREIGN KEY (candidate_id) REFERENCES CANDIDAT (candidate_id);
 ALTER TABLE Used_Competence ADD FOREIGN KEY (competence_name) REFERENCES COMPETENCE (competence_name);
 ALTER TABLE Used_Competence ADD FOREIGN KEY (experience_id) REFERENCES PROFESSIONNAL_EXPERIENCE (experience_id);
 ALTER TABLE Used_Tool ADD FOREIGN KEY (tool_name) REFERENCES TOOL (tool_name);
