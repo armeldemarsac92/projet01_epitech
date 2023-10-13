@@ -1,499 +1,574 @@
--- CANDIDAT
-INSERT INTO CANDIDAT (candidate_first_name, candidate_last_name, candidate_sex, candidate_email, candidate_phone_number, candidate_localisation, candidate_about, candidate_profile_picture, candidate_cover_picture, candidate_status)
+-- CANDIDATE
+INSERT INTO candidate (candidate_first_name, candidate_last_name, candidate_sex, candidate_email, candidate_phone_number, candidate_localisation, candidate_about, candidate_profile_picture, candidate_status)
 VALUES
-('John', 'Doe', 'Male', 'john.doe@gmail.com', '1234567890', 'New York', 'Experienced software engineer with expertise in full stack development.', 'john_doe_profile.jpg', 'john_doe_cover.jpg', 'Active'),
-('Alice', 'Johnson', 'Female', 'alice.johnson@outlook.com', '1234567891', 'Los Angeles', 'Passionate data scientist with an eye for detail.', 'alice_johnson_profile.jpg', 'alice_johnson_cover.jpg', 'Active'),
-('Bob', 'Smith', 'Male', 'bob.smith@yahoo.com', '1234567892', 'Chicago', 'DevOps specialist with 5 years in cloud infrastructure.', 'bob_smith_profile.jpg', 'bob_smith_cover.jpg', 'Active'),
-('Eve', 'Martin', 'Female', 'eve.martin@hotmail.com', '1234567893', 'Houston', 'Dedicated project manager with experience leading cross-functional teams.', 'eve_martin_profile.jpg', 'eve_martin_cover.jpg', 'Active'),
-('Charlie', 'Brown', 'Male', 'charlie.brown@domain.com', '1234567894', 'Phoenix', 'Front-end developer specialized in React and Angular.', 'charlie_brown_profile.jpg', 'charlie_brown_cover.jpg', 'Active'),
-('Diane', 'Wilson', 'Female', 'diane.wilson@company.com', '1234567895', 'Philadelphia', 'UI/UX designer with a flair for creating intuitive designs.', 'diane_wilson_profile.jpg', 'diane_wilson_cover.jpg', 'Active'),
-('Edward', 'Davis', 'Male', 'edward.davis@org.com', '1234567896', 'San Antonio', 'Backend developer skilled in Java and Python.', 'edward_davis_profile.jpg', 'edward_davis_cover.jpg', 'Active'),
-('Fay', 'Garcia', 'Female', 'fay.garcia@web.com', '1234567897', 'San Diego', 'Experienced tester with a knack for finding bugs.', 'fay_garcia_profile.jpg', 'fay_garcia_cover.jpg', 'Active'),
-('Greg', 'Lopez', 'Male', 'greg.lopez@site.com', '1234567898', 'Dallas', 'Mobile app developer specializing in iOS and Android.', 'greg_lopez_profile.jpg', 'greg_lopez_cover.jpg', 'Active'),
-('Holly', 'Martinez', 'Female', 'holly.martinez@page.com', '1234567899', 'San Jose', 'Cybersecurity expert with a background in network security.', 'holly_martinez_profile.jpg', 'holly_martinez_cover.jpg', 'Active'),
-('Ian', 'Hernandez', 'Male', 'ian.hernandez@myweb.com', '1234567800', 'Austin', 'Database administrator experienced in both SQL and NoSQL databases.', 'ian_hernandez_profile.jpg', 'ian_hernandez_cover.jpg', 'Active'),
-('Jill', 'Robinson', 'Female', 'jill.robinson@online.com', '1234567801', 'Jacksonville', 'Tech lead with a passion for team collaboration and agile methodologies.', 'jill_robinson_profile.jpg', 'jill_robinson_cover.jpg', 'Active'),
-('Kevin', 'Walker', 'Male', 'kevin.walker@net.com', '1234567802', 'Fort Worth', 'Experienced network engineer with expertise in large-scale infrastructures.', 'kevin_walker_profile.jpg', 'kevin_walker_cover.jpg', 'Active'),
-('Linda', 'Perez', 'Female', 'linda.perez@internet.com', '1234567803', 'Columbus', 'Digital marketer with a focus on SEO and SEM strategies.', 'linda_perez_profile.jpg', 'linda_perez_cover.jpg', 'Active'),
-('Mike', 'King', 'Male', 'mike.king@webpage.com', '1234567804', 'San Francisco', 'Machine learning engineer passionate about deep learning.', 'mike_king_profile.jpg', 'mike_king_cover.jpg', 'Active'),
-('Nancy', 'White', 'Female', 'nancy.white@site.org', '1234567805', 'Charlotte', 'Blockchain enthusiast with a history in fintech innovations.', 'nancy_white_profile.jpg', 'nancy_white_cover.jpg', 'Active'),
-('Oscar', 'Harris', 'Male', 'oscar.harris@email.com', '1234567806', 'Indianapolis', 'Full stack developer with a passion for modern web technologies.', 'oscar_harris_profile.jpg', 'oscar_harris_cover.jpg', 'Active'),
-('Pamela', 'Clark', 'Female', 'pamela.clark@domain.net', '1234567807', 'Seattle', 'DevOps specialist with a focus on continuous integration and deployment.', 'pamela_clark_profile.jpg', 'pamela_clark_cover.jpg', 'Active'),
-('Quincy', 'Anderson', 'Male', 'quincy.anderson@company.net', '1234567808', 'Denver', 'Experienced game developer specialized in Unity and Unreal Engine.', 'quincy_anderson_profile.jpg', 'quincy_anderson_cover.jpg', 'Active'),
-('Rita', 'Young', 'Female', 'rita.young@web.org', '1234567809', 'El Paso', 'Data analyst with a background in financial modeling and statistics.', 'rita_young_profile.jpg', 'rita_young_cover.jpg', 'Active');
+('John', 'Doe', 'Male', 'john.doe@gmail.com', '1234567890', 'New York', 'Experienced software engineer with expertise in full stack development.', 'john_doe_profile.jpg', 'Active'),
+('Alice', 'Johnson', 'Female', 'alice.johnson@outlook.com', '1234567891', 'Los Angeles', 'Passionate data scientist with an eye for detail.', 'alice_johnson_profile.jpg', 'Active'),
+('Bob', 'Smith', 'Male', 'bob.smith@yahoo.com', '1234567892', 'Chicago', 'DevOps specialist with 5 years in cloud infrastructure.', 'bob_smith_profile.jpg', 'Active'),
+('Eve', 'Martin', 'Female', 'eve.martin@hotmail.com', '1234567893', 'Houston', 'Dedicated project manager with experience leading cross-functional teams.', 'eve_martin_profile.jpg', 'Active'),
+('Charlie', 'Brown', 'Male', 'charlie.brown@domain.com', '1234567894', 'Phoenix', 'Front-end developer specialized in React and Angular.', 'charlie_brown_profile.jpg', 'Active'),
+('Diane', 'Wilson', 'Female', 'diane.wilson@company.com', '1234567895', 'Philadelphia', 'UI/UX designer with a flair for creating intuitive designs.', 'diane_wilson_profile.jpg', 'Active'),
+('Edward', 'Davis', 'Male', 'edward.davis@org.com', '1234567896', 'San Antonio', 'Backend developer skilled in Java and Python.', 'edward_davis_profile.jpg', 'Active'),
+('Fay', 'Garcia', 'Female', 'fay.garcia@web.com', '1234567897', 'San Diego', 'Experienced tester with a knack for finding bugs.', 'fay_garcia_profile.jpg', 'Active'),
+('Greg', 'Lopez', 'Male', 'greg.lopez@site.com', '1234567898', 'Dallas', 'Mobile app developer specializing in iOS and Android.', 'greg_lopez_profile.jpg', 'Active'),
+('Holly', 'Martinez', 'Female', 'holly.martinez@page.com', '1234567899', 'San Jose', 'Cybersecurity expert with a background in network security.', 'holly_martinez_profile.jpg', 'Active'),
+('Ian', 'Hernandez', 'Male', 'ian.hernandez@myweb.com', '1234567800', 'Austin', 'Database administrator experienced in both SQL and NoSQL databases.', 'ian_hernandez_profile.jpg', 'Active'),
+('Jill', 'Robinson', 'Female', 'jill.robinson@online.com', '1234567801', 'Jacksonville', 'Tech lead with a passion for team collaboration and agile methodologies.', 'jill_robinson_profile.jpg', 'Active'),
+('Kevin', 'Walker', 'Male', 'kevin.walker@net.com', '1234567802', 'Fort Worth', 'Experienced network engineer with expertise in large-scale infrastructures.', 'kevin_walker_profile.jpg', 'Active'),
+('Linda', 'Perez', 'Female', 'linda.perez@internet.com', '1234567803', 'Columbus', 'Digital marketer with a focus on SEO and SEM strategies.', 'linda_perez_profile.jpg', 'Active'),
+('Mike', 'King', 'Male', 'mike.king@webpage.com', '1234567804', 'San Francisco', 'Machine learning engineer passionate about deep learning.', 'mike_king_profile.jpg', 'Active'),
+('Nancy', 'White', 'Female', 'nancy.white@site.org', '1234567805', 'Charlotte', 'Blockchain enthusiast with a history in fintech innovations.', 'nancy_white_profile.jpg', 'Active'),
+('Oscar', 'Harris', 'Male', 'oscar.harris@email.com', '1234567806', 'Indianapolis', 'Full stack developer with a passion for modern web technologies.', 'oscar_harris_profile.jpg', 'Active'),
+('Pamela', 'Clark', 'Female', 'pamela.clark@domain.net', '1234567807', 'Seattle', 'DevOps specialist with a focus on continuous integration and deployment.', 'pamela_clark_profile.jpg', 'Active'),
+('Quincy', 'Anderson', 'Male', 'quincy.anderson@company.net', '1234567808', 'Denver', 'Experienced game developer specialized in Unity and Unreal Engine.', 'quincy_anderson_profile.jpg', 'Active'),
+('Rita', 'Young', 'Female', 'rita.young@web.org', '1234567809', 'El Paso', 'Data analyst with a background in financial modeling and statistics.', 'rita_young_profile.jpg', 'Active');
 
---- ENTREPRISE
-INSERT INTO ENTREPRISE (
-    entreprise_name, entreprise_field, entreprise_about, entreprise_number_of_workers, 
-    entreprise_date_of_creation, entreprise_localisation, entreprise_desired_profiles, 
-    entreprise_average_age, entreprise_profile_picture, entreprise_cover_picture
+--- ENTERPRISE
+INSERT INTO enterprise (
+    enterprise_name, enterprise_field, enterprise_about, enterprise_workers_count, 
+    enterprise_creation_date, enterprise_localisation, enterprise_desired_profiles, 
+    enterprise_average_age, enterprise_profile_picture
 )
 VALUES
-('TechSolutions', 'Technology', 'Leading provider of tech solutions worldwide.', 500, '1995-06-15', 'San Francisco', 'Software Developers, Data Scientists', 32, 'techsolutions_logo.jpg', 'techsolutions_cover.jpg'),
-('DataWise', 'Data Analytics', 'Data-driven solutions for modern businesses.', 300, '2000-01-20', 'New York', 'Data Analysts, Data Engineers', 30, 'datawise_logo.jpg', 'datawise_cover.jpg'),
-('CloudCrafter', 'Cloud Computing', 'Pioneers in cloud technology and infrastructures.', 450, '2005-03-12', 'Seattle', 'Cloud Architects, SysAdmins', 33, 'cloudcrafter_logo.jpg', 'cloudcrafter_cover.jpg'),
-('DevHub', 'Software Development', 'Developers'' paradise for tools and resources.', 550, '2010-11-05', 'Austin', 'Full-Stack Developers, UI/UX Designers', 29, 'devhub_logo.jpg', 'devhub_cover.jpg'),
-('CircuitryTech', 'Electronics', 'Innovative solutions in electronics and circuitry.', 600, '1988-04-23', 'Boston', 'Electronics Engineers, Designers', 34, 'circuitrytech_logo.jpg', 'circuitrytech_cover.jpg'),
-('AI Innovators', 'Artificial Intelligence', 'Leading the charge in AI innovations and research.', 400, '2015-07-30', 'San Diego', 'AI Researchers, Machine Learning Engineers', 31, 'aiinnovators_logo.jpg', 'aiinnovators_cover.jpg'),
-('WebCrafters', 'Web Development', 'Crafting superior web experiences for users.', 530, '2012-02-14', 'Los Angeles', 'Front-End Developers, Back-End Developers', 28, 'webcrafters_logo.jpg', 'webcrafters_cover.jpg'),
-('SecureNet', 'Cybersecurity', 'Prioritizing your security in the digital world.', 490, '1999-08-08', 'Chicago', 'Cybersecurity Analysts, Ethical Hackers', 35, 'securenet_logo.jpg', 'securenet_cover.jpg'),
-('PixelPerfect', 'Design', 'Perfecting designs one pixel at a time.', 280, '2016-12-01', 'Miami', 'Graphic Designers, Web Designers', 27, 'pixelperfect_logo.jpg', 'pixelperfect_cover.jpg'),
-('QuantumTech', 'Quantum Computing', 'Revolutionizing technology with quantum computing.', 320, '2018-09-19', 'Dallas', 'Quantum Researchers, Hardware Engineers', 33, 'quantumtech_logo.jpg', 'quantumtech_cover.jpg'),
-('NetSolutions', 'Networking', 'Providing networking solutions for global enterprises.', 510, '1993-10-25', 'Denver', 'Network Administrators, Cloud Engineers', 36, 'netsolutions_logo.jpg', 'netsolutions_cover.jpg'),
-('GreenTech', 'Clean Technology', 'Eco-friendly tech solutions for a greener planet.', 470, '2009-05-05', 'Portland', 'Clean Energy Engineers, Sustainability Managers', 30, 'greentech_logo.jpg', 'greentech_cover.jpg'),
-('BlockBusters', 'Blockchain', 'Driving innovations in blockchain technology.', 340, '2017-06-06', 'Las Vegas', 'Blockchain Developers, Crypto Analysts', 29, 'blockbusters_logo.jpg', 'blockbusters_cover.jpg'),
-('VR Visions', 'Virtual Reality', 'Bringing virtual realities to life.', 390, '2019-01-01', 'San Jose', 'VR Developers, 3D Modellers', 28, 'vrvisions_logo.jpg', 'vrvisions_cover.jpg'),
-('NanoNest', 'Nanotechnology', 'Nanotechnology solutions for modern problems.', 440, '2014-03-15', 'Detroit', 'Nano-Researchers, Material Scientists', 32, 'nanonest_logo.jpg', 'nanonest_cover.jpg'),
-('OptimaTech', 'Optimization', 'Optimizing technology for business excellence.', 370, '1997-07-07', 'Phoenix', 'Optimization Engineers, Analysts', 33, 'optimatch_logo.jpg', 'optimatch_cover.jpg'),
-('MobileMasters', 'Mobile Technology', 'Mastering the art of mobile technology.', 520, '2011-04-04', 'San Antonio', 'Mobile App Developers, Mobile UI/UX', 28, 'mobilemasters_logo.jpg', 'mobilemasters_cover.jpg'),
-('GigaGrid', 'Grid Computing', 'Powering businesses with robust grid computing.', 430, '2002-12-12', 'Nashville', 'Grid Engineers, Network Managers', 31, 'gigagrid_logo.jpg', 'gigagrid_cover.jpg'),
-('EcoTronix', 'Eco Electronics', 'Marrying ecology and electronics for a better tomorrow.', 460, '2006-02-02', 'Atlanta', 'Eco Designers, Recycle Managers', 29, 'ecotronix_logo.jpg', 'ecotronix_cover.jpg'),
-('FutureFusion', 'Futurism', 'Fusing technologies for a futuristic approach.', 420, '2020-10-10', 'Orlando', 'Futurists, Technological Visionaries', 30, 'futurefusion_logo.jpg', 'futurefusion_cover.jpg');
+('TechSolutions', 'Technology', 'Leading provider of tech solutions worldwide.', 500, '1995-06-15', 'San Francisco', 'Software Developers, Data Scientists', 32, 'techsolutions_logo.jpg'),
+('DataWise', 'Data Analytics', 'Data-driven solutions for modern businesses.', 300, '2000-01-20', 'New York', 'Data Analysts, Data Engineers', 30, 'datawise_logo.jpg'),
+('CloudCrafter', 'Cloud Computing', 'Pioneers in cloud technology and infrastructures.', 450, '2005-03-12', 'Seattle', 'Cloud Architects, SysAdmins', 33, 'cloudcrafter_logo.jpg'),
+('DevHub', 'Software Development', 'Developers'' paradise for tools and resources.', 550, '2010-11-05', 'Austin', 'Full-Stack Developers, UI/UX Designers', 29, 'devhub_logo.jpg'),
+('CircuitryTech', 'Electronics', 'Innovative solutions in electronics and circuitry.', 600, '1988-04-23', 'Boston', 'Electronics Engineers, Designers', 34, 'circuitrytech_logo.jpg'),
+('AI Innovators', 'Artificial Intelligence', 'Leading the charge in AI innovations and research.', 400, '2015-07-30', 'San Diego', 'AI Researchers, Machine Learning Engineers', 31, 'aiinnovators_logo.jpg'),
+('WebCrafters', 'Web Development', 'Crafting superior web experiences for users.', 530, '2012-02-14', 'Los Angeles', 'Front-End Developers, Back-End Developers', 28, 'webcrafters_logo.jpg'),
+('SecureNet', 'Cybersecurity', 'Prioritizing your security in the digital world.', 490, '1999-08-08', 'Chicago', 'Cybersecurity Analysts, Ethical Hackers', 35, 'securenet_logo.jpg'),
+('PixelPerfect', 'Design', 'Perfecting designs one pixel at a time.', 280, '2016-12-01', 'Miami', 'Graphic Designers, Web Designers', 27, 'pixelperfect_logo.jpg'),
+('QuantumTech', 'Quantum Computing', 'Revolutionizing technology with quantum computing.', 320, '2018-09-19', 'Dallas', 'Quantum Researchers, Hardware Engineers', 33, 'quantumtech_logo.jpg'),
+('NetSolutions', 'Networking', 'Providing networking solutions for global enterprises.', 510, '1993-10-25', 'Denver', 'Network Administrators, Cloud Engineers', 36, 'netsolutions_logo.jpg'),
+('GreenTech', 'Clean Technology', 'Eco-friendly tech solutions for a greener planet.', 470, '2009-05-05', 'Portland', 'Clean Energy Engineers, Sustainability Managers', 30, 'greentech_logo.jpg'),
+('BlockBusters', 'Blockchain', 'Driving innovations in blockchain technology.', 340, '2017-06-06', 'Las Vegas', 'Blockchain Developers, Crypto Analysts', 29, 'blockbusters_logo.jpg'),
+('VR Visions', 'Virtual Reality', 'Bringing virtual realities to life.', 390, '2019-01-01', 'San Jose', 'VR Developers, 3D Modellers', 28, 'vrvisions_logo.jpg'),
+('NanoNest', 'Nanotechnology', 'Nanotechnology solutions for modern problems.', 440, '2014-03-15', 'Detroit', 'Nano-Researchers, Material Scientists', 32, 'nanonest_logo.jpg'),
+('OptimaTech', 'Optimization', 'Optimizing technology for business excellence.', 370, '1997-07-07', 'Phoenix', 'Optimization Engineers, Analysts', 33, 'optimatch_logo.jpg'),
+('MobileMasters', 'Mobile Technology', 'Mastering the art of mobile technology.', 520, '2011-04-04', 'San Antonio', 'Mobile App Developers, Mobile UI/UX', 28, 'mobilemasters_logo.jpg'),
+('GigaGrid', 'Grid Computing', 'Powering businesses with robust grid computing.', 430, '2002-12-12', 'Nashville', 'Grid Engineers, Network Managers', 31, 'gigagrid_logo.jpg'),
+('EcoTronix', 'Eco Electronics', 'Marrying ecology and electronics for a better tomorrow.', 460, '2006-02-02', 'Atlanta', 'Eco Designers, Recycle Managers', 29, 'ecotronix_logo.jpg'),
+('FutureFusion', 'Futurism', 'Fusing technologies for a futuristic approach.', 420, '2020-10-10', 'Orlando', 'Futurists, Technological Visionaries', 30, 'futurefusion_logo.jpg');
 
 -- PROFESSIONNAL_EXPERIENCE
-INSERT INTO PROFESSIONNAL_EXPERIENCE (
-    experience_start_date, experience_end_date, experience_job_title, experience_description, 
-    candidate_id, entreprise_id
+INSERT INTO professionnal_experience (
+    enterprise_id, candidate_id, experience_start_date, experience_end_date, experience_job_title, experience_description
 )
 VALUES
 -- For Candidate 1
-('2019-01-01', '2021-01-01', 'Software Developer', 'Developed and maintained key software components.', 1, 1),
-('2021-02-01', '2023-01-01', 'Senior Developer', 'Led a team of developers in various projects.', 1, 2),
-('2017-03-01', '2019-01-01', 'Junior Developer', 'Assisted in debugging and documentation.', 1, 3),
+(1, 1, '2019-01-01', '2021-01-01', 'Software Developer', 'Developed and maintained key software components.'),
+(2, 1, '2021-02-01', '2023-01-01', 'Senior Developer', 'Led a team of developers in various projects.'),
+(3, 1, '2017-03-01', '2019-01-01', 'Junior Developer', 'Assisted in debugging and documentation.'),
 
 -- For Candidate 2
-('2018-05-01', '2020-04-01', 'Data Analyst', 'Analyzed datasets for business insights.', 2, 2),
-('2020-05-01', '2022-05-01', 'Senior Data Analyst', 'Managed data projects and coordinated with stakeholders.', 2, 4),
-('2016-08-01', '2018-04-01', 'Data Intern', 'Assisted in cleaning and preparing datasets.', 2, 5),
+(2, 2, '2018-05-01', '2020-04-01', 'Data Analyst', 'Analyzed datasets for business insights.'),
+(4, 2, '2020-05-01', '2022-05-01', 'Senior Data Analyst', 'Managed data projects and coordinated with stakeholders.'),
+(5, 2, '2016-08-01', '2018-04-01', 'Data Intern', 'Assisted in cleaning and preparing datasets.'),
 
 -- For Candidate 3
-('2017-06-01', '2019-06-01', 'Cloud Architect', 'Designed cloud infrastructure for clients.', 3, 3),
-('2019-07-01', '2021-07-01', 'Senior Cloud Architect', 'Oversaw multiple cloud projects.', 3, 6),
-('2015-09-01', '2017-05-01', 'Cloud Associate', 'Supported cloud migrations and deployments.', 3, 7),
+(3, 3, '2017-06-01', '2019-06-01', 'Cloud Architect', 'Designed cloud infrastructure for clients.'),
+(6, 3, '2019-07-01', '2021-07-01', 'Senior Cloud Architect', 'Oversaw multiple cloud projects.'),
+(7, 3, '2015-09-01', '2017-05-01', 'Cloud Associate', 'Supported cloud migrations and deployments.'),
 
 -- For Candidate 4
-('2016-03-01', '2018-03-01', 'Web Designer', 'Created appealing and user-friendly websites.', 4, 5),
-('2018-04-01', '2020-04-01', 'Senior Web Designer', 'Managed design projects and coordinated with clients.', 4, 6),
-('2020-05-01', '2023-01-01', 'UX/UI Expert', 'Enhanced user experience and interfaced with development teams.', 4, 7),
+(5, 4, '2016-03-01', '2018-03-01', 'Web Designer', 'Created appealing and user-friendly websites.'),
+(6, 4, '2018-04-01', '2020-04-01', 'Senior Web Designer', 'Managed design projects and coordinated with clients.'),
+(7, 4, '2020-05-01', '2023-01-01', 'UX/UI Expert', 'Enhanced user experience and interfaced with development teams.'),
 
 -- For Candidate 5
-('2019-02-01', '2021-01-01', 'System Admin', 'Ensured smooth operations of company IT infrastructure.', 5, 8),
-('2021-02-01', '2022-12-01', 'Senior System Admin', 'Led the IT support team and managed vendor relations.', 5, 9),
-('2017-04-01', '2019-01-01', 'IT Support', 'Provided IT support to staff and managed backups.', 5, 10),
+(8, 5, '2019-02-01', '2021-01-01', 'System Admin', 'Ensured smooth operations of company IT infrastructure.'),
+(9, 5, '2021-02-01', '2022-12-01', 'Senior System Admin', 'Led the IT support team and managed vendor relations.'),
+(10, 5, '2017-04-01', '2019-01-01', 'IT Support', 'Provided IT support to staff and managed backups.'),
 
 -- Candidate 6
-('2016-11-01', '2018-11-01', 'Database Administrator', 'Managed and optimized organizational databases.', 6, 6),
-('2018-12-01', '2020-12-01', 'Senior Database Admin', 'Supervised database projects and ensured data integrity.', 6, 7),
-('2015-02-01', '2016-10-01', 'Database Intern', 'Supported database migrations and optimizations.', 6, 8),
+(6, 6, '2016-11-01', '2018-11-01', 'Database Administrator', 'Managed and optimized organizational databases.'),
+(7, 6, '2018-12-01', '2020-12-01', 'Senior Database Admin', 'Supervised database projects and ensured data integrity.'),
+(8, 6, '2015-02-01', '2016-10-01', 'Database Intern', 'Supported database migrations and optimizations.'),
 
 -- Candidate 7
-('2018-04-01', '2020-04-01', 'Network Engineer', 'Designed and maintained organizational network infrastructure.', 7, 8),
-('2020-05-01', '2022-04-01', 'Senior Network Engineer', 'Led network operations and managed security protocols.', 7, 9),
-('2016-09-01', '2018-03-01', 'Network Associate', 'Assisted in network installations and configurations.', 7, 10),
+(8, 7, '2018-04-01', '2020-04-01', 'Network Engineer', 'Designed and maintained organizational network infrastructure.'),
+(9, 7, '2020-05-01', '2022-04-01', 'Senior Network Engineer', 'Led network operations and managed security protocols.'),
+(10, 7, '2016-09-01', '2018-03-01', 'Network Associate', 'Assisted in network installations and configurations.'),
 
 -- Candidate 8
-('2017-07-01', '2019-07-01', 'Frontend Developer', 'Developed and optimized web interfaces.', 8, 10),
-('2019-08-01', '2021-08-01', 'Senior Frontend Developer', 'Supervised frontend teams and established best practices.', 8, 11),
-('2016-03-01', '2017-06-01', 'Web Intern', 'Supported web development projects and learned key skills.', 8, 12),
+(10, 8, '2017-07-01', '2019-07-01', 'Frontend Developer', 'Developed and optimized web interfaces.'),
+(11, 8, '2019-08-01', '2021-08-01', 'Senior Frontend Developer', 'Supervised frontend teams and established best practices.'),
+(12, 8, '2016-03-01', '2017-06-01', 'Web Intern', 'Supported web development projects and learned key skills.'),
 
 -- Candidate 9
-('2016-02-01', '2018-01-01', 'Backend Developer', 'Designed server-side applications and ensured scalability.', 9, 11),
-('2018-02-01', '2020-01-01', 'Senior Backend Developer', 'Managed backend teams and set development milestones.', 9, 12),
-('2020-02-01', '2022-02-01', 'Full Stack Developer', 'Oversaw both frontend and backend developments.', 9, 13),
+(11, 9, '2016-02-01', '2018-01-01', 'Backend Developer', 'Designed server-side applications and ensured scalability.'),
+(12, 9, '2018-02-01', '2020-01-01', 'Senior Backend Developer', 'Managed backend teams and set development milestones.'),
+(13, 9, '2020-02-01', '2022-02-01', 'Full Stack Developer', 'Oversaw both frontend and backend developments.'),
 
 -- Candidate 10
-('2018-06-01', '2020-06-01', 'DevOps Engineer', 'Enhanced CI/CD pipelines and improved deployment speed.', 10, 13),
-('2020-07-01', '2022-05-01', 'Senior DevOps Engineer', 'Managed DevOps teams and spearheaded automation efforts.', 10, 14),
-('2016-05-01', '2018-05-01', 'DevOps Intern', 'Gained hands-on experience with deployment and monitoring tools.', 10, 15),
+(13, 10, '2018-06-01', '2020-06-01', 'DevOps Engineer', 'Enhanced CI/CD pipelines and improved deployment speed.'),
+(14, 10, '2020-07-01', '2022-05-01', 'Senior DevOps Engineer', 'Managed DevOps teams and spearheaded automation efforts.'),
+(15, 10, '2016-05-01', '2018-05-01', 'DevOps Intern', 'Gained hands-on experience with deployment and monitoring tools.'),
 
 -- Candidate 11
-('2019-03-01', '2021-02-01', 'QA Engineer', 'Ensured software quality and managed testing processes.', 11, 14),
-('2021-03-01', '2023-01-01', 'Senior QA Engineer', 'Oversaw QA teams and set testing benchmarks.', 11, 15),
-('2017-11-01', '2019-02-01', 'QA Intern', 'Supported testing processes and learned best QA practices.', 11, 16),
+(14, 11, '2019-03-01', '2021-02-01', 'QA Engineer', 'Ensured software quality and managed testing processes.'),
+(15, 11, '2021-03-01', '2023-01-01', 'Senior QA Engineer', 'Oversaw QA teams and set testing benchmarks.'),
+(16, 11, '2017-11-01', '2019-02-01', 'QA Intern', 'Supported testing processes and learned best QA practices.'),
 
 -- Candidate 12
-('2017-10-01', '2019-09-01', 'Mobile Developer', 'Developed mobile applications for various platforms.', 12, 16),
-('2019-10-01', '2021-09-01', 'Senior Mobile Developer', 'Managed mobile development teams and set project goals.', 12, 17),
-('2021-10-01', '2023-01-01', 'Mobile Architect', 'Designed mobile application architecture for large projects.', 12, 18),
+(16, 12, '2017-10-01', '2019-09-01', 'Mobile Developer', 'Developed mobile applications for various platforms.'),
+(17, 12, '2019-10-01', '2021-09-01', 'Senior Mobile Developer', 'Managed mobile development teams and set project goals.'),
+(18, 12, '2021-10-01', '2023-01-01', 'Mobile Architect', 'Designed mobile application architecture for large projects.'),
 
 -- Candidate 13
-('2016-07-01', '2018-06-01', 'Security Analyst', 'Conducted security audits and vulnerability assessments.', 13, 17),
-('2018-07-01', '2020-06-01', 'Senior Security Analyst', 'Oversaw security projects and enhanced defenses.', 13, 18),
-('2020-07-01', '2022-06-01', 'Security Manager', 'Led security teams and managed organizational defenses.', 13, 19),
+(17, 13, '2016-07-01', '2018-06-01', 'Security Analyst', 'Conducted security audits and vulnerability assessments.'),
+(18, 13, '2018-07-01', '2020-06-01', 'Senior Security Analyst', 'Oversaw security projects and enhanced defenses.'),
+(19, 13, '2020-07-01', '2022-06-01', 'Security Manager', 'Led security teams and managed organizational defenses.'),
 
 -- Candidate 14
-('2016-01-01', '2018-02-01', 'Cloud Engineer', 'Managed cloud deployments across multiple platforms.', 14, 19),
-('2018-03-01', '2020-03-01', 'Senior Cloud Engineer', 'Supervised cloud projects and optimized costs.', 14, 20),
-('2020-04-01', '2022-03-01', 'Cloud Architect', 'Designed and reviewed cloud infrastructure for large projects.', 14, 16),
+(19, 14, '2016-01-01', '2018-02-01', 'Cloud Engineer', 'Managed cloud deployments across multiple platforms.'),
+(20, 14, '2018-03-01', '2020-03-01', 'Senior Cloud Engineer', 'Supervised cloud projects and optimized costs.'),
+(16, 14, '2020-04-01', '2022-03-01', 'Cloud Architect', 'Designed and reviewed cloud infrastructure for large projects.'),
 
 -- Candidate 15
-('2017-05-01', '2019-05-01', 'Data Scientist', 'Analyzed and derived insights from large datasets.', 15, 17),
-('2019-06-01', '2021-05-01', 'Senior Data Scientist', 'Managed data teams and set project milestones.', 15, 18),
-('2015-09-01', '2017-04-01', 'Data Analyst', 'Supported data projects and created visualizations.', 15, 19),
+(17, 15, '2017-05-01', '2019-05-01', 'Data Scientist', 'Analyzed and derived insights from large datasets.'),
+(18, 15, '2019-06-01', '2021-05-01', 'Senior Data Scientist', 'Managed data teams and set project milestones.'),
+(19, 15, '2015-09-01', '2017-04-01', 'Data Analyst', 'Supported data projects and created visualizations.'),
 
 -- Candidate 16
-('2015-06-01', '2017-06-01', 'System Admin', 'Oversaw system deployments and managed configurations.', 16, 20),
-('2017-07-01', '2019-07-01', 'Senior System Admin', 'Managed large infrastructures and ensured high availability.', 16, 16),
-('2019-08-01', '2021-07-01', 'Infrastructure Engineer', 'Optimized and enhanced organizational IT infrastructure.', 16, 17),
+(20, 16, '2015-06-01', '2017-06-01', 'System Admin', 'Oversaw system deployments and managed configurations.'),
+(16, 16, '2017-07-01', '2019-07-01', 'Senior System Admin', 'Managed large infrastructures and ensured high availability.'),
+(17, 16, '2019-08-01', '2021-07-01', 'Infrastructure Engineer', 'Optimized and enhanced organizational IT infrastructure.'),
 
 -- Candidate 17
-('2016-04-01', '2018-04-01', 'UI/UX Designer', 'Designed user-friendly and efficient interfaces.', 17, 18),
-('2018-05-01', '2020-04-01', 'Lead UI/UX Designer', 'Managed design teams and oversaw design projects.', 17, 19),
-('2014-08-01', '2016-03-01', 'Design Intern', 'Supported design tasks and learned industry best practices.', 17, 20),
+(18, 17, '2016-04-01', '2018-04-01', 'UI/UX Designer', 'Designed user-friendly and efficient interfaces.'),
+(19, 17, '2018-05-01', '2020-04-01', 'Lead UI/UX Designer', 'Managed design teams and oversaw design projects.'),
+(20, 17, '2014-08-01', '2016-03-01', 'Design Intern', 'Supported design tasks and learned industry best practices.'),
 
 -- Candidate 18
-('2018-01-01', '2019-12-01', 'Software Tester', 'Conducted software tests to identify and report bugs.', 18, 16),
-('2020-01-01', '2022-01-01', 'QA Lead', 'Managed QA teams and set testing benchmarks.', 18, 17),
-('2017-03-01', '2017-12-01', 'Testing Intern', 'Assisted in test cases creation and automation.', 18, 18),
+(16, 18, '2018-01-01', '2019-12-01', 'Software Tester', 'Conducted software tests to identify and report bugs.'),
+(17, 18, '2020-01-01', '2022-01-01', 'QA Lead', 'Managed QA teams and set testing benchmarks.'),
+(18, 18, '2017-03-01', '2017-12-01', 'Testing Intern', 'Assisted in test cases creation and automation.'),
 
 -- Candidate 19
-('2016-08-01', '2018-07-01', 'Machine Learning Engineer', 'Designed ML models for various applications.', 19, 19),
-('2018-08-01', '2020-07-01', 'Senior ML Engineer', 'Supervised ML projects and optimized model performance.', 19, 20),
-('2020-08-01', '2022-07-01', 'AI Architect', 'Led AI teams and designed system architectures.', 19, 16),
+(19, 19, '2016-08-01', '2018-07-01', 'Machine Learning Engineer', 'Designed ML models for various applications.'),
+(20, 19, '2018-08-01', '2020-07-01', 'Senior ML Engineer', 'Supervised ML projects and optimized model performance.'),
+(16, 19, '2020-08-01', '2022-07-01', 'AI Architect', 'Led AI teams and designed system architectures.'),
 
 -- Candidate 20
-('2018-09-01', '2020-08-01', 'Blockchain Developer', 'Designed and deployed blockchain applications.', 20, 20),
-('2020-09-01', '2022-08-01', 'Senior Blockchain Developer', 'Managed blockchain projects and set goals.', 20, 17),
-('2016-07-01', '2018-08-01', 'Blockchain Intern', 'Supported blockchain deployments and learned best practices.', 20, 18);
+(20, 20, '2018-09-01', '2020-08-01', 'Blockchain Developer', 'Designed and deployed blockchain applications.'),
+(17, 20, '2020-09-01', '2022-08-01', 'Senior Blockchain Developer', 'Managed blockchain projects and set goals.'),
+(18, 20, '2016-07-01', '2018-08-01', 'Blockchain Intern', 'Supported blockchain deployments and learned best practices.');
 
-INSERT INTO JOB_OFFER (offer_title, offer_contract_length, offer_about, offer_expected_work, offer_annual_salary, offer_studies_requirement, entreprise_id)
+INSERT INTO contract_length (contract_length)
+VALUES
+('6 months'), 
+('12 months'), 
+('18 months'), 
+('24 months'), 
+('36 months'),
+('48 months');
+
+INSERT INTO contract_type (contract_type)
+VALUES
+('Full-Time'), 
+('Part-Time'), 
+('Temporary'), 
+('Freelance'), 
+('Internship'),
+('Contractual');
+
+
+INSERT INTO has_contract (contract_type_id, contract_length_id)
 VALUES
 -- Enterprise 1
-('Software Developer', '12 months', 'We are looking for an experienced Software Developer.', 'Develop and maintain software solutions.', 60000, 'Bachelor', 1),
-('Cloud Architect', '24 months', 'Seeking a Cloud Architect with expertise in AWS.', 'Design cloud infrastructures, ensure scalability.', 75000, 'Bachelor', 1),
-('UX Designer', '12 months', 'Hiring a UX Designer to revamp our product interface.', 'Design user-centric interfaces.', 55000, 'Bachelor', 1),
+(1, 2),  -- Full-Time, 12 months
+(2, 4),  -- Part-Time, 24 months
+(3, 1),  -- Temporary, 6 months
 
 -- Enterprise 2
-('Data Scientist', '12 months', 'We are on the hunt for a Data Scientist.', 'Analyze data, create machine learning models.', 65000, 'Master', 2),
-('Backend Developer', '24 months', 'Require a Backend Developer familiar with Node.js.', 'Manage server-side logic, optimize applications.', 62000, 'Bachelor', 2),
-('HR Specialist', '12 months', 'Looking for an HR Specialist for recruitment.', 'Hire top talent, manage interviews.', 50000, 'Bachelor', 2),
+(4, 2),  -- Freelance, 12 months
+(5, 4),  -- Internship, 24 months
+(6, 1),  -- Contractual, 6 months
 
 -- Enterprise 3
-('Project Manager', '18 months', 'Seeking a seasoned Project Manager.', 'Manage IT projects, ensure timely delivery.', 70000, 'Master', 3),
-('Mobile Developer', '12 months', 'Hiring a Mobile Developer proficient in Flutter.', 'Develop mobile applications.', 59000, 'Bachelor', 3),
-('Database Administrator', '24 months', 'Need a Database Administrator familiar with MySQL.', 'Ensure database integrity, backups.', 66000, 'Bachelor', 3),
+(1, 3),  -- Full-Time, 18 months
+(2, 2),  -- Part-Time, 12 months
+(3, 4),  -- Temporary, 24 months
 
 -- Enterprise 4
-('Security Analyst', '12 months', 'Looking for a Security Analyst.', 'Assess vulnerabilities, ensure system security.', 68000, 'Master', 4),
-('Frontend Developer', '18 months', 'Hiring a Frontend Developer expert in React.', 'Develop user interfaces.', 60000, 'Bachelor', 4),
-('Systems Engineer', '24 months', 'Seeking a Systems Engineer.', 'Manage system configurations, ensure uptime.', 71000, 'Bachelor', 4),
+(4, 1),  -- Freelance, 6 months
+(5, 3),  -- Internship, 18 months
+(6, 4),  -- Contractual, 24 months
 
 -- Enterprise 5
-('Marketing Manager', '24 months', 'Searching for a proactive Marketing Manager.', 'Manage marketing campaigns, strategies.', 67000, 'Master', 5),
-('Sales Representative', '12 months', 'Require a Sales Representative with excellent interpersonal skills.', 'Drive sales, client interactions.', 49000, 'Bachelor', 5),
-('Web Designer', '18 months', 'Hiring a Web Designer with a creative mindset.', 'Design website layouts.', 56000, 'Bachelor', 5),
+(1, 4),  -- Full-Time, 24 months
+(2, 2),  -- Part-Time, 12 months
+(3, 5),  -- Temporary, 36 months
 
 -- Enterprise 6
-('Product Manager', '18 months', 'Looking for a dynamic Product Manager.', 'Oversee product development from concept to launch.', 72000, 'Master', 6),
-('QA Engineer', '12 months', 'Seeking a QA Engineer to ensure software quality.', 'Write tests, report bugs, and ensure software quality.', 58000, 'Bachelor', 6),
-('DevOps Engineer', '24 months', 'Hiring a DevOps Engineer familiar with Kubernetes.', 'Manage CI/CD pipelines, infrastructure scaling.', 69000, 'Bachelor', 6),
+(4, 3),  -- Freelance, 18 months
+(5, 2),  -- Internship, 12 months
+(6, 4),  -- Contractual, 24 months
 
 -- Enterprise 7
-('Technical Writer', '12 months', 'Need a Technical Writer for documentation.', 'Write technical docs, API references.', 53000, 'Bachelor', 7),
-('Machine Learning Engineer', '18 months', 'Looking for a skilled Machine Learning Engineer.', 'Develop and train ML models.', 73000, 'Master', 7),
-('Customer Support Rep', '12 months', 'Hiring a Customer Support Representative.', 'Address customer issues, provide solutions.', 48000, 'Diploma', 7),
+(1, 5),  -- Full-Time, 36 months
+(2, 1),  -- Part-Time, 6 months
+(3, 6),  -- Temporary, 48 months
 
 -- Enterprise 8
-('Network Engineer', '24 months', 'Seeking a Network Engineer for infrastructure management.', 'Manage and optimize company networks.', 63000, 'Bachelor', 8),
-('Business Analyst', '18 months', 'Hiring a Business Analyst for market research.', 'Analyze market trends, provide insights.', 64000, 'Bachelor', 8),
-('Android Developer', '12 months', 'Need an Android Developer with Kotlin expertise.', 'Develop and maintain Android apps.', 61000, 'Bachelor', 8),
+(4, 4),  -- Freelance, 24 months
+(5, 3),  -- Internship, 18 months
+(6, 2),  -- Contractual, 12 months
 
 -- Enterprise 9
-('HR Manager', '24 months', 'Searching for an experienced HR Manager.', 'Oversee HR functions, team building.', 68000, 'Master', 9),
-('iOS Developer', '12 months', 'Hiring an iOS Developer skilled in Swift.', 'Develop and maintain iOS applications.', 61000, 'Bachelor', 9),
-('Content Strategist', '18 months', 'Looking for a Content Strategist for branding.', 'Plan and execute content campaigns.', 54000, 'Bachelor', 9),
+(1, 6),  -- Full-Time, 48 months
+(2, 4),  -- Part-Time, 24 months
+(3, 1),  -- Temporary, 6 months
 
 -- Enterprise 10
-('Graphic Designer', '12 months', 'Need a Graphic Designer for branding.', 'Design brand assets, logos, promotional material.', 55000, 'Diploma', 10),
-('E-commerce Specialist', '24 months', 'Looking for an E-commerce Specialist.', 'Manage online store, ensure sales growth.', 62000, 'Bachelor', 10),
-('Logistics Manager', '18 months', 'Hiring a Logistics Manager for supply chain management.', 'Oversee product delivery, manage warehouse.', 65000, 'Bachelor', 10),
+(4, 5),  -- Freelance, 36 months
+(5, 2),  -- Internship, 12 months
+(6, 3),  -- Contractual, 18 months
 
 -- Enterprise 11
-('Frontend Developer', '12 months', 'Seeking a skilled Frontend Developer.', 'Develop user interfaces, optimize performance.', 59000, 'Bachelor', 11),
-('SEO Specialist', '18 months', 'Looking for an experienced SEO Specialist.', 'Optimize website for search engines, conduct keyword research.', 57000, 'Bachelor', 11),
-('Project Manager', '24 months', 'Hiring a Project Manager for team coordination.', 'Manage projects, timelines, and team collaborations.', 66000, 'Bachelor', 11),
+(1, 4),  -- Full-Time, 24 months
+(2, 6),  -- Part-Time, 48 months
+(3, 5),  -- Temporary, 36 months
 
 -- Enterprise 12
-('Sales Manager', '24 months', 'Need a proactive Sales Manager.', 'Manage sales team, set targets.', 64000, 'Bachelor', 12),
-('Cloud Engineer', '18 months', 'Looking for a Cloud Engineer with AWS expertise.', 'Setup and manage cloud infrastructure.', 69000, 'Bachelor', 12),
-('UX Designer', '12 months', 'Seeking a UX Designer for product design.', 'Improve user experience, create wireframes.', 59000, 'Bachelor', 12),
+(4, 2),  -- Freelance, 12 months
+(5, 4),  -- Internship, 24 months
+(6, 1),  -- Contractual, 6 months
 
 -- Enterprise 13
-('Digital Marketer', '18 months', 'Hiring a Digital Marketer for online campaigns.', 'Plan and execute digital campaigns, monitor ROI.', 60000, 'Bachelor', 13),
-('System Administrator', '12 months', 'Looking for a System Administrator.', 'Manage company IT infrastructure.', 62000, 'Bachelor', 13),
-('Data Scientist', '24 months', 'Seeking a Data Scientist for insights.', 'Analyze large datasets, predict trends.', 73000, 'Master', 13),
+(1, 3),  -- Full-Time, 18 months
+(2, 2),  -- Part-Time, 12 months
+(3, 1),  -- Temporary, 6 months
 
 -- Enterprise 14
-('Research Scientist', '18 months', 'Need a Research Scientist for new tech.', 'Conduct research, prototype solutions.', 72000, 'PhD', 14),
-('Data Analyst', '12 months', 'Hiring a Data Analyst for performance metrics.', 'Analyze metrics, report findings.', 62000, 'Bachelor', 14),
-('Full-stack Developer', '24 months', 'Looking for a Full-stack Developer.', 'Develop both server and client-side software.', 67000, 'Bachelor', 14),
+(4, 4),  -- Freelance, 24 months
+(5, 3),  -- Internship, 18 months
+(6, 2),  -- Contractual, 12 months
 
 -- Enterprise 15
-('PR Specialist', '12 months', 'Seeking a PR Specialist for branding.', 'Manage public relations, press releases.', 58000, 'Bachelor', 15),
-('Database Administrator', '18 months', 'Hiring a Database Administrator.', 'Manage and optimize databases.', 66000, 'Bachelor', 15),
-('Web Designer', '24 months', 'Looking for a Web Designer with creativity.', 'Design and maintain company websites.', 57000, 'Diploma', 15),
+(1, 5),  -- Full-Time, 36 months
+(2, 1),  -- Part-Time, 6 months
+(3, 4),  -- Temporary, 24 months
 
 -- Enterprise 16
-('Backend Developer', '12 months', 'Hiring a Backend Developer for API development.', 'Develop server-side logic, maintain the database.', 65000, 'Bachelor', 16),
-('Product Manager', '18 months', 'Need a Product Manager for product lifecycles.', 'Oversee product from ideation to launch.', 68000, 'Bachelor', 16),
-('Content Writer', '24 months', 'Looking for a Content Writer for blogs and articles.', 'Write quality content for company’s online presence.', 52000, 'Diploma', 16),
+(4, 3),  -- Freelance, 18 months
+(5, 2),  -- Internship, 12 months
+(6, 4),  -- Contractual, 24 months
 
 -- Enterprise 17
-('Mobile App Developer', '24 months', 'Hiring an App Developer for mobile solutions.', 'Develop apps for iOS and Android platforms.', 62000, 'Bachelor', 17),
-('IT Manager', '18 months', 'Need an IT Manager to lead the tech team.', 'Manage IT resources, budgeting, and strategy.', 75000, 'Bachelor', 17),
-('QA Engineer', '12 months', 'Seeking a QA Engineer for software testing.', 'Ensure the quality of software releases.', 61000, 'Bachelor', 17),
+(1, 4),  -- Full-Time, 24 months
+(2, 3),  -- Part-Time, 18 months
+(3, 2),  -- Temporary, 12 months
 
 -- Enterprise 18
-('DevOps Engineer', '18 months', 'Hiring a DevOps Engineer for infrastructure.', 'Work on CI/CD pipelines, server provisioning.', 69000, 'Bachelor', 18),
-('UI Designer', '12 months', 'Need a UI Designer for app aesthetics.', 'Design user interfaces for apps and websites.', 59000, 'Diploma', 18),
-('Security Analyst', '24 months', 'Looking for a Security Analyst for IT protection.', 'Monitor IT assets, handle breaches.', 70000, 'Bachelor', 18),
+(4, 3),  -- Freelance, 18 months
+(5, 2),  -- Internship, 12 months
+(6, 4),  -- Contractual, 24 months
 
 -- Enterprise 19
-('Community Manager', '12 months', 'Hiring a Community Manager for social presence.', 'Engage with online communities, handle feedback.', 55000, 'Bachelor', 19),
-('Hardware Engineer', '24 months', 'Need a Hardware Engineer for devices.', 'Design and test computer hardware components.', 66000, 'Bachelor', 19),
-('Technical Writer', '18 months', 'Seeking a Technical Writer for documentation.', 'Write manuals, guides, and documentation.', 53000, 'Diploma', 19),
+(1, 1),  -- Full-Time, 6 months
+(2, 4),  -- Part-Time, 24 months
+(3, 3),  -- Temporary, 18 months
 
 -- Enterprise 20
-('Marketing Strategist', '18 months', 'Looking for a Marketing Strategist for campaigns.', 'Plan and execute marketing campaigns.', 63000, 'Bachelor', 20),
-('HR Manager', '24 months', 'Hiring an HR Manager for company recruitment.', 'Handle recruitment, employee relations, and training.', 64000, 'Bachelor', 20),
-('Graphic Designer', '12 months', 'Need a Graphic Designer for creative assets.', 'Design graphics for marketing and branding.', 56000, 'Diploma', 20);
+(4, 5),  -- Freelance, 36 months
+(5, 4),  -- Internship, 24 months
+(6, 2);  -- Contractual, 12 months
 
-INSERT INTO DEGREE (degree_name, degree_school, degree_start_date, degree_end_date, candidate_id)
+
+INSERT INTO job_offer (
+    contract_type_id, 
+    offer_enterprise_id, 
+    offer_title, 
+    offer_publication_date, 
+    offer_about, 
+    offer_expected_work, 
+    offer_annual_salary, 
+    offer_studies
+)
 VALUES
-('Bachelors in Computer Science', 'University of A', '2015-09-01', '2019-06-01', 1),
-('Masters in Data Science', 'University of B', '2019-09-01', '2021-06-01', 1),
-('Diploma in Web Development', 'Tech Institute C', '2014-01-01', '2014-12-01', 1),
+-- Enterprise 1
+(1, 1, 'Software Developer', '2023-10-05', 'We are looking for an experienced Software Developer.', 'Develop and maintain software solutions.', 60000, 'Bachelor'),
+(2, 1, 'Cloud Architect', '2023-10-07', 'Seeking a Cloud Architect with expertise in AWS.', 'Design cloud infrastructures, ensure scalability.', 75000, 'Bachelor'),
+(3, 1, 'UX Designer', '2023-10-10', 'Hiring a UX Designer to revamp our product interface.', 'Design user-centric interfaces.', 55000, 'Bachelor'),
 
--- Degrees for Candidate 2
-('Bachelors in Software Engineering', 'University of D', '2014-09-01', '2018-06-01', 2),
-('Masters in Artificial Intelligence', 'University of E', '2018-09-01', '2020-06-01', 2),
-('Diploma in Network Security', 'Tech Institute F', '2013-01-01', '2013-12-01', 2),
+-- Enterprise 2
+(4, 2, 'Data Scientist', '2023-10-12', 'We are on the hunt for a Data Scientist.', 'Analyze data, create machine learning models.', 65000, 'Master'),
+(5, 2, 'Backend Developer', '2023-10-15', 'Require a Backend Developer familiar with Node.js.', 'Manage server-side logic, optimize applications.', 62000, 'Bachelor'),
+(6, 2, 'HR Specialist', '2023-10-18', 'Looking for an HR Specialist for recruitment.', 'Hire top talent, manage interviews.', 50000, 'Bachelor'),
 
--- Degrees for Candidate 3
-('Bachelors in Information Technology', 'University of G', '2016-09-01', '2020-06-01', 3),
-('Masters in Machine Learning', 'University of H', '2020-09-01', '2022-06-01', 3),
-('Diploma in Game Development', 'Tech Institute I', '2015-01-01', '2015-12-01', 3),
+-- Enterprise 3
+(7, 3, 'Project Manager', '2023-10-20', 'Seeking a seasoned Project Manager.', 'Manage IT projects, ensure timely delivery.', 70000, 'Master'),
+(8, 3, 'Mobile Developer', '2023-10-23', 'Hiring a Mobile Developer proficient in Flutter.', 'Develop mobile applications.', 59000, 'Bachelor'),
+(9, 3, 'Database Administrator', '2023-10-26', 'Need a Database Administrator familiar with MySQL.', 'Ensure database integrity, backups.', 66000, 'Bachelor'),
 
--- Degrees for Candidate 4
-('Bachelors in Cyber Security', 'University of J', '2015-09-01', '2019-06-01', 4),
-('Masters in IT Management', 'University of K', '2019-09-01', '2021-06-01', 4),
-('Diploma in Cloud Computing', 'Tech Institute L', '2014-01-01', '2014-12-01', 4),
+-- Enterprise 4
+(10, 4, 'Security Analyst', '2023-10-28', 'Looking for a Security Analyst.', 'Assess vulnerabilities, ensure system security.', 68000, 'Master'),
+(11, 4, 'Frontend Developer', '2023-10-03', 'Hiring a Frontend Developer expert in React.', 'Develop user interfaces.', 60000, 'Bachelor'),
+(12, 4, 'Systems Engineer', '2023-10-06', 'Seeking a Systems Engineer.', 'Manage system configurations, ensure uptime.', 71000, 'Bachelor'),
 
--- Degrees for Candidate 5
-('Bachelors in Network Administration', 'University of M', '2015-09-01', '2019-06-01', 5),
-('Masters in IT Consultancy', 'University of N', '2019-09-01', '2021-06-01', 5),
-('Diploma in Database Administration', 'Tech Institute O', '2014-01-01', '2014-12-01', 5),
+-- Enterprise 5
+(13, 5, 'Marketing Manager', '2023-10-09', 'Searching for a proactive Marketing Manager.', 'Manage marketing campaigns, strategies.', 67000, 'Master'),
+(14, 5, 'Sales Representative', '2023-10-11', 'Require a Sales Representative with excellent interpersonal skills.', 'Drive sales, client interactions.', 49000, 'Bachelor'),
+(15, 5, 'Web Designer', '2023-10-13', 'Hiring a Web Designer with a creative mindset.', 'Design website layouts.', 56000, 'Bachelor'),
 
--- Degrees for Candidate 6
-('Bachelors in Robotics', 'University of P', '2016-09-01', '2020-06-01', 6),
-('Masters in Embedded Systems', 'University of Q', '2020-09-01', '2022-06-01', 6),
-('Diploma in Mobile Development', 'Tech Institute R', '2019-01-01', '2019-12-01', 6),
+-- Enterprise 6
+(16, 6, 'Product Manager', '2023-10-16', 'Looking for a dynamic Product Manager.', 'Oversee product development from concept to launch.', 72000, 'Master'),
+(17, 6, 'QA Engineer', '2023-10-19', 'Seeking a QA Engineer to ensure software quality.', 'Write tests, report bugs, and ensure software quality.', 58000, 'Bachelor'),
+(18, 6, 'DevOps Engineer', '2023-10-22', 'Hiring a DevOps Engineer familiar with Kubernetes.', 'Manage CI/CD pipelines, infrastructure scaling.', 69000, 'Bachelor'),
 
--- Degrees for Candidate 7
-('Bachelors in Computational Biology', 'University of S', '2016-09-01', '2020-06-01', 7),
-('Masters in Quantum Computing', 'University of T', '2020-09-01', '2022-06-01', 7),
-('Diploma in Graphics Design', 'Tech Institute U', '2018-01-01', '2018-12-01', 7),
+-- Enterprise 7
+(19, 7, 'Technical Writer', '2023-10-24', 'Need a Technical Writer for documentation.', 'Write technical docs, API references.', 53000, 'Bachelor'),
+(20, 7, 'Machine Learning Engineer', '2023-10-27', 'Looking for a skilled Machine Learning Engineer.', 'Develop and train ML models.', 73000, 'Master'),
+(21, 7, 'Customer Support Rep', '2023-10-29', 'Hiring a Customer Support Representative.', 'Address customer issues, provide solutions.', 48000, 'Diploma'),
 
--- Degrees for Candidate 8
-('Bachelors in Mathematics', 'University of V', '2015-09-01', '2019-06-01', 8),
-('Masters in Computational Mathematics', 'University of W', '2019-09-01', '2021-06-01', 8),
-('Diploma in Statistic Analysis', 'Tech Institute X', '2014-01-01', '2014-12-01', 8),
+-- Enterprise 8
+(22, 8, 'Network Engineer', '2023-10-01', 'Seeking a Network Engineer for infrastructure management.', 'Manage and optimize company networks.', 63000, 'Bachelor'),
+(23, 8, 'Business Analyst', '2023-10-04', 'Hiring a Business Analyst for market research.', 'Analyze market trends, provide insights.', 64000, 'Bachelor'),
+(24, 8, 'Android Developer', '2023-10-07', 'Need an Android Developer with Kotlin expertise.', 'Develop and maintain Android apps.', 61000, 'Bachelor'),
 
--- Degrees for Candidate 9
-('Bachelors in Electronics', 'University of Y', '2017-09-01', '2021-06-01', 9),
-('Masters in Control Systems', 'University of Z', '2021-09-01', '2023-06-01', 9),
-('Diploma in Power Electronics', 'Tech Institute AA', '2016-01-01', '2016-12-01', 9),
+-- Enterprise 9
+(25, 9, 'HR Manager', '2023-10-10', 'Searching for an experienced HR Manager.', 'Oversee HR functions, team building.', 68000, 'Master'),
+(26, 9, 'iOS Developer', '2023-10-12', 'Hiring an iOS Developer skilled in Swift.', 'Develop and maintain iOS applications.', 61000, 'Bachelor'),
+(27, 9, 'Content Strategist', '2023-10-15', 'Looking for a Content Strategist for branding.', 'Plan and execute content campaigns.', 54000, 'Bachelor'),
 
--- Degrees for Candidate 10
-('Bachelors in Biomedical Engineering', 'University of AB', '2015-09-01', '2019-06-01', 10),
-('Masters in Healthcare IT', 'University of AC', '2019-09-01', '2021-06-01', 10),
-('Diploma in Medical Robotics', 'Tech Institute AD', '2014-01-01', '2014-12-01', 10),
+-- Enterprise 10
+(28, 10, 'Graphic Designer', '2023-10-17', 'Need a Graphic Designer for branding.', 'Design brand assets, logos, promotional material.', 55000, 'Diploma'),
+(29, 10, 'E-commerce Specialist', '2023-10-19', 'Looking for an E-commerce Specialist.', 'Manage online store, ensure sales growth.', 62000, 'Bachelor'),
+(30, 10, 'Logistics Manager', '2023-10-21', 'Hiring a Logistics Manager for supply chain management.', 'Oversee product delivery, manage warehouse.', 65000, 'Bachelor'),
 
--- Degrees for Candidate 11
-('Bachelors in Business Analytics', 'University of AE', '2016-09-01', '2020-06-01', 11),
-('Masters in Data Science', 'University of AF', '2020-09-01', '2022-06-01', 11),
-('Diploma in Big Data', 'Tech Institute AG', '2019-01-01', '2019-12-01', 11),
+-- Enterprise 11
+(31, 11, 'Frontend Developer', '2023-10-23', 'Seeking a skilled Frontend Developer.', 'Develop user interfaces, optimize performance.', 59000, 'Bachelor'),
+(32, 11, 'SEO Specialist', '2023-10-25', 'Looking for an experienced SEO Specialist.', 'Optimize website for search engines, conduct keyword research.', 57000, 'Bachelor'),
+(33, 11, 'Project Manager', '2023-10-27', 'Hiring a Project Manager for team coordination.', 'Manage projects, timelines, and team collaborations.', 66000, 'Bachelor'),
 
--- Degrees for Candidate 12
-('Bachelors in Financial Engineering', 'University of AH', '2015-09-01', '2019-06-01', 12),
-('Masters in Quantitative Analysis', 'University of AI', '2019-09-01', '2021-06-01', 12),
-('Diploma in Risk Management', 'Tech Institute AJ', '2018-01-01', '2018-12-01', 12),
+-- Enterprise 12
+(34, 12, 'Sales Manager', '2023-10-29', 'Need a proactive Sales Manager.', 'Manage sales team, set targets.', 64000, 'Bachelor'),
+(35, 12, 'Cloud Engineer', '2023-10-02', 'Looking for a Cloud Engineer with AWS expertise.', 'Setup and manage cloud infrastructure.', 69000, 'Bachelor'),
+(36, 12, 'UX Designer', '2023-10-04', 'Seeking a UX Designer for product design.', 'Improve user experience, create wireframes.', 59000, 'Bachelor'),
 
--- Degrees for Candidate 13
-('Bachelors in Industrial Engineering', 'University of AK', '2015-09-01', '2019-06-01', 13),
-('Masters in Operations Research', 'University of AL', '2019-09-01', '2021-06-01', 13),
-('Diploma in Quality Management', 'Tech Institute AM', '2017-01-01', '2017-12-01', 13),
+-- Enterprise 13
+(37, 13, 'Digital Marketer', '2023-10-06', 'Hiring a Digital Marketer for online campaigns.', 'Plan and execute digital campaigns, monitor ROI.', 60000, 'Bachelor'),
+(38, 13, 'System Administrator', '2023-10-08', 'Looking for a System Administrator.', 'Manage company IT infrastructure.', 62000, 'Bachelor'),
+(39, 13, 'Data Scientist', '2023-10-10', 'Seeking a Data Scientist for insights.', 'Analyze large datasets, predict trends.', 73000, 'Master'),
 
--- Degrees for Candidate 14
-('Bachelors in Environmental Science', 'University of AN', '2016-09-01', '2020-06-01', 14),
-('Masters in Climate Studies', 'University of AO', '2020-09-01', '2022-06-01', 14),
-('Diploma in Renewable Energy', 'Tech Institute AP', '2018-01-01', '2018-12-01', 14),
+-- Enterprise 14
+(40, 14, 'Research Scientist', '2023-10-12', 'Need a Research Scientist for new tech.', 'Conduct research, prototype solutions.', 72000, 'PhD'),
+(41, 14, 'Data Analyst', '2023-10-14', 'Hiring a Data Analyst for performance metrics.', 'Analyze metrics, report findings.', 62000, 'Bachelor'),
+(42, 14, 'Full-stack Developer', '2023-10-16', 'Looking for a Full-stack Developer.', 'Develop both server and client-side software.', 67000, 'Bachelor'),
 
--- Degrees for Candidate 15
-('Bachelors in Forensic Science', 'University of AQ', '2014-09-01', '2018-06-01', 15),
-('Masters in Criminology', 'University of AR', '2018-09-01', '2020-06-01', 15),
-('Diploma in Criminal Psychology', 'Tech Institute AS', '2017-01-01', '2017-12-01', 15),
+-- Enterprise 15
+(43, 15, 'PR Specialist', '2023-10-18', 'Seeking a PR Specialist for branding.', 'Manage public relations, press releases.', 58000, 'Bachelor'),
+(44, 15, 'Database Administrator', '2023-10-20', 'Hiring a Database Administrator.', 'Manage and optimize databases.', 66000, 'Bachelor'),
+(45, 15, 'Web Designer', '2023-10-22', 'Looking for a Web Designer with creativity.', 'Design and maintain company websites.', 57000, 'Diploma'),
 
--- Degrees for Candidate 16
-('Bachelors in Architecture', 'University of AT', '2016-09-01', '2020-06-01', 16),
-('Masters in Urban Design', 'University of AU', '2020-09-01', '2022-06-01', 16),
-('Diploma in Landscape Architecture', 'Tech Institute AV', '2019-01-01', '2019-12-01', 16),
+-- Enterprise 16
+(46, 16, 'Backend Developer', '2023-10-24', 'Hiring a Backend Developer for API development.', 'Develop server-side logic, maintain the database.', 65000, 'Bachelor'),
+(47, 16, 'Product Manager', '2023-10-26', 'Need a Product Manager for product lifecycles.', 'Oversee product from ideation to launch.', 68000, 'Bachelor'),
+(48, 16, 'Content Writer', '2023-10-28', 'Looking for a Content Writer for blogs and articles.', 'Write quality content for company’s online presence.', 52000, 'Diploma'),
 
--- Degrees for Candidate 17
-('Bachelors in Mechanical Engineering', 'University of AW', '2015-09-01', '2019-06-01', 17),
-('Masters in Aerospace Engineering', 'University of AX', '2019-09-01', '2021-06-01', 17),
-('Diploma in Robotics', 'Tech Institute AY', '2018-01-01', '2018-12-01', 17),
+-- Enterprise 17
+(49, 17, 'Mobile App Developer', '2023-10-03', 'Hiring an App Developer for mobile solutions.', 'Develop apps for iOS and Android platforms.', 62000, 'Bachelor'),
+(50, 17, 'IT Manager', '2023-10-05', 'Need an IT Manager to lead the tech team.', 'Manage IT resources, budgeting, and strategy.', 75000, 'Bachelor'),
+(51, 17, 'QA Engineer', '2023-10-07', 'Seeking a QA Engineer for software testing.', 'Ensure the quality of software releases.', 61000, 'Bachelor'),
 
--- Degrees for Candidate 18
-('Bachelors in Marine Biology', 'University of AZ', '2016-09-01', '2020-06-01', 18),
-('Masters in Conservation Science', 'University of BA', '2020-09-01', '2022-06-01', 18),
-('Diploma in Aquatic Ecosystems', 'Tech Institute BB', '2019-01-01', '2019-12-01', 18),
+-- Enterprise 18
+(52, 18, 'DevOps Engineer', '2023-10-09', 'Hiring a DevOps Engineer for infrastructure.', 'Work on CI/CD pipelines, server provisioning.', 69000, 'Bachelor'),
+(53, 18, 'UI Designer', '2023-10-11', 'Need a UI Designer for app aesthetics.', 'Design user interfaces for apps and websites.', 59000, 'Diploma'),
+(54, 18, 'Security Analyst', '2023-10-13', 'Looking for a Security Analyst for IT protection.', 'Monitor IT assets, handle breaches.', 70000, 'Bachelor'),
 
--- Degrees for Candidate 19
-('Bachelors in Physics', 'University of BC', '2015-09-01', '2019-06-01', 19),
-('Masters in Quantum Mechanics', 'University of BD', '2019-09-01', '2021-06-01', 19),
-('Diploma in Astro Physics', 'Tech Institute BE', '2017-01-01', '2017-12-01', 19),
+-- Enterprise 19
+(55, 19, 'Community Manager', '2023-10-15', 'Hiring a Community Manager for social presence.', 'Engage with online communities, handle feedback.', 55000, 'Bachelor'),
+(56, 19, 'Hardware Engineer', '2023-10-17', 'Need a Hardware Engineer for devices.', 'Design and test computer hardware components.', 66000, 'Bachelor'),
+(57, 19, 'Technical Writer', '2023-10-19', 'Seeking a Technical Writer for documentation.', 'Write manuals, guides, and documentation.', 53000, 'Diploma'),
 
--- Degrees for Candidate 20
-('Bachelors in Philosophy', 'University of BF', '2016-09-01', '2020-06-01', 20),
-('Masters in Ethics', 'University of BG', '2020-09-01', '2022-06-01', 20),
-('Diploma in Ancient Thought', 'Tech Institute BH', '2018-01-01', '2018-12-01', 20);
+-- Enterprise 20
+(58, 20, 'Marketing Strategist', '2023-10-21', 'Looking for a Marketing Strategist for campaigns.', 'Plan and execute marketing campaigns.', 63000, 'Bachelor'),
+(59, 20, 'HR Manager', '2023-10-23', 'Hiring an HR Manager for company recruitment.', 'Handle recruitment, employee relations, and training.', 64000, 'Bachelor'),
+(60, 20, 'Graphic Designer', '2023-10-25', 'Need a Graphic Designer for creative assets.', 'Design graphics for marketing and branding.', 56000, 'Diploma');
 
-INSERT INTO CERTIFICATION (certification_name, certification_icon)
+INSERT INTO degree (candidate_id, degree_name, degree_school, degree_start_date, degree_end_date)
 VALUES
-('AWS Certified Solutions Architect', 'aws_architect.png'),
-('Cisco Certified Network Associate', 'ccna.png'),
-('Microsoft Certified: Azure Fundamentals', 'azure_fundamentals.png'),
-('Certified Information Systems Security Professional', 'cissp.png'),
-('Certified Ethical Hacker', 'ceh.png'),
-('Google Associate Cloud Engineer', 'gce.png'),
-('Certified Kubernetes Administrator', 'cka.png'),
-('Oracle Certified Java Developer', 'ocjd.png'),
-('Red Hat Certified Engineer', 'rhce.png'),
-('VMware Certified Professional', 'vcp.png'),
-('CompTIA A+', 'comptia_a.png'),
-('Certified ScrumMaster', 'csm.png'),
-('Certified Data Professional', 'cdp.png'),
-('Certified IT Governance Professional', 'citgp.png'),
-('GIAC Security Essentials', 'giac.png'),
-('Linux Professional Institute Certification', 'lpic.png'),
-('Certified Cloud Security Professional', 'ccsp.png'),
-('Certified in Risk and Information Systems Control', 'crisc.png'),
-('Certified Information Security Manager', 'cism.png'),
-('Certified Wireless Network Professional', 'cwnp.png'),
-('Certified Information Privacy Professional', 'cipp.png'),
-('Microsoft Certified: AI Engineer', 'ai_engineer.png'),
-('Google Professional Data Engineer', 'gde.png'),
-('Certified Blockchain Developer', 'cbd.png'),
-('Certified IoT Specialist', 'cios.png'),
-('SAP Certified Technology Associate', 'sap.png'),
-('Certified Network Defense Architect', 'cnda.png'),
-('IBM Data Science Professional Certificate', 'ibm_ds.png'),
-('Apple Certified iOS Technician', 'acios.png'),
-('Certified SQL Developer', 'csd.png'),
-('Google Android Developer Certification', 'gadc.png'),
-('Certified DevOps Engineer', 'cdoe.png'),
-('Certified Agile Tester', 'cat.png'),
-('Certified Digital Transformation Professional', 'cdtp.png'),
-('Certified in the Governance of Enterprise IT', 'cgeit.png'),
-('Digital Marketing Certified Associate', 'dmca.png'),
-('Certified Business Analysis Professional', 'cbap.png'),
-('Certified Artificial Intelligence Practitioner', 'caip.png'),
-('Certified Robotics Process Automation Developer', 'crpa.png'),
-('Certified Database Administrator', 'cdba.png'),
-('Certified Advanced Networking Specialist', 'cans.png'),
-('Certified Cybersecurity Compliance Analyst', 'ccca.png'),
-('Adobe Certified Expert', 'ace.png'),
-('Certified Machine Learning Specialist', 'cmls.png'),
-('Certified Advanced System Administrator', 'casa.png'),
-('Certified Network Infrastructure Design Professional', 'cnidp.png'),
-('Certified Virtualization Professional', 'cvp.png'),
-('Certified Game Development Professional', 'cgdp.png'),
-('Certified Mobile Application Developer', 'cmad.png'),
-('Certified Embedded Systems Professional', 'cesp.png'),
-('Certified IT Auditor', 'cita.png'),
-('Certified Quantum Computing Developer', 'cqcd.png'),
-('Certified Augmented Reality Developer', 'card.png'),
-('Certified Virtual Reality Specialist', 'cvrs.png'),
-('Certified Advanced Web Developer', 'cawd.png'),
-('Certified Cyber Forensics Professional', 'ccfp.png'),
-('Certified Malware Analyst', 'cma.png'),
-('Certified Internet of Things Designer', 'ciod.png'),
-('Certified Blockchain Solution Architect', 'cbsa.png'),
-('Certified Video Game Designer', 'cvgd.png'),
-('Certified Advanced Network Technician', 'cant.png'),
-('Certified Data Analytics Specialist', 'cdas.png'),
-('Certified E-commerce Professional', 'cep.png'),
-('Certified Advanced Mobile Developer', 'camd.png'),
-('Certified Software Test Engineer', 'cste.png'),
-('Certified Performance Tester', 'cpt.png'),
-('Certified Digital Design Professional', 'cddp.png'),
-('Certified Cloud Architect', 'cca.png'),
-('Certified Storage Professional', 'csp.png'),
-('Certified Big Data Expert', 'cbde.png');
+(1, 'Bachelors in Computer Science', 'University of A', '2015-09-01', '2019-06-01'),
+(1, 'Masters in Data Science', 'University of B', '2019-09-01', '2021-06-01'),
+(1, 'Diploma in Web Development', 'Tech Institute C', '2014-01-01', '2014-12-01'),
+(2, 'Bachelors in Software Engineering', 'University of D', '2014-09-01', '2018-06-01'),
+(2, 'Masters in Artificial Intelligence', 'University of E', '2018-09-01', '2020-06-01'),
+(2, 'Diploma in Network Security', 'Tech Institute F', '2013-01-01', '2013-12-01'),
+(3, 'Bachelors in Information Technology', 'University of G', '2016-09-01', '2020-06-01'),
+(3, 'Masters in Machine Learning', 'University of H', '2020-09-01', '2022-06-01'),
+(3, 'Diploma in Game Development', 'Tech Institute I', '2015-01-01', '2015-12-01'),
+(4, 'Bachelors in Cyber Security', 'University of J', '2015-09-01', '2019-06-01'),
+(4, 'Masters in IT Management', 'University of K', '2019-09-01', '2021-06-01'),
+(4, 'Diploma in Cloud Computing', 'Tech Institute L', '2014-01-01', '2014-12-01'),
+(5, 'Bachelors in Network Administration', 'University of M', '2015-09-01', '2019-06-01'),
+(5, 'Masters in IT Consultancy', 'University of N', '2019-09-01', '2021-06-01'),
+(5, 'Diploma in Database Administration', 'Tech Institute O', '2014-01-01', '2014-12-01'),
+(6, 'Bachelors in Robotics', 'University of P', '2016-09-01', '2020-06-01'),
+(6, 'Masters in Embedded Systems', 'University of Q', '2020-09-01', '2022-06-01'),
+(6, 'Diploma in Mobile Development', 'Tech Institute R', '2019-01-01', '2019-12-01'),
+(7, 'Bachelors in Computational Biology', 'University of S', '2016-09-01', '2020-06-01'),
+(7, 'Masters in Quantum Computing', 'University of T', '2020-09-01', '2022-06-01'),
+(7, 'Diploma in Graphics Design', 'Tech Institute U', '2018-01-01', '2018-12-01'),
+(8, 'Bachelors in Mathematics', 'University of V', '2015-09-01', '2019-06-01'),
+(8, 'Masters in Computational Mathematics', 'University of W', '2019-09-01', '2021-06-01'),
+(8, 'Diploma in Statistic Analysis', 'Tech Institute X', '2014-01-01', '2014-12-01'),
+(9, 'Bachelors in Electronics', 'University of Y', '2017-09-01', '2021-06-01'),
+(9, 'Masters in Control Systems', 'University of Z', '2021-09-01', '2023-06-01'),
+(9, 'Diploma in Power Electronics', 'Tech Institute AA', '2016-01-01', '2016-12-01'),
+(10, 'Bachelors in Biomedical Engineering', 'University of AB', '2015-09-01', '2019-06-01'),
+(10, 'Masters in Healthcare IT', 'University of AC', '2019-09-01', '2021-06-01'),
+(10, 'Diploma in Medical Robotics', 'Tech Institute AD', '2014-01-01', '2014-12-01'),
+(11, 'Bachelors in Business Analytics', 'University of AE', '2016-09-01', '2020-06-01'),
+(11, 'Masters in Data Science', 'University of AF', '2020-09-01', '2022-06-01'),
+(11, 'Diploma in Big Data', 'Tech Institute AG', '2019-01-01', '2019-12-01'),
+(12, 'Bachelors in Financial Engineering', 'University of AH', '2015-09-01', '2019-06-01'),
+(12, 'Masters in Quantitative Analysis', 'University of AI', '2019-09-01', '2021-06-01'),
+(12, 'Diploma in Risk Management', 'Tech Institute AJ', '2018-01-01', '2018-12-01'),
+(13, 'Bachelors in Industrial Engineering', 'University of AK', '2015-09-01', '2019-06-01'),
+(13, 'Masters in Operations Research', 'University of AL', '2019-09-01', '2021-06-01'),
+(13, 'Diploma in Quality Management', 'Tech Institute AM', '2017-01-01', '2017-12-01'),
+(14, 'Bachelors in Environmental Science', 'University of AN', '2016-09-01', '2020-06-01'),
+(14, 'Masters in Climate Studies', 'University of AO', '2020-09-01', '2022-06-01'),
+(14, 'Diploma in Renewable Energy', 'Tech Institute AP', '2018-01-01', '2018-12-01'),
+(15, 'Bachelors in Forensic Science', 'University of AQ', '2014-09-01', '2018-06-01'),
+(15, 'Masters in Criminology', 'University of AR', '2018-09-01', '2020-06-01'),
+(15, 'Diploma in Criminal Psychology', 'Tech Institute AS', '2017-01-01', '2017-12-01'),
+(16, 'Bachelors in Architecture', 'University of AT', '2016-09-01', '2020-06-01'),
+(16, 'Masters in Urban Design', 'University of AU', '2020-09-01', '2022-06-01'),
+(16, 'Diploma in Landscape Architecture', 'Tech Institute AV', '2019-01-01', '2019-12-01'),
+(17, 'Bachelors in Mechanical Engineering', 'University of AW', '2015-09-01', '2019-06-01'),
+(17, 'Masters in Aerospace Engineering', 'University of AX', '2019-09-01', '2021-06-01'),
+(17, 'Diploma in Robotics', 'Tech Institute AY', '2018-01-01', '2018-12-01'),
+(18, 'Bachelors in Marine Biology', 'University of AZ', '2016-09-01', '2020-06-01'),
+(18, 'Masters in Conservation Science', 'University of BA', '2020-09-01', '2022-06-01'),
+(18, 'Diploma in Aquatic Ecosystems', 'Tech Institute BB', '2019-01-01', '2019-12-01'),
+(19, 'Bachelors in Physics', 'University of BC', '2015-09-01', '2019-06-01'),
+(19, 'Masters in Quantum Mechanics', 'University of BD', '2019-09-01', '2021-06-01'),
+(19, 'Diploma in Astro Physics', 'Tech Institute BE', '2017-01-01', '2017-12-01'),
+(20, 'Bachelors in Philosophy', 'University of BF', '2016-09-01', '2020-06-01'),
+(20, 'Masters in Ethics', 'University of BG', '2020-09-01', '2022-06-01'),
+(20, 'Diploma in Ancient Thought', 'Tech Institute BH', '2018-01-01', '2018-12-01');
 
--- Randomized SQL commands for associating certifications with candidates:
-INSERT INTO Has_Certification (candidate_id, certification_name) VALUES 
-(1, 'AWS Certified Solutions Architect'),
-(1, 'Certified Ethical Hacker'),
+INSERT INTO certification (certification_name)
+VALUES
+('AWS Certified Solutions Architect'),
+('Cisco Certified Network Associate'),
+('Microsoft Certified: Azure Fundamentals'),
+('Certified Information Systems Security Professional'),
+('Certified Ethical Hacker'),
+('Google Associate Cloud Engineer'),
+('Certified Kubernetes Administrator'),
+('Oracle Certified Java Developer'),
+('Red Hat Certified Engineer'),
+('VMware Certified Professional'),
+('CompTIA A+'),
+('Certified ScrumMaster'),
+('Certified Data Professional'),
+('Certified IT Governance Professional'),
+('GIAC Security Essentials'),
+('Linux Professional Institute Certification'),
+('Certified Cloud Security Professional'),
+('Certified in Risk and Information Systems Control'),
+('Certified Information Security Manager'),
+('Certified Wireless Network Professional'),
+('Certified Information Privacy Professional'),
+('Microsoft Certified: AI Engineer'),
+('Google Professional Data Engineer'),
+('Certified Blockchain Developer'),
+('Certified IoT Specialist'),
+('SAP Certified Technology Associate'),
+('Certified Network Defense Architect'),
+('IBM Data Science Professional Certificate'),
+('Apple Certified iOS Technician'),
+('Certified SQL Developer'),
+('Google Android Developer Certification'),
+('Certified DevOps Engineer'),
+('Certified Agile Tester'),
+('Certified Digital Transformation Professional'),
+('Certified in the Governance of Enterprise IT'),
+('Digital Marketing Certified Associate'),
+('Certified Business Analysis Professional'),
+('Certified Artificial Intelligence Practitioner'),
+('Certified Robotics Process Automation Developer'),
+('Certified Database Administrator'),
+('Certified Advanced Networking Specialist'),
+('Certified Cybersecurity Compliance Analyst'),
+('Adobe Certified Expert'),
+('Certified Machine Learning Specialist'),
+('Certified Advanced System Administrator'),
+('Certified Network Infrastructure Design Professional'),
+('Certified Virtualization Professional'),
+('Certified Game Development Professional'),
+('Certified Mobile Application Developer'),
+('Certified Embedded Systems Professional'),
+('Certified IT Auditor'),
+('Certified Quantum Computing Developer'),
+('Certified Augmented Reality Developer'),
+('Certified Virtual Reality Specialist'),
+('Certified Advanced Web Developer'),
+('Certified Cyber Forensics Professional'),
+('Certified Malware Analyst'),
+('Certified Internet of Things Designer'),
+('Certified Blockchain Solution Architect'),
+('Certified Video Game Designer'),
+('Certified Advanced Network Technician'),
+('Certified Data Analytics Specialist'),
+('Certified E-commerce Professional'),
+('Certified Advanced Mobile Developer'),
+('Certified Software Test Engineer'),
+('Certified Performance Tester'),
+('Certified Digital Design Professional'),
+('Certified Cloud Architect'),
+('Certified Storage Professional'),
+('Certified Big Data Expert');
 
-(2, 'Cisco Certified Network Associate'),
-(2, 'Certified Kubernetes Administrator'),
+INSERT INTO has_certification (candidate_id, certification_id) 
+VALUES 
+(1, 67),
+(1, 58),
+(1, 50),
+(1, 37),
+(3, 22),
+(3, 43),
+(4, 56),
+(5, 30),
+(5, 8),
+(5, 58),
+(6, 54),
+(6, 32),
+(6, 31),
+(6, 66),
+(7, 28),
+(7, 44),
+(8, 30),
+(8, 45),
+(8, 59),
+(9, 48),
+(9, 16),
+(9, 36),
+(12, 14),
+(13, 42),
+(13, 27),
+(13, 25),
+(15, 70),
+(16, 59),
+(16, 1),
+(16, 33),
+(17, 10),
+(17, 60),
+(17, 31),
+(17, 33),
+(18, 38),
+(18, 7),
+(18, 19),
+(19, 34),
+(19, 33),
+(20, 60),
+(20, 6);
 
-(3, 'Certified in Risk and Information Systems Control'),
-(3, 'Certified Wireless Network Professional'),
-(3, 'Certified Digital Transformation Professional'),
-
-(4, 'Certified Machine Learning Specialist'),
-(4, 'Certified Network Infrastructure Design Professional'),
-
-(5, 'Certified Quantum Computing Developer'),
-(5, 'Certified Augmented Reality Developer'),
-
-(6, 'Certified Advanced Web Developer'),
-
-(7, 'Certified Blockchain Solution Architect'),
-(7, 'Certified Video Game Designer'),
-(7, 'Certified Advanced Network Technician'),
-
-(8, 'Certified Data Analytics Specialist'),
-
-(9, 'Certified Advanced Mobile Developer'),
-(9, 'Certified Cloud Architect'),
-
-(10, 'Certified Ethical Hacker'),
-(10, 'Certified ScrumMaster'),
-(10, 'Certified Data Professional'),
-
-(11, 'Certified IT Governance Professional'),
-
-(12, 'GIAC Security Essentials'),
-(12, 'Linux Professional Institute Certification'),
-
-(13, 'Certified Cloud Security Professional'),
-
-(14, 'Certified in Risk and Information Systems Control'),
-(14, 'Certified Information Security Manager'),
-
-(15, 'Certified Wireless Network Professional'),
-(15, 'Certified Information Privacy Professional'),
-(15, 'Microsoft Certified: AI Engineer'),
-
-(16, 'Google Professional Data Engineer'),
-
-(17, 'Certified Blockchain Developer'),
-(17, 'SAP Certified Technology Associate'),
-
-(18, 'Certified Network Defense Architect'),
-(18, 'IBM Data Science Professional Certificate'),
-
-(19, 'Apple Certified iOS Technician'),
-(19, 'Certified SQL Developer'),
-(19, 'Google Android Developer Certification'),
-
-(20, 'Certified DevOps Engineer');
-
-INSERT INTO COMPETENCE (competence_name, competence_icon) VALUES
+INSERT INTO competence (competence_name, competence_icon) VALUES
 ('Project Management', 'project_management.png'),
 ('Front-End Development', 'frontend_dev.png'),
 ('Back-End Development', 'backend_dev.png'),
@@ -547,213 +622,708 @@ INSERT INTO COMPETENCE (competence_name, competence_icon) VALUES
 ('Network Management', 'network_management.png'),
 ('Web Development', 'web_development.png');
 
+INSERT INTO required_competence (job_offer_id, competence_id) VALUES
+(1, 1),
+(1, 7),
+(1, 13),
+(1, 19),
+(1, 25),
+(1, 31),
+(1, 37),
+(2, 2),
+(2, 8),
+(2, 14),
+(2, 20),
+(2, 26),
+(2, 32),
+(2, 38),
+(3, 3),
+(3, 9),
+(3, 15),
+(3, 21),
+(3, 27),
+(3, 33),
+(3, 39),
+(4, 4),
+(4, 10),
+(4, 16),
+(4, 22),
+(4, 28),
+(4, 34),
+(4, 40),
+(5, 5),
+(5, 11),
+(5, 17),
+(5, 23),
+(5, 29),
+(5, 35),
+(5, 41),
+(6, 6),
+(6, 12),
+(6, 18),
+(6, 24),
+(6, 30),
+(6, 36),
+(6, 42),
+(7, 7),
+(7, 13),
+(7, 19),
+(7, 25),
+(7, 31),
+(7, 37),
+(7, 43),
+(8, 8),
+(8, 14),
+(8, 20),
+(8, 26),
+(8, 32),
+(8, 38),
+(8, 44),
+(9, 9),
+(9, 15),
+(9, 21),
+(9, 27),
+(9, 33),
+(9, 39),
+(9, 45),
+(10, 10),
+(10, 16),
+(10, 22),
+(10, 28),
+(10, 34),
+(10, 40),
+(10, 46),
+(11, 11),
+(11, 17),
+(11, 23),
+(11, 29),
+(11, 35),
+(11, 41),
+(11, 47),
+(12, 12),
+(12, 18),
+(12, 24),
+(12, 30),
+(12, 36),
+(12, 42),
+(12, 48),
+(13, 1),
+(13, 7),
+(13, 13),
+(13, 19),
+(13, 25),
+(13, 31),
+(13, 49),
+(14, 2),
+(14, 8),
+(14, 14),
+(14, 20),
+(14, 26),
+(14, 32),
+(14, 50),
+(15, 3),
+(15, 9),
+(15, 15),
+(15, 21),
+(15, 27),
+(15, 33),
+(15, 51),
+(16, 4),
+(16, 10),
+(16, 16),
+(16, 22),
+(16, 28),
+(16, 34),
+(16, 52),
+(17, 5),
+(17, 11),
+(17, 17),
+(17, 23),
+(17, 29),
+(17, 35),
+(17, 49),
+(18, 6),
+(18, 12),
+(18, 18),
+(18, 24),
+(18, 30),
+(18, 36),
+(18, 50),
+(19, 7),
+(19, 13),
+(19, 19),
+(19, 25),
+(19, 31),
+(19, 37),
+(19, 51),
+(20, 8),
+(20, 14),
+(20, 20),
+(20, 26),
+(20, 32),
+(20, 38),
+(20, 52),
+(21, 9),
+(21, 15),
+(21, 21),
+(21, 27),
+(21, 33),
+(21, 39),
+(21, 49),
+(22, 10),
+(22, 16),
+(22, 22),
+(22, 28),
+(22, 34),
+(22, 40),
+(22, 50),
+(23, 11),
+(23, 17),
+(23, 23),
+(23, 29),
+(23, 35),
+(23, 41),
+(23, 51),
+(24, 12),
+(24, 18),
+(24, 24),
+(24, 30),
+(24, 36),
+(24, 42),
+(24, 52),
+(25, 1),
+(25, 7),
+(25, 13),
+(25, 19),
+(25, 25),
+(25, 31),
+(25, 49),
+(26, 2),
+(26, 8),
+(26, 14),
+(26, 20),
+(26, 26),
+(26, 32),
+(26, 50),
+(27, 3),
+(27, 9),
+(27, 15),
+(27, 21),
+(27, 27),
+(27, 33),
+(27, 51),
+(28, 4),
+(28, 10),
+(28, 16),
+(28, 22),
+(28, 28),
+(28, 34),
+(28, 52),
+(29, 5),
+(29, 11),
+(29, 17),
+(29, 23),
+(29, 29),
+(29, 35),
+(29, 49),
+(30, 6),
+(30, 12),
+(30, 18),
+(30, 24),
+(30, 30),
+(30, 36),
+(30, 50),
+(31, 7),
+(31, 13),
+(31, 19),
+(31, 25),
+(31, 31),
+(31, 37),
+(31, 51),
+(32, 8),
+(32, 14),
+(32, 20),
+(32, 26),
+(32, 32),
+(32, 38),
+(32, 52),
+(33, 9),
+(33, 15),
+(33, 21),
+(33, 27),
+(33, 33),
+(33, 39),
+(33, 49),
+(34, 10),
+(34, 16),
+(34, 22),
+(34, 28),
+(34, 34),
+(34, 40),
+(34, 50),
+(35, 11),
+(35, 17),
+(35, 23),
+(35, 29),
+(35, 35),
+(35, 41),
+(35, 51),
+(36, 12),
+(36, 18),
+(36, 24),
+(36, 30),
+(36, 36),
+(36, 42),
+(36, 52),
+(37, 1),
+(37, 7),
+(37, 13),
+(37, 19),
+(37, 25),
+(37, 31),
+(37, 49),
+(38, 2),
+(38, 8),
+(38, 14),
+(38, 20),
+(38, 26),
+(38, 32),
+(38, 50),
+(39, 3),
+(39, 9),
+(39, 15),
+(39, 21),
+(39, 27),
+(39, 33),
+(39, 51),
+(40, 4),
+(40, 10),
+(40, 16),
+(40, 22),
+(40, 28),
+(40, 34),
+(40, 52),
+(41, 5),
+(41, 11),
+(41, 17),
+(41, 23),
+(41, 29),
+(41, 35),
+(41, 49),
+(42, 6),
+(42, 12),
+(42, 18),
+(42, 24),
+(42, 30),
+(42, 36),
+(42, 50),
+(43, 7),
+(43, 13),
+(43, 19),
+(43, 25),
+(43, 31),
+(43, 37),
+(43, 51),
+(44, 8),
+(44, 14),
+(44, 20),
+(44, 26),
+(44, 32),
+(44, 38),
+(44, 52),
+(45, 9),
+(45, 15),
+(45, 21),
+(45, 27),
+(45, 33),
+(45, 39),
+(45, 49),
+(46, 10),
+(46, 16),
+(46, 22),
+(46, 28),
+(46, 34),
+(46, 40),
+(46, 50),
+(47, 11),
+(47, 17),
+(47, 23),
+(47, 29),
+(47, 35),
+(47, 41),
+(47, 51),
+(48, 12),
+(48, 18),
+(48, 24),
+(48, 30),
+(48, 36),
+(48, 42),
+(48, 52),
+(49, 1),
+(49, 7),
+(49, 13),
+(49, 19),
+(49, 25),
+(49, 31),
+(49, 49),
+(50, 2),
+(50, 8),
+(50, 14),
+(50, 20),
+(50, 26),
+(50, 32),
+(50, 50),
+(51, 3),
+(51, 9),
+(51, 15),
+(51, 21),
+(51, 27),
+(51, 33),
+(51, 51),
+(52, 4),
+(52, 10),
+(52, 16),
+(52, 22),
+(52, 28),
+(52, 34),
+(52, 52),
+(53, 5),
+(53, 11),
+(53, 17),
+(53, 23),
+(53, 29),
+(53, 35),
+(53, 49),
+(54, 6),
+(54, 12),
+(54, 18),
+(54, 24),
+(54, 30),
+(54, 36),
+(54, 50),
+(55, 7),
+(55, 13),
+(55, 19),
+(55, 25),
+(55, 31),
+(55, 37),
+(55, 51),
+(56, 8),
+(56, 14),
+(56, 20),
+(56, 26),
+(56, 32),
+(56, 38),
+(56, 52),
+(57, 9),
+(57, 15),
+(57, 21),
+(57, 27),
+(57, 33),
+(57, 39),
+(57, 49),
+(58, 10),
+(58, 16),
+(58, 22),
+(58, 28),
+(58, 34),
+(58, 40),
+(58, 50),
+(59, 11),
+(59, 17),
+(59, 23),
+(59, 29),
+(59, 35),
+(59, 41),
+(59, 51),
+(60, 12),
+(60, 18),
+(60, 24),
+(60, 30),
+(60, 36),
+(60, 42),
+(60, 52);
 
-INSERT INTO Used_Competence(experience_id, competence_name) VALUES
--- Associations for Candidate 1's experiences
-(1, 'Front-End Development'),
-(1, 'Back-End Development'),
-(1, 'Relational Database'),
-(2, 'Team Management'),
-(2, 'DevOps'),
-(3, 'Front-End Development'),
-(3, 'System Administration'),
 
--- Associations for Candidate 2's experiences
-(4, 'Data Analysis'),
-(4, 'Big Data'),
-(5, 'Business Intelligence'),
-(5, 'Data Analysis'),
-(6, 'Relational Database'),
 
--- Associations for Candidate 3's experiences
-(7, 'Cloud Computing'),
-(7, 'Networking & Infrastructure'),
-(8, 'Cybersecurity'),
-(9, 'Cloud Computing'),
 
--- Associations for Candidate 4's experiences
-(10, 'UI/UX Design'),
-(10, 'Front-End Development'),
-(11, 'UI/UX Design'),
-(12, 'Web APIs'),
+INSERT INTO used_competence (experience_id, competence_id) VALUES
+(1, 32),
+(1, 1),
+(1, 27),
+(2, 30),
+(2, 15),
+(2, 18),
+(3, 9),
+(3, 23),
+(3, 36),
+(4, 46),
+(4, 11),
+(4, 6),
+(5, 48),
+(5, 25),
+(5, 19),
+(6, 10),
+(6, 31),
+(6, 34),
+(7, 20),
+(7, 4),
+(7, 13),
+(8, 35),
+(8, 5),
+(8, 21),
+(9, 49),
+(9, 22),
+(9, 17),
+(10, 29),
+(10, 7),
+(10, 45),
+(11, 14),
+(11, 33),
+(11, 16),
+(12, 47),
+(12, 38),
+(12, 8),
+(13, 50),
+(13, 3),
+(13, 28),
+(14, 40),
+(14, 26),
+(14, 37),
+(15, 43),
+(15, 2),
+(15, 39),
+(16, 44),
+(16, 42),
+(16, 41),
+(17, 12),
+(17, 51),
+(17, 52),
+(18, 24),
+(18, 3),
+(18, 5),
+(19, 47),
+(19, 49),
+(19, 1),
+(20, 2),
+(20, 24),
+(20, 50),
+(21, 4),
+(21, 6),
+(21, 30),
+(22, 7),
+(22, 31),
+(22, 35),
+(23, 8),
+(23, 9),
+(23, 36),
+(24, 15),
+(24, 10),
+(24, 39),
+(25, 11),
+(25, 13),
+(25, 48),
+(26, 12),
+(26, 52),
+(26, 17),
+(27, 14),
+(27, 16),
+(27, 19),
+(28, 18),
+(28, 23),
+(28, 42),
+(29, 20),
+(29, 21),
+(29, 22),
+(30, 25),
+(30, 26),
+(30, 28),
+(31, 27),
+(31, 29),
+(31, 43),
+(32, 32),
+(32, 33),
+(32, 45),
+(33, 34),
+(33, 46),
+(33, 44),
+(34, 37),
+(34, 41),
+(34, 40),
+(35, 38),
+(35, 51),
+(35, 50),
+(36, 1),
+(36, 3),
+(36, 6),
+(37, 2),
+(37, 5),
+(37, 7),
+(38, 4),
+(38, 9),
+(38, 11),
+(39, 8),
+(39, 10),
+(39, 12),
+(40, 13),
+(40, 14),
+(40, 15),
+(41, 16),
+(41, 17),
+(41, 18),
+(42, 19),
+(42, 20),
+(42, 21),
+(43, 22),
+(43, 23),
+(43, 24),
+(44, 25),
+(44, 26),
+(44, 27),
+(45, 28),
+(45, 29),
+(45, 30),
+(46, 31),
+(46, 32),
+(46, 33),
+(47, 34),
+(47, 35),
+(47, 36),
+(48, 37),
+(48, 38),
+(48, 39),
+(49, 40),
+(49, 41),
+(49, 42),
+(50, 43),
+(50, 44),
+(50, 45),
+(51, 46),
+(51, 47),
+(51, 48),
+(52, 49),
+(52, 50),
+(52, 51),
+(53, 52),
+(53, 1),
+(53, 3),
+(54, 2),
+(54, 5),
+(54, 7),
+(55, 4),
+(55, 8),
+(55, 9),
+(56, 10),
+(56, 11),
+(56, 12),
+(57, 13),
+(57, 14),
+(57, 15),
+(58, 16),
+(58, 17),
+(58, 18),
+(59, 19),
+(59, 20),
+(59, 21),
+(60, 22),
+(60, 23),
+(60, 24);
 
--- Associations for Candidate 5's experiences
-(13, 'System Administration'),
-(13, 'Networking & Infrastructure'),
-(14, 'Team Management'),
-(15, 'IoT (Internet of Things)'),
+INSERT INTO hobby (hobby_name, hobby_about) VALUES
+('Gardening', 'The practice of growing plants for food, comfort, and beauty.'),
+('Hiking', 'Walking in nature as a recreational activity, especially in the mountains.'),
+('Photography', 'The art and practice of capturing moments using cameras.'),
+('Knitting', 'Creating fabrics by interlocking yarns with needles.'),
+('Cooking', 'The practice and art of preparing food for consumption.'),
+('Reading', 'Engaging with written or printed material, typically for knowledge or entertainment.'),
+('Painting', 'Applying pigment to a surface to create an artwork.'),
+('Writing', 'The act of composing text, either fiction or non-fiction.'),
+('Music', 'The art of creating or listening to musical sounds.'),
+('Traveling', 'Exploring different places, cultures, and experiences.'),
+('Dancing', 'Moving rhythmically, typically to music, as a form of expression.'),
+('Birdwatching', 'Observing and studying birds in their natural habitats.'),
+('Astronomy', 'Studying celestial bodies like stars, planets, and galaxies.'),
+('Fishing', 'Catching fish, either as a job or as a recreational activity.'),
+('Pottery', 'The art of shaping wet clay into pots or other forms and then baking them to harden.'),
+('Cycling', 'Riding a bicycle, either for transport, recreation, or sport.'),
+('Running', 'Moving at a pace faster than a walk, for exercise or as a sport.'),
+('Swimming', 'Propelling oneself through water using limbs.'),
+('Rock Climbing', 'Ascending rock formations, often with the help of ropes and special equipment.'),
+('Yoga', 'A physical, mental, and spiritual practice that originated in ancient India.');
 
--- Associations for Candidate 6's experiences
-(16, 'Relational Database'),
-(16, 'Database Optimization'),
-(17, 'NoSQL Databases'),
-(18, 'Database Management'),
+INSERT INTO has_hobby (candidate_id, hobby_id) VALUES
+(1, 2),
+(1, 3),
+(1, 7),
+(2, 6),
+(2, 9),
+(3, 1),
+(3, 5),
+(3, 15),
+(3, 17),
+(3, 19),
+(4, 12),
+(4, 18),
+(5, 10),
+(5, 14),
+(5, 16),
+(6, 4),
+(6, 7),
+(6, 11),
+(7, 3),
+(7, 13),
+(7, 20),
+(8, 2),
+(8, 5),
+(8, 6),
+(8, 19),
+(9, 1),
+(9, 4),
+(9, 10),
+(10, 8),
+(10, 13),
+(10, 15),
+(11, 3),
+(11, 9),
+(11, 12),
+(11, 14),
+(11, 18),
+(12, 2),
+(12, 7),
+(12, 16),
+(13, 1),
+(13, 5),
+(13, 20),
+(14, 3),
+(14, 6),
+(14, 19),
+(15, 4),
+(15, 10),
+(15, 13),
+(15, 17),
+(16, 2),
+(16, 11),
+(16, 15),
+(16, 18),
+(17, 5),
+(17, 7),
+(17, 8),
+(17, 12),
+(17, 14),
+(18, 9),
+(18, 16),
+(18, 20),
+(19, 1),
+(19, 3),
+(19, 6),
+(19, 10),
+(19, 11),
+(20, 4),
+(20, 7),
+(20, 13),
+(20, 18);
 
--- Associations for Candidate 7's experiences
-(19, 'Networking & Infrastructure'),
-(20, 'Network Management'),
-(21, 'Cloud Computing'),
-
--- Associations for Candidate 8's experiences
-(22, 'Front-End Development'),
-(22, 'Microservices'),
-(23, 'Web Development'),
-(24, 'Web APIs'),
-
--- Associations for Candidate 9's experiences
-(25, 'Back-End Development'),
-(25, 'Microservices'),
-(26, 'Serverless Architecture'),
-(27, 'System Integration'),
-
--- Associations for Candidate 10's experiences
-(28, 'DevOps'),
-(29, 'Continuous Integration'),
-(30, 'Serverless Architecture'),
-
--- Associations for Candidate 11's experiences
-(31, 'Testing & QA'),
-(31, 'Automation'),
-(32, 'Performance Optimization'),
-(33, 'Continuous Integration'),
-
--- Associations for Candidate 12's experiences
-(34, 'iOS Mobile Development'),
-(34, 'Android Mobile Development'),
-(35, 'UI/UX Design'),
-(36, 'Front-End Development'),
-
--- Associations for Candidate 13's experiences
-(37, 'Cybersecurity'),
-(37, 'IoT (Internet of Things)'),
-(38, 'Serverless Architecture'),
-(39, 'Network Management'),
-
--- Associations for Candidate 14's experiences
-(40, 'Cloud Computing'),
-(40, 'Kubernetes'),
-(41, 'Microservices'),
-(42, 'Networking & Infrastructure'),
-
--- Associations for Candidate 15's experiences
-(43, 'Data Analysis'),
-(43, 'Business Intelligence'),
-(44, 'Data Analysis'),
-(45, 'Big Data'),
-
--- Associations for Candidate 16's experiences
-(46, 'System Administration'),
-(46, 'Configuration Management'),
-(47, 'Networking & Infrastructure'),
-(48, 'Infrastructure as Code'),
-
--- Associations for Candidate 17's experiences
-(49, 'UI/UX Design'),
-(49, 'Front-End Development'),
-(50, 'PWA (Progressive Web Apps)'),
-(51, 'Design Systems'),
-
--- Associations for Candidate 18's experiences
-(52, 'Testing & QA'),
-(53, 'Automation'),
-(54, 'Performance Optimization'),
-
--- Associations for Candidate 19's experiences
-(55, 'Machine Learning'),
-(56, 'Artificial Intelligence'),
-(57, 'Data Analysis'),
-
--- Associations for Candidate 20's experiences
-(58, 'Blockchain'),
-(59, 'Cloud Computing'),
-(60, 'Serverless Architecture');
-
-INSERT INTO Has_hobby (candidate_id, hobby_name) VALUES
--- Associations for Candidate 1
-(1, 'Photography'),
-(1, 'Cooking'),
-
--- Associations for Candidate 2
-(2, 'Hiking'),
-(2, 'Reading'),
-
--- Associations for Candidate 3
-(3, 'Playing Musical Instruments'),
-(3, 'Gardening'),
-
--- Associations for Candidate 4
-(4, 'Astronomy'),
-(4, 'Dancing'),
-(4, 'Traveling'),
-
--- Associations for Candidate 5
-(5, 'DIY Crafts'),
-(5, 'Biking'),
-
--- Associations for Candidate 6
-(6, 'Writing'),
-(6, 'Board Games'),
-(6, 'Cooking'),
-
--- Associations for Candidate 7
-(7, 'Photography'),
-(7, 'Astronomy'),
-
--- Associations for Candidate 8
-(8, 'Hiking'),
-(8, 'Painting'),
-(8, 'Yoga'),
-
--- Associations for Candidate 9
-(9, 'Traveling'),
-(9, 'Biking'),
-
--- Associations for Candidate 10
-(10, 'Photography'),
-(10, 'Writing'),
-(10, 'Cooking'),
-
--- Associations for Candidate 11
-(11, 'Astronomy'),
-(11, 'Reading'),
-
--- Associations for Candidate 12
-(12, 'Playing Musical Instruments'),
-
--- Associations for Candidate 13
-(13, 'Gardening'),
-(13, 'DIY Crafts'),
-
--- Associations for Candidate 14
-(14, 'Yoga'),
-(14, 'Dancing'),
-
--- Associations for Candidate 15
-(15, 'Biking'),
-(15, 'Painting'),
-(15, 'Reading'),
-
--- Associations for Candidate 16
-(16, 'Cooking'),
-(16, 'Hiking'),
-
--- Associations for Candidate 17
-(17, 'Writing'),
-(17, 'Photography'),
-
--- Associations for Candidate 18
-(18, 'DIY Crafts'),
-(18, 'Playing Musical Instruments'),
-(18, 'Reading'),
-
--- Associations for Candidate 19
-(19, 'Yoga'),
-
--- Associations for Candidate 20
-(20, 'Biking'),
-(20, 'Photography');
-
-INSERT INTO TOOL(tool_name, tool_icon) VALUES
+INSERT INTO tool(tool_name, tool_icon) VALUES
 ('Python', 'python_icon.png'),
 ('Java', 'java_icon.png'),
 ('C++', 'cpp_icon.png'),
@@ -888,308 +1458,385 @@ INSERT INTO TOOL(tool_name, tool_icon) VALUES
 ('Firebase', 'firebase_icon.png'),
 ('Django', 'django_icon.png');
 
+INSERT INTO required_tool (job_offer_id, tool_id) VALUES
+(1, 68),
+(1, 32),
+(1, 18),
+(2, 104),
+(2, 38),
+(2, 130),
+(2, 102),
+(3, 23),
+(3, 117),
+(3, 122),
+(4, 75),
+(4, 89),
+(4, 6),
+(5, 109),
+(5, 35),
+(5, 133),
+(5, 16),
+(6, 15),
+(6, 108),
+(6, 112),
+(7, 73),
+(7, 79),
+(7, 4),
+(8, 94),
+(8, 8),
+(8, 82),
+(8, 54),
+(9, 96),
+(9, 51),
+(9, 11),
+(10, 91),
+(10, 99),
+(10, 13),
+(11, 62),
+(11, 47),
+(11, 25),
+(12, 28),
+(12, 55),
+(12, 120),
+(13, 97),
+(13, 39),
+(13, 65),
+(13, 110),
+(14, 70),
+(14, 29),
+(14, 33),
+(15, 40),
+(15, 74),
+(15, 72),
+(16, 60),
+(16, 77),
+(16, 80),
+(16, 66),
+(17, 56),
+(17, 1),
+(17, 71),
+(18, 46),
+(18, 121),
+(18, 37),
+(18, 5),
+(19, 69),
+(19, 78),
+(19, 50),
+(20, 24),
+(20, 42),
+(20, 83),
+(21, 114),
+(21, 59),
+(21, 27),
+(21, 107),
+(22, 119),
+(22, 7),
+(22, 53),
+(23, 85),
+(23, 9),
+(23, 20),
+(24, 87),
+(24, 88),
+(24, 115),
+(24, 3),
+(25, 106),
+(25, 21),
+(25, 44),
+(26, 41),
+(26, 58),
+(26, 92),
+(27, 76),
+(27, 43),
+(27, 86),
+(28, 36),
+(28, 103),
+(28, 93),
+(28, 26),
+(29, 19),
+(29, 45),
+(29, 118),
+(30, 116),
+(30, 49),
+(30, 100),
+(31, 101),
+(31, 126),
+(31, 90),
+(31, 98),
+(32, 30),
+(32, 84),
+(32, 81),
+(33, 125),
+(33, 52),
+(33, 2),
+(34, 31),
+(34, 129),
+(34, 111),
+(35, 113),
+(35, 48),
+(35, 10),
+(35, 124),
+(36, 95),
+(36, 57),
+(36, 128),
+(37, 34),
+(37, 67),
+(37, 131),
+(38, 22),
+(38, 132),
+(38, 64),
+(38, 17),
+(39, 12),
+(39, 63),
+(39, 14),
+(40, 123),
+(40, 61),
+(40, 105),
+(41, 127),
+(41, 131),
+(41, 17),
+(42, 99),
+(42, 64),
+(42, 3),
+(43, 116),
+(43, 62),
+(43, 107),
+(44, 93),
+(44, 31),
+(44, 27),
+(45, 78),
+(45, 44),
+(45, 108),
+(46, 113),
+(46, 48),
+(46, 45),
+(47, 125),
+(47, 96),
+(47, 51),
+(48, 109),
+(48, 52),
+(48, 11),
+(49, 85),
+(49, 57),
+(49, 36),
+(50, 98),
+(50, 26),
+(50, 19),
+(50, 101),
+(51, 120),
+(51, 28),
+(51, 74),
+(52, 110),
+(52, 87),
+(52, 88),
+(53, 90),
+(53, 76),
+(53, 79),
+(54, 70),
+(54, 39),
+(54, 6),
+(55, 15),
+(55, 33),
+(55, 35),
+(56, 72),
+(56, 16),
+(56, 133),
+(57, 59),
+(57, 114),
+(57, 121),
+(58, 60),
+(58, 8),
+(58, 55),
+(59, 115),
+(59, 10),
+(59, 24),
+(60, 41),
+(60, 22),
+(60, 4);
 
+INSERT INTO used_tool (experience_id, tool_id) 
+VALUES
+(1, 16),
+(1, 99),
+(1, 119),
+(2, 47),
+(2, 28),
+(2, 130),
+(3, 120),
+(3, 77),
+(3, 64),
+(4, 28),
+(4, 80),
+(4, 131),
+(5, 42),
+(5, 128),
+(5, 84),
+(6, 22),
+(6, 9),
+(6, 63),
+(7, 36),
+(7, 4),
+(7, 94),
+(8, 25),
+(8, 65),
+(8, 123),
+(9, 46),
+(9, 67),
+(9, 6),
+(10, 58),
+(10, 125),
+(10, 15),
+(11, 52),
+(11, 68),
+(11, 56),
+(12, 62),
+(12, 75),
+(12, 10),
+(13, 112),
+(13, 57),
+(13, 132),
+(14, 5),
+(14, 21),
+(14, 91),
+(15, 33),
+(15, 86),
+(15, 96),
+(16, 2),
+(16, 17),
+(16, 13),
+(17, 129),
+(17, 53),
+(17, 66),
+(18, 40),
+(18, 50),
+(18, 81),
+(19, 19),
+(19, 26),
+(19, 95),
+(20, 78),
+(20, 103),
+(20, 124),
+(21, 89),
+(21, 20),
+(21, 35),
+(22, 3),
+(22, 105),
+(22, 23),
+(23, 106),
+(23, 7),
+(23, 88),
+(24, 59),
+(24, 37),
+(24, 93),
+(25, 41),
+(25, 116),
+(25, 49),
+(26, 30),
+(26, 107),
+(26, 60),
+(27, 109),
+(27, 38),
+(27, 70),
+(28, 27),
+(28, 117),
+(28, 31),
+(29, 72),
+(29, 102),
+(29, 118),
+(30, 126),
+(30, 115),
+(30, 85),
+(31, 32),
+(31, 61),
+(31, 110),
+(32, 104),
+(32, 98),
+(32, 83),
+(33, 87),
+(33, 14),
+(33, 39),
+(34, 54),
+(34, 122),
+(34, 82),
+(35, 71),
+(35, 18),
+(35, 111),
+(36, 97),
+(36, 69),
+(36, 101),
+(37, 73),
+(37, 44),
+(37, 100),
+(38, 29),
+(38, 24),
+(38, 113),
+(39, 133),
+(39, 114),
+(39, 79),
+(40, 121),
+(40, 74),
+(40, 48),
+(41, 43),
+(41, 127),
+(41, 34),
+(42, 51),
+(42, 1),
+(42, 60),
+(43, 110),
+(43, 80),
+(43, 12),
+(44, 132),
+(44, 68),
+(44, 107),
+(45, 117),
+(45, 25),
+(45, 83),
+(46, 93),
+(46, 108),
+(46, 130),
+(47, 31),
+(47, 91),
+(47, 126),
+(48, 118),
+(48, 50),
+(48, 123),
+(49, 4),
+(49, 45),
+(49, 79),
+(50, 37),
+(50, 70),
+(50, 64),
+(51, 67),
+(51, 76),
+(51, 111),
+(52, 39),
+(52, 85),
+(52, 33),
+(53, 122),
+(53, 6),
+(53, 102),
+(54, 41),
+(54, 92),
+(54, 119),
+(55, 32),
+(55, 3),
+(55, 125),
+(56, 100),
+(56, 10),
+(56, 97),
+(57, 115),
+(57, 96),
+(57, 28),
+(58, 20),
+(58, 77),
+(58, 71),
+(59, 112),
+(59, 89),
+(59, 22),
+(60, 5),
+(60, 7),
+(60, 74);
 
-INSERT INTO Used_Tool(experience_id, tool_name) VALUES
--- Associations for Experience 1
-(1, 'Python'),
-(1, 'Java'),
-(1, 'SQL'),
-(1, 'Docker'),
-
--- Associations for Experience 2
-(2, 'JavaScript'),
-(2, 'HTML/CSS'),
-(2, 'Node.js'),
-(2, 'Git'),
-
--- Associations for Experience 3
-(3, 'Ruby'),
-(3, 'Docker'),
-(3, 'Kubernetes'),
-
--- Associations for Experience 4
-(4, 'Angular'),
-(4, 'TypeScript'),
-(4, 'Redis'),
-
--- Associations for Experience 5
-(5, 'AWS'),
-(5, 'Java'),
-(5, 'MySQL'),
-
--- Associations for Experience 6
-(6, 'Git'),
-(6, 'Vue.js'),
-(6, 'MongoDB'),
-(6, 'Redis'),
-
--- Associations for Experience 7
-(7, 'Kubernetes'),
-(7, 'Docker'),
-(7, 'Jenkins'),
-(7, 'Python'),
-
--- Associations for Experience 8
-(8, 'PHP'),
-(8, 'Laravel'),
-(8, 'MySQL'),
-
--- Associations for Experience 9
-(9, 'TensorFlow'),
-(9, 'Python'),
-(9, 'PyTorch'),
-
--- Associations for Experience 10
-(10, 'Unity'),
-(10, 'C#'),
-
--- Associations for Experience 11
-(11, 'Golang'),
-(11, 'Docker'),
-(11, 'Redis'),
-
--- Associations for Experience 12
-(12, 'Spring Boot'),
-(12, 'Java'),
-(12, 'Kotlin'),
-
--- Associations for Experience 13
-(13, 'R'),
-(13, 'PowerBI'),
-(13, 'Tableau'),
-
--- Associations for Experience 14
-(14, 'SASS'),
-(14, 'Bootstrap'),
-(14, 'JavaScript'),
-
--- Associations for Experience 15
-(15, 'Elixir'),
-(15, 'Phoenix'),
-(15, 'Redis'),
-
--- Associations for Experience 16
-(16, 'TypeScript'),
-(16, 'React'),
-(16, 'HTML/CSS'),
-
--- Associations for Experience 17
-(17, 'MATLAB'),
-(17, 'C++'),
-
--- Associations for Experience 18
-(18, 'Flutter'),
-(18, 'Dart'),
-(18, 'Firebase'),
-
--- Associations for Experience 19
-(19, 'ASP.NET'),
-(19, 'C#'),
-(19, 'MSSQL'),
-
--- Associations for Experience 20
-(20, 'GraphQL'),
-(20, 'Apollo'),
-(20, 'React'),
-
--- Associations for Experience 21
-(21, 'Rust'),
-(21, 'Cargo'),
-(21, 'Git'),
-
--- Associations for Experience 22
-(22, 'Swift'),
-(22, 'Xcode'),
-
--- Associations for Experience 23
-(23, 'Scala'),
-(23, 'Play Framework'),
-(23, 'Java'),
-
--- Associations for Experience 24
-(24, 'Photoshop'),
-(24, 'InDesign'),
-(24, 'Illustrator'),
-
--- Associations for Experience 25
-(25, 'Perl'),
-(25, 'Oracle DB'),
-(25, 'SQL'),
-
--- Associations for Experience 26
-(26, 'Webpack'),
-(26, 'Yarn'),
-(26, 'NPM'),
-(26, 'Vue.js'),
-
--- Associations for Experience 27
-(27, 'Illustrator'),
-(27, 'Figma'),
-(27, 'Photoshop'),
-
--- Associations for Experience 28
-(28, 'Julia'),
-(28, 'Python'),
-(28, 'PyTorch'),
-
--- Associations for Experience 29
-(29, 'Elasticsearch'),
-(29, 'Logstash'),
-(29, 'Kibana'),
-
--- Associations for Experience 30
-(30, 'Nginx'),
-(30, 'Apache'),
-(30, 'Docker'),
-
--- Associations for Experience 31
-(31, 'Hadoop'),
-(31, 'Spark'),
-(31, 'Java'),
-
--- Associations for Experience 32
-(32, 'Solidity'),
-(32, 'Ethereum'),
-
--- Associations for Experience 33
-(33, 'Tableau'),
-(33, 'Excel'),
-(33, 'Python'),
-
--- Associations for Experience 34
-(34, 'Bash'),
-(34, 'Shell Scripting'),
-(34, 'Python'),
-
--- Associations for Experience 35
-(35, 'Groovy'),
-(35, 'Grails'),
-(35, 'Java'),
-
--- Associations for Experience 36
-(36, 'C'),
-(36, 'Makefile'),
-(36, 'Python'),
-
--- Associations for Experience 37
-(37, 'Postman'),
-(37, 'JIRA'),
-(37, 'Git'),
-
--- Associations for Experience 38
-(38, 'Drupal'),
-(38, 'WordPress'),
-(38, 'PHP'),
-
--- Associations for Experience 39
-(39, 'Haskell'),
-(39, 'Stack'),
-(39, 'Python'),
-
--- Associations for Experience 40
-(40, 'VHDL'),
-(40, 'Verilog'),
-
--- Associations for Experience 41
-(41, 'Prolog'),
-(41, 'RabbitMQ'),
-(41, 'Java'),
-
--- Associations for Experience 42
-(42, 'ROS'),
-(42, 'Robotics'),
-(42, 'Python'),
-
--- Associations for Experience 43
-(43, 'Zig'),
-(43, 'Embedded Systems'),
-(43, 'C++'),
-
--- Associations for Experience 44
-(44, 'Lua'),
-(44, 'Game Scripting'),
-(44, 'C++'),
-
--- Associations for Experience 45
-(45, 'Python'),
-(45, 'Django'),
-(45, 'PostgreSQL'),
-
--- Associations for Experience 46
-(46, 'Selenium'),
-(46, 'Automated Testing'),
-(46, 'Java'),
-
--- Associations for Experience 47
-(47, 'VBA'),
-(47, 'Microsoft Office'),
-(47, 'Excel'),
-
--- Associations for Experience 48
-(48, 'Maven'),
-(48, 'Gradle'),
-(48, 'Java'),
-
--- Associations for Experience 49
-(49, 'Clojure'),
-(49, 'Functional Programming'),
-(49, 'Java'),
-
--- Associations for Experience 50
-(50, 'Fortran'),
-(50, 'Scientific Computing'),
-(50, 'MATLAB'),
-
--- Associations for Experience 51
-(51, 'Cobalt'),
-(51, 'Legacy Systems'),
-
--- Associations for Experience 52
-(52, 'Crystal'),
-(52, 'Concurrency'),
-(52, 'Python'),
-
--- Associations for Experience 53
-(53, 'LabVIEW'),
-(53, 'Instrument Control'),
-(53, 'MATLAB'),
-
--- Associations for Experience 54
-(54, 'MapReduce'),
-(54, 'Big Data Processing'),
-(54, 'Java'),
-
--- Associations for Experience 55
-(55, 'Erlang'),
-(55, 'Distributed Systems'),
-(55, 'Python'),
-
--- Associations for Experience 56
-(56, 'Pascal'),
-(56, 'Structured Programming'),
-(56, 'C++'),
-
--- Associations for Experience 57
-(57, 'Octave'),
-(57, 'Numerical Analysis'),
-(57, 'MATLAB'),
-
--- Associations for Experience 58
-(58, 'Puppet'),
-(58, 'Infrastructure Automation'),
-(58, 'Docker'),
-
--- Associations for Experience 59
-(59, 'Chef'),
-(59, 'Configuration Management'),
-(59, 'Python'),
-
--- Associations for Experience 60
-(60, 'Ocaml'),
-(60, 'Type Inference');
-
-INSERT INTO LANGUAGE (language_name) VALUES
+INSERT INTO language (language_name) VALUES
 ('English'),
 ('Spanish'),
 ('French'),
@@ -1212,7 +1859,7 @@ INSERT INTO LANGUAGE (language_name) VALUES
 ('Mandarin'),
 ('Hebrew');
 
-INSERT INTO Language_Level (language_level) VALUES
+INSERT INTO language_level (language_level) VALUES
 ('Beginner'),
 ('Elementary'),
 ('Pre-Intermediate'),
@@ -1222,35 +1869,58 @@ INSERT INTO Language_Level (language_level) VALUES
 ('Proficient'),
 ('Native Speaker');
 
-INSERT INTO Speaks_Language (candidate_id, language_name, language_level) VALUES
-(1, 'English', 'Native Speaker'),
-(1, 'Spanish', 'Intermediate'),
-(2, 'French', 'Beginner'),
-(2, 'English', 'Upper Intermediate'),
-(3, 'German', 'Advanced'),
-(3, 'Spanish', 'Pre-Intermediate'),
-(4, 'English', 'Native Speaker'),
-(5, 'Portuguese', 'Intermediate'),
-(6, 'Italian', 'Beginner'),
-(6, 'Spanish', 'Advanced'),
-(7, 'Japanese', 'Elementary'),
-(8, 'English', 'Upper Intermediate'),
-(8, 'Russian', 'Beginner'),
-(9, 'Mandarin', 'Advanced'),
-(10, 'English', 'Native Speaker'),
-(11, 'Spanish', 'Intermediate'),
-(11, 'German', 'Beginner'),
-(12, 'French', 'Upper Intermediate'),
-(12, 'Japanese', 'Pre-Intermediate'),
-(13, 'English', 'Native Speaker'),
-(14, 'Korean', 'Elementary'),
-(14, 'Spanish', 'Intermediate'),
-(15, 'English', 'Advanced'),
-(16, 'Arabic', 'Elementary'),
-(17, 'Spanish', 'Upper Intermediate'),
-(17, 'English', 'Native Speaker'),
-(18, 'Portuguese', 'Beginner'),
-(19, 'Hindi', 'Intermediate'),
-(19, 'Spanish', 'Advanced'),
-(20, 'English', 'Native Speaker'),
-(20, 'Italian', 'Elementary');
+INSERT INTO speaks_language (candidate_id, language_id, language_level_id) VALUES
+(1, 1, 8),  -- English, Native Speaker
+(1, 2, 4),  -- Spanish, Intermediate
+(2, 3, 1),  -- French, Beginner
+(2, 1, 5),  -- English, Upper Intermediate
+(3, 4, 6),  -- German, Advanced
+(3, 2, 3),  -- Spanish, Pre-Intermediate
+(4, 1, 8),  -- English, Native Speaker
+(5, 12, 4), -- Portuguese, Intermediate
+(6, 11, 1), -- Italian, Beginner
+(6, 2, 6),  -- Spanish, Advanced
+(7, 7, 2),  -- Japanese, Elementary
+(8, 1, 5),  -- English, Upper Intermediate
+(8, 6, 1),  -- Russian, Beginner
+(9, 20, 6), -- Mandarin, Advanced
+(10, 1, 8), -- English, Native Speaker
+(11, 2, 4), -- Spanish, Intermediate
+(11, 4, 1), -- German, Beginner
+(12, 3, 5), -- French, Upper Intermediate
+(12, 7, 3), -- Japanese, Pre-Intermediate
+(13, 1, 8), -- English, Native Speaker
+(14, 8, 2), -- Korean, Elementary
+(14, 2, 4), -- Spanish, Intermediate
+(15, 1, 6), -- English, Advanced
+(16, 9, 2), -- Arabic, Elementary
+(17, 2, 5), -- Spanish, Upper Intermediate
+(17, 1, 8), -- English, Native Speaker
+(18, 12, 1),-- Portuguese, Beginner
+(19, 10, 4),-- Hindi, Intermediate
+(19, 2, 6), -- Spanish, Advanced
+(20, 1, 8), -- English, Native Speaker
+(20, 11, 2);-- Italian, Elementary
+
+
+INSERT INTO has_faved (candidate_id, offer_id) VALUES 
+(1, 2), (1, 58), (2, 58), (3, 20), (3, 9), (3, 26), (3, 39), 
+(4, 26), (4, 8), (4, 34), (4, 57), (4, 19), (5, 26), (5, 3), 
+(5, 17), (5, 10), (5, 43), (6, 14), (7, 41), (7, 14), (8, 6), 
+(8, 34), (9, 23), (9, 33), (9, 10), (9, 38), (10, 47), 
+(11, 29), (11, 12), (11, 42), (12, 30), (12, 9), (12, 44), 
+(13, 16), (13, 2), (13, 37), (13, 49), (14, 52), (14, 35), 
+(15, 54), (15, 4), (15, 21), (16, 56), (16, 31), (16, 50), 
+(17, 8), (17, 33), (17, 59), (18, 10), (18, 28), (18, 6), 
+(19, 36), (19, 43), (19, 20), (20, 24), (20, 15), (20, 11);
+
+INSERT INTO has_applied (candidate_id, offer_id)
+VALUES
+(1, 28), (2, 57), (2, 46), (2, 12), (3, 34), (4, 57), (5, 8), (5, 55), 
+(5, 59), (5, 6), (6, 30), (9, 13), (9, 6), (10, 54), (10, 45), (10, 37), 
+(10, 35), (11, 29), (11, 12), (11, 23), (11, 47), (12, 21), (12, 60), 
+(12, 38), (12, 39), (13, 18), (13, 32), (13, 21), (13, 53), (14, 3), 
+(15, 8), (16, 28), (16, 58), (16, 45), (17, 6), (17, 14), (17, 11), 
+(18, 39), (19, 16), (19, 39);
+
+
