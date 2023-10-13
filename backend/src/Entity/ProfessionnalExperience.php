@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\ProfesionnalExperienceRepository;
+use App\Repository\ProfessionnalExperienceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ProfesionnalExperienceRepository::class)]
-class ProfesionnalExperience
+#[ORM\Entity(repositoryClass: ProfessionnalExperienceRepository::class)]
+class ProfessionnalExperience
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
