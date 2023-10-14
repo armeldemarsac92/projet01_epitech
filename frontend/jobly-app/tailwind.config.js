@@ -1,3 +1,5 @@
+const { Open_Sans } = require('next/font/google');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
