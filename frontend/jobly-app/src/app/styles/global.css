@@ -1,0 +1,47 @@
+.bg-gradient-candidate {
+    position: relative; /* Add relative positioning to the container */
+    background: linear-gradient(to top, black, transparent);
+    background-color: #270E5B;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.bg-gradient-candidate::before {
+    content: "";
+    position: absolute;
+    background-image: url('/candidate_waves.svg'); 
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    top: 25%; 
+    left: 45%; 
+    width: 80%; 
+    height: 80%; 
+    transform: rotate(45deg);
+    z-index: -1; 
+}
+
+.bg-gradient-recruiter {
+    position :relative;
+    background: linear-gradient(to top, black, transparent);
+    background-color: #E8DC33;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.bg-gradient-recruiter::before {
+    content: "";
+    position: absolute;
+    background-image: url('/recruiter_waves.svg'); 
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    top: 25%; 
+    left: 45%; 
+    width: 80%;
+    height: 80%; 
+    transform: rotate(45deg);
+    z-index: -1; 
+}
+
+
