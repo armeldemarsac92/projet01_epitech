@@ -1,29 +1,63 @@
-DEGREE : degree_id, degree_name, degree_school, degree_start_date, degree_end_date
-Has_Degree, 0N CANDIDAT, 11 DEGREE
-Has_hobby, 0N CANDIDAT, 0N HOBBY
-HOBBY : hobby_name, hobby_about
-:
+CANDIDATE: id, candidate_first_name, candidate_last_name, candidate_sex, candidate_email, candidate_phone_number, candidate_localisation, candidate_about, candidate_profile_picture, candidate_status
 
-CERTIFICATION : certification_name, certification_icon
-Has_Certification, 0N CANDIDAT, 0N CERTIFICATION
-CANDIDAT : candidate_id, candidate_first_name, candidate_last_name, candidate_sex, candidate_email, candidate_phone_number, candidate_localisation, candidate_about, candidate_profile_picture, candidate_cover_picture, candidate_status
-Has_Faved, 0N CANDIDAT, 0N JOB_OFFER
-JOB_OFFER : offer_id, offer_title, offer_contract_length, offer_publication_date, offer_about, offer_expected_work, offer_annual_salary, offer_studies_requirement
+CERTIFICATION: id, certification_name
 
-LANGUAGE : language_name, language_level
-Speaks_language, 0N CANDIDAT, 0N LANGUAGE
-Has_Experience, 0N CANDIDAT, 11 PROFESSIONNAL_EXPERIENCE
-Has_Applied, 0N CANDIDAT, 0N JOB_OFFER
-Published_By, 0N ENTREPRISE, 11 JOB_OFFER
+COMPETENCE: id, competance_name, competence_icon
 
-TOOL : tool_name, tool_icon
-Used_Tool, 0N PROFESSIONNAL_EXPERIENCE, 0N TOOL
-PROFESSIONNAL_EXPERIENCE : experience_id, experience_start_date, experience_end_date, experience_job_title, experience_description
-Was_At, 0N ENTREPRISE, 11 PROFESSIONNAL_EXPERIENCE
-ENTREPRISE : entreprise_id, entreprise_name, entreprise_field, entreprise_about, entreprise_number_of_workers, entreprise_date_of_creation, entreprise_localisation, entreprise_desired_profiles, entreprise_average_age, entreprise_profile_picture, entreprise_cover_picture
+CONTRACT_LENGTH: id, contract_length
 
-:
-COMPETENCE : competence_name, competence_icon
-Used_Skill, 0N PROFESSIONNAL_EXPERIENCE, 0N COMPETENCE
-:
-:
+CONTRACT_TYPE: id, contract_type
+
+DEGREE: id, degree_name, degree_school, degree_start_date, degree_end_date
+
+HAS_A_DEGREE, 0N CANDIDATE, 11 candidate_id
+HAS_A_DEGREE2, 0N DEGREE, 11 degree_id
+
+ENTERPRISE: id, enterprise_name, enterprise_field, enterprise_about, enterprise_workers_count, enterprise_creation_date, enterprise_localisation, enterprise_desired_profiles, enterprise_average_age, enterprise_profile_picture
+
+APPLIED_TO, 0N CANDIDATE, 11 candidate_id
+APPLIED_TO2, 0N JOB_OFFER, 11 offer_id
+
+HAS_A_CERTIFICATION, 0N CANDIDATE, 11 candidate_id
+HAS_A_CERTIFICATION2, 0N CERTIFICATION, 11 certification_id
+
+HAS_A_CONTRACT, 0N CONTRACT_TYPE, 11 contract_type_id
+HAS_A_CONTRACT2, 0N CONTRACT_LENGTH, 11 contract_length_id
+
+FAVED_AN_OFFER, 0N CANDIDATE, 11 candidate_id
+FAVED_AN_OFFER2, 0N JOB_OFFER, 11 offer_id
+
+HAS_A_HOBBY, 0N CANDIDATE, 11 candidate_id
+HAS_A_HOBBY2, 0N HOBBY, 11 hobby_id
+
+HOBBY: id, hobby_name, hobby_about
+
+JOB_OFFER: id, offer_title, offer_publication_date, offer_about, offer_expected_work, offer_annual_salary, offer_studies
+JOB_OFFER2, 0N ENTERPRISE, 11 offer_enterprise_id
+JOB_OFFER3, 0N HAS_A_CONTRACT, 11 contract_type_id
+
+LANGUAGE: id, language_name
+
+LANGUAGE_LEVEL: id, language_level
+
+PROFESIONNAL_EXPERIENCE: id, experience_start_date, experience_end_date, experience_job_title, experience_description
+PROFESIONNAL_EXPERIENCE2, 0N CANDIDATE, 11 candidate_id
+PROFESIONNAL_EXPERIENCE3, 0N ENTERPRISE, 11 enterprise_id
+
+REQUIRES_COMPETENCE, 0N JOB_OFFER, 11 job_offer_id
+REQUIRES_COMPETENCE2, 0N COMPETENCE, 11 competence_id
+
+REQUIRES_TOOL, 0N JOB_OFFER, 11 job_offer_id
+REQUIRES_TOOL2, 0N TOOL, 11 tool_id
+
+SPEAKS_A_LANGUAGE, 0N CANDIDATE, 11 candidate_id
+SPEAKS_A_LANGUAGE2, 0N LANGUAGE, 11 language_id
+SPEAKS_A_LANGUAGE3, 0N LANGUAGE_LEVEL, 11 language_level_id
+
+TOOL: id, tool_name, tool_icon
+
+USED_A_COMPETENCE, 0N PROFESIONNAL_EXPERIENCE, 11 experience_id
+USED_A_COMPETENCE2, 0N COMPETENCE, 11 competence_id
+
+USED_A_TOOL, 0N PROFESIONNAL_EXPERIENCE, 11 experience_id
+USED_A_TOOL2, 0N TOOL, 11 tool_id
