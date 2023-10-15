@@ -17,7 +17,7 @@ export default function Home() {
         <div className='flex flex-col w-1/2 h-screen'>
           <div className='flex flex-col h-1/3'></div>
           <div className='flex flex-col h-1/3 flex-start items-center'>
-            <h1 className='font-semibold text-5xl'>Find your dream job</h1>
+            <h1 className='font-semibold text-3xl'>Find your dream job</h1>
           </div>
           <div className='flex flex-col h-1/3'></div>
         </div>
