@@ -1,7 +1,13 @@
-'use client'
-import React from 'react';
+import React, { useState } from 'react';
 
 const Search = () => {
+    const [searchValue, setSearchValue] = useState('');
+
+    const handleSearchClick = () => {
+        console.log("Searching for:", searchValue);
+        // Additional search logic here
+    };
+
     return (
         <div className="flex flex-col items-center h-full w-full p-6">
             <div className="pt-2 relative mx-auto text-gray-600 w-1/2">
@@ -10,13 +16,18 @@ const Search = () => {
                     type="search"
                     name="search"
                     placeholder="Search"
+                    id="searchField"
+                    value={searchValue}
+                    onChange={(e) => setSearchValue(e.target.value)}
                 />
                 {/* SVG Magnifying Glass Image */}
-                <img
-                    src='/loupe.svg'
-                    alt="Search"
-                    className="absolute right-0 top-0 mt-5 mr-4 h-4 w-4 text-gray-600"
-                />
+                <button onClick={handleSearchClick}>
+                    <img
+                        src='/loupe.svg'
+                        alt="Search"
+                        className="absolute right-0 top-0 mt-5 mr-4 h-4 w-4 text-gray-600"
+                    />
+                </button>
             </div>
         </div>
     );
