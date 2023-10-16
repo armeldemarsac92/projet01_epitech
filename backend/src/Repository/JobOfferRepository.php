@@ -21,6 +21,33 @@ class JobOfferRepository extends ServiceEntityRepository
         parent::__construct($registry, JobOffer::class);
     }
 
+    public function findByName($searchTerm, $maxResults): array
+    {
+        $qb = $this->createQueryBuilder('jobOffer')
+            ->orderBy('jobOffer.offer_publication_date', 'DESC')
+            ->setMaxResults($maxResults);
+    
+        if ($searchTerm !== null) {
+            $qb->andWhere('jobOffer.offer_title LIKE :val')
+                ->setParameter('val', '%' . $searchTerm . '%');
+        }
+    
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getElementCount($field, $jobOfferId) {
+        $qb = $this->createQueryBuilder('jobOffer');
+        
+        $query = $qb->select('count(a.id)')
+                    ->join('jobOffer.' . $field, 'a')
+                    ->where('jobOffer.id = :id')
+                    ->setParameter('id', $jobOfferId)
+                    ->getQuery();
+
+        return $query->getSingleScalarResult();
+                            
+    }
+
 //    /**
 //     * @return JobOffer[] Returns an array of JobOffer objects
 //     */

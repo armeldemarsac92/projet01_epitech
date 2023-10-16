@@ -55,7 +55,7 @@ class Candidate
     #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: HasHobby::class, orphanRemoval: true)]
     private Collection $candidate_hobby;
 
-    #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: ProfesionnalExperience::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: ProfessionnalExperience::class, orphanRemoval: true)]
     private Collection $candidate_experience;
 
     #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: HasApplied::class, orphanRemoval: true)]
@@ -309,14 +309,14 @@ class Candidate
     }
 
     /**
-     * @return Collection<int, ProfesionnalExperience>
+     * @return Collection<int, ProfessionnalExperience>
      */
     public function getCandidateExperience(): Collection
     {
         return $this->candidate_experience;
     }
 
-    public function addCandidateExperience(ProfesionnalExperience $candidateExperience): static
+    public function addCandidateExperience(ProfessionnalExperience $candidateExperience): static
     {
         if (!$this->candidate_experience->contains($candidateExperience)) {
             $this->candidate_experience->add($candidateExperience);
@@ -326,7 +326,7 @@ class Candidate
         return $this;
     }
 
-    public function removeCandidateExperience(ProfesionnalExperience $candidateExperience): static
+    public function removeCandidateExperience(ProfessionnalExperience $candidateExperience): static
     {
         if ($this->candidate_experience->removeElement($candidateExperience)) {
             // set the owning side to null (unless already changed)

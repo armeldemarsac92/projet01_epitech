@@ -15,7 +15,7 @@ class UsedTool
 
     #[ORM\ManyToOne(inversedBy: 'experience_tool')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?ProfesionnalExperience $experience = null;
+    private ?ProfessionnalExperience $experience = null;
 
     #[ORM\ManyToOne(inversedBy: 'tool_which_has')]
     #[ORM\JoinColumn(nullable: false)]
@@ -26,12 +26,12 @@ class UsedTool
         return $this->id;
     }
 
-    public function getExperience(): ?ProfesionnalExperience
+    public function getExperience(): ?ProfessionnalExperience
     {
         return $this->experience;
     }
 
-    public function setExperience(?ProfesionnalExperience $experience): static
+    public function setExperience(?ProfessionnalExperience $experience): static
     {
         $this->experience = $experience;
 
