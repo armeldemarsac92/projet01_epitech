@@ -23,14 +23,16 @@ class JobOfferRepository extends ServiceEntityRepository
 
     public function findByName($searchTerm, $maxResults): array
     {
-        return $this->createQueryBuilder('jobOffer')
-            ->andWhere('jobOffer.offer_title LIKE :val')
-            ->setParameter('val', '%' .$searchTerm . '%')
+        $qb = $this->createQueryBuilder('jobOffer')
             ->orderBy('jobOffer.offer_publication_date', 'DESC')
-            ->setMaxResults($maxResults)
-            ->getQuery()
-            ->getResult()
-        ;
+            ->setMaxResults($maxResults);
+    
+        if ($searchTerm !== null) {
+            $qb->andWhere('jobOffer.offer_title LIKE :val')
+                ->setParameter('val', '%' . $searchTerm . '%');
+        }
+    
+        return $qb->getQuery()->getResult();
     }
 
     public function getElementCount($field, $jobOfferId) {
