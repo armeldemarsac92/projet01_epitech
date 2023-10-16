@@ -19,9 +19,9 @@ class JobOfferController extends AbstractController
         $maxResults = $request->query->get('results');
 
         if (!$searchTerm) {
-            $jobOffers = $jobOfferRepository->findAll();
+            $jobOffers = $jobOfferRepository->findByName(null, $maxResults);
         } else {
-            $jobOffers = $jobOfferRepository->findByName($maxResults, $searchTerm);
+            $jobOffers = $jobOfferRepository->findByName($searchTerm, $maxResults);
         }
 
         $jobOfferData = [];
@@ -43,6 +43,7 @@ class JobOfferController extends AbstractController
                 'id' => $jobOffer->getId(),
                 'title' => $jobOffer->getOfferTitle(),
                 'enterprise' => $jobOffer->getOfferEnterprise()->getEnterpriseName(),
+                'published_on' => $jobOffer->getOfferPublicationDate(),
                 'about' => $jobOffer->getOfferAbout(),
                 'task' => $jobOffer->getOfferExpectedWork(),
                 'tools' => $tools,
