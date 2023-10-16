@@ -1,11 +1,30 @@
 import React, { useState } from 'react';
+import Axios from 'axios';
+
+async function sendData(action) {
+    const response = await fetch()
+}
 
 const Search = () => {
     const [searchValue, setSearchValue] = useState('');
 
     const handleSearchClick = () => {
         console.log("Searching for:", searchValue);
-        // Additional search logic here
+
+        const baseUrl = 'http://localhost:8000/api/job-offers/'
+        
+        const queryParams = {
+            search: searchValue,
+            maxResults: 10,
+        };
+
+        Axios.get(baseUrl, {params: queryParams})
+            .then((response) => {
+                console.log("Search results:", response.data);
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            })
     };
 
     return (
