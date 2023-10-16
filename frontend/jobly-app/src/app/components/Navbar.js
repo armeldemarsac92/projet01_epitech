@@ -5,14 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { useState } from "react";
 
-export default function Navbar() {
-  const handleToggleMode = () => {
-    if (mode === "candidate") {
-      setMode("recruiter");
-    } else {
-      setMode("candidate");
-    }
-  };
+export default function Navbar({ callBack }) {
   return (
     <header className="w-full text-gray-700 bg-white shadow-sm body-font">
       <nav className="justify-between flex flex-col items-center p-6 mx-auto md:flex-row">
@@ -24,7 +17,7 @@ export default function Navbar() {
           <a href="#_" className="mr-5 font-medium hover:text-gray-900">
             Login
           </a>
-          <Switch isOn={mode === "candidate"} handleToggle={handleToggleMode} />
+          <Switch onClick={() => callBack()} />
         </div>
       </nav>
     </header>
