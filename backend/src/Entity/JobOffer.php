@@ -38,20 +38,20 @@ class JobOffer
     #[ORM\Column(length: 255)]
     private ?string $offer_studies = null;
 
-    #[ORM\OneToMany(mappedBy: 'job_offer', targetEntity: RequiredTool::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'job_offer', targetEntity: RequiredTool::class, orphanRemoval: true, fetch: "EAGER")]
     private Collection $offer_tool;
 
-    #[ORM\OneToMany(mappedBy: 'job_offer', targetEntity: RequiredCompetence::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'job_offer', targetEntity: RequiredCompetence::class, orphanRemoval: true, fetch: "EAGER")]
     private Collection $offer_competence;
 
-    #[ORM\ManyToOne(inversedBy: 'enterprise_job_offer')]
+    #[ORM\ManyToOne(inversedBy: 'enterprise_job_offer', fetch: "EAGER")]
     #[ORM\JoinColumn(nullable: false)]
     private ?Enterprise $offer_enterprise = null;
 
-    #[ORM\OneToMany(mappedBy: 'offer', targetEntity: HasApplied::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'offer', targetEntity: HasApplied::class, orphanRemoval: true, fetch: "EAGER")]
     private Collection $offer_whohas_applied;
 
-    #[ORM\OneToMany(mappedBy: 'offer', targetEntity: HasFaved::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'offer', targetEntity: HasFaved::class, orphanRemoval: true, fetch: "EAGER")]
     private Collection $offer_whohas_faved;
 
     public function __construct()

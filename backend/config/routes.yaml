@@ -1,5 +1,7 @@
 controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+    resource: '../src/Controller/'
+    type: attribute # or 'annotation' if you are using annotations instead of PHP 8 attributes
+
+job_offers:
+    path: '/job-offers/'
+    controller: 'App\Controller\JobOfferController::fetchJobOffers'
