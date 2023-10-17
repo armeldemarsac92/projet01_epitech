@@ -36,8 +36,7 @@ final class Version20231012164114 extends AbstractMigration
         $this->addSql('CREATE TABLE job_offer (id INT AUTO_INCREMENT NOT NULL, contract_type_id INT NOT NULL, offer_enterprise_id INT NOT NULL, offer_title VARCHAR(150) NOT NULL, offer_publication_date DATE NOT NULL, offer_about LONGTEXT NOT NULL, offer_expected_work LONGTEXT NOT NULL, offer_annual_salary INT NOT NULL, offer_studies VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_288A3A4ECD1DF15B (contract_type_id), INDEX IDX_288A3A4EF52949C8 (offer_enterprise_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE language (id INT AUTO_INCREMENT NOT NULL, language_name VARCHAR(20) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE language_level (id INT AUTO_INCREMENT NOT NULL, language_level VARCHAR(80) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE profesionnal_experience (id INT AUTO_INCREMENT NOT NULL, enterprise_id INT NOT NULL, candidate_id INT NOT NULL, experience_start_date DATE NOT NULL, experience_end_date DATE DEFAULT NULL, experience_job_title VARCHAR(100) NOT NULL, experience_description LONGTEXT NOT NULL, INDEX IDX_FDEA4D92A97D1AC3 (enterprise_id), INDEX IDX_FDEA4D9291BD8781 (candidate_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE professionnal_experience (id INT AUTO_INCREMENT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE professionnal_experience (id INT AUTO_INCREMENT NOT NULL, enterprise_id INT NOT NULL, candidate_id INT NOT NULL, experience_start_date DATE NOT NULL, experience_end_date DATE DEFAULT NULL, experience_job_title VARCHAR(100) NOT NULL, experience_description LONGTEXT NOT NULL, INDEX IDX_FDEA4D92A97D1AC3 (enterprise_id), INDEX IDX_FDEA4D9291BD8781 (candidate_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE required_competence (id INT AUTO_INCREMENT NOT NULL, job_offer_id INT NOT NULL, competence_id INT NOT NULL, INDEX IDX_8B39E953481D195 (job_offer_id), INDEX IDX_8B39E9515761DAB (competence_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE required_tool (id INT AUTO_INCREMENT NOT NULL, job_offer_id INT NOT NULL, tool_id INT NOT NULL, INDEX IDX_A54B61713481D195 (job_offer_id), INDEX IDX_A54B61718F7B22CC (tool_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE speaks_language (id INT AUTO_INCREMENT NOT NULL, candidate_id INT NOT NULL, language_id INT NOT NULL, language_level_id INT NOT NULL, INDEX IDX_F82F46C191BD8781 (candidate_id), INDEX IDX_F82F46C182F1BAF4 (language_id), INDEX IDX_F82F46C13313139D (language_level_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -57,8 +56,8 @@ final class Version20231012164114 extends AbstractMigration
         $this->addSql('ALTER TABLE has_hobby ADD CONSTRAINT FK_C2EDE389322B2123 FOREIGN KEY (hobby_id) REFERENCES hobby (id)');
         $this->addSql('ALTER TABLE job_offer ADD CONSTRAINT FK_288A3A4ECD1DF15B FOREIGN KEY (contract_type_id) REFERENCES has_contract (id)');
         $this->addSql('ALTER TABLE job_offer ADD CONSTRAINT FK_288A3A4EF52949C8 FOREIGN KEY (offer_enterprise_id) REFERENCES enterprise (id)');
-        $this->addSql('ALTER TABLE profesionnal_experience ADD CONSTRAINT FK_FDEA4D92A97D1AC3 FOREIGN KEY (enterprise_id) REFERENCES enterprise (id)');
-        $this->addSql('ALTER TABLE profesionnal_experience ADD CONSTRAINT FK_FDEA4D9291BD8781 FOREIGN KEY (candidate_id) REFERENCES candidate (id)');
+        $this->addSql('ALTER TABLE professionnal_experience ADD CONSTRAINT FK_FDEA4D92A97D1AC3 FOREIGN KEY (enterprise_id) REFERENCES enterprise (id)');
+        $this->addSql('ALTER TABLE professionnal_experience ADD CONSTRAINT FK_FDEA4D9291BD8781 FOREIGN KEY (candidate_id) REFERENCES candidate (id)');
         $this->addSql('ALTER TABLE required_competence ADD CONSTRAINT FK_8B39E953481D195 FOREIGN KEY (job_offer_id) REFERENCES job_offer (id)');
         $this->addSql('ALTER TABLE required_competence ADD CONSTRAINT FK_8B39E9515761DAB FOREIGN KEY (competence_id) REFERENCES competence (id)');
         $this->addSql('ALTER TABLE required_tool ADD CONSTRAINT FK_A54B61713481D195 FOREIGN KEY (job_offer_id) REFERENCES job_offer (id)');
@@ -66,9 +65,9 @@ final class Version20231012164114 extends AbstractMigration
         $this->addSql('ALTER TABLE speaks_language ADD CONSTRAINT FK_F82F46C191BD8781 FOREIGN KEY (candidate_id) REFERENCES candidate (id)');
         $this->addSql('ALTER TABLE speaks_language ADD CONSTRAINT FK_F82F46C182F1BAF4 FOREIGN KEY (language_id) REFERENCES language (id)');
         $this->addSql('ALTER TABLE speaks_language ADD CONSTRAINT FK_F82F46C13313139D FOREIGN KEY (language_level_id) REFERENCES language_level (id)');
-        $this->addSql('ALTER TABLE used_competence ADD CONSTRAINT FK_D096E68F46E90E27 FOREIGN KEY (experience_id) REFERENCES profesionnal_experience (id)');
+        $this->addSql('ALTER TABLE used_competence ADD CONSTRAINT FK_D096E68F46E90E27 FOREIGN KEY (experience_id) REFERENCES professionnal_experience (id)');
         $this->addSql('ALTER TABLE used_competence ADD CONSTRAINT FK_D096E68F15761DAB FOREIGN KEY (competence_id) REFERENCES competence (id)');
-        $this->addSql('ALTER TABLE used_tool ADD CONSTRAINT FK_8FFD939E46E90E27 FOREIGN KEY (experience_id) REFERENCES profesionnal_experience (id)');
+        $this->addSql('ALTER TABLE used_tool ADD CONSTRAINT FK_8FFD939E46E90E27 FOREIGN KEY (experience_id) REFERENCES professionnal_experience (id)');
         $this->addSql('ALTER TABLE used_tool ADD CONSTRAINT FK_8FFD939E8F7B22CC FOREIGN KEY (tool_id) REFERENCES tool (id)');
     }
 
@@ -88,8 +87,8 @@ final class Version20231012164114 extends AbstractMigration
         $this->addSql('ALTER TABLE has_hobby DROP FOREIGN KEY FK_C2EDE389322B2123');
         $this->addSql('ALTER TABLE job_offer DROP FOREIGN KEY FK_288A3A4ECD1DF15B');
         $this->addSql('ALTER TABLE job_offer DROP FOREIGN KEY FK_288A3A4EF52949C8');
-        $this->addSql('ALTER TABLE profesionnal_experience DROP FOREIGN KEY FK_FDEA4D92A97D1AC3');
-        $this->addSql('ALTER TABLE profesionnal_experience DROP FOREIGN KEY FK_FDEA4D9291BD8781');
+        $this->addSql('ALTER TABLE professionnal_experience DROP FOREIGN KEY FK_FDEA4D92A97D1AC3');
+        $this->addSql('ALTER TABLE professionnal_experience DROP FOREIGN KEY FK_FDEA4D9291BD8781');
         $this->addSql('ALTER TABLE required_competence DROP FOREIGN KEY FK_8B39E953481D195');
         $this->addSql('ALTER TABLE required_competence DROP FOREIGN KEY FK_8B39E9515761DAB');
         $this->addSql('ALTER TABLE required_tool DROP FOREIGN KEY FK_A54B61713481D195');
@@ -117,7 +116,7 @@ final class Version20231012164114 extends AbstractMigration
         $this->addSql('DROP TABLE job_offer');
         $this->addSql('DROP TABLE language');
         $this->addSql('DROP TABLE language_level');
-        $this->addSql('DROP TABLE profesionnal_experience');
+        $this->addSql('DROP TABLE professionnal_experience');
         $this->addSql('DROP TABLE professionnal_experience');
         $this->addSql('DROP TABLE required_competence');
         $this->addSql('DROP TABLE required_tool');
