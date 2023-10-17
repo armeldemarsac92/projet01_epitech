@@ -1,22 +1,20 @@
 "use client";
-import Footer from "./components/Footer";
 import Search from "./components/Search";
 import Navbar from "./components/Navbar";
 import "./styles/global.css";
 import { useState } from "react";
 
 export default function Home() {
-  let [userStyles, setUserStyles] = useState(true);
+  const [mode, setMode] = useState("candidate");  // Default mode is "candidate"
 
-  function toggleUserStyle() {
-    setUserStyles(!userStyles);
+  const toggleMode = () => {
+      setMode(prevMode => prevMode === "candidate" ? "recruiter" : "candidate");
   }
+  
 
   return (
-    <main
-      className={userStyles ? "bg-gradient-candidate" : "bg-gradient-recruiter"}
-    >
-      <Navbar callBack={toggleUserStyle} />
+    <main className={mode === "candidate" ? "bg-gradient-candidate" : "bg-gradient-recruiter"}>
+      <Navbar onToggle={toggleMode} mode={mode} key={mode}/>
       <div className="flex flex-row w-full justify-center">
         <div className="flex flex-col w-1/2 h-screen">
           <div className="flex flex-col h-1/3"></div>
