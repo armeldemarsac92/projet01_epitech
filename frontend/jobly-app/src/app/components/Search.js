@@ -1,11 +1,11 @@
-import React, { useState } from "react";
 import Axios from "axios";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
+import React, { useState, useContext } from "react";
+import { SearchContext } from "../context/SearchContext";
 
 export const Search = () => {
   const [searchValue, setSearchValue] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const { setSearchResults } = useContext(SearchContext); // Access the context
   const router = useRouter();
 
   const handleSearchClick = () => {
@@ -21,11 +21,12 @@ export const Search = () => {
     Axios.get(baseUrl, { params: queryParams })
       .then((response) => {
         console.log("Search results:", response.data);
+
+        // Set the searchResults in the shared state
         setSearchResults(response.data);
-        router.push({
-          pathname: "/job_offers",
-          query: { searchResults: response.data },
-        });
+
+        // Navigate to the target page
+        router.push("/job_offers");
       })
       .catch((error) => {
         console.error("Error:", error);

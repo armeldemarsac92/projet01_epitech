@@ -1,8 +1,6 @@
 "use client";
-import Footer from "./components/Footer";
 import Search from "./components/Search";
 import Navbar from "./components/Navbar";
-import Link from "next/link";
 import "./styles/global.css";
 import { useState } from "react";
 

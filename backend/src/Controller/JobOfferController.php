@@ -39,6 +39,8 @@ class JobOfferController extends AbstractController
                 $competences[] = $requiredCompetence->getCompetence()->getcompetenceName();
             }
 
+            $ContractTypeEntity = $jobOffer->getContractType();
+
             $jobOfferData[] = [
                 'id' => $jobOffer->getId(),
                 'title' => $jobOffer->getOfferTitle(),
@@ -52,6 +54,9 @@ class JobOfferController extends AbstractController
                 'salary' => $jobOffer->getOfferAnnualSalary(),
                 'application' => $jobOfferRepository->getElementCount('offer_whohas_applied',$id),
                 'favorite' => $jobOfferRepository->getElementCount('offer_whohas_faved', $id),
+                'contract' => $ContractTypeEntity->getContractType()->getContractType(),
+                'contract_length' => $ContractTypeEntity->getContractLength()->getContractLength(),
+                'localisation' => $jobOffer->getOfferEnterprise()->getEnterpriseLocalisation(),
 
             ];
         }
