@@ -2,6 +2,7 @@
 import Footer from "./components/Footer";
 import Search from "./components/Search";
 import Navbar from "./components/Navbar";
+import Link from "next/link";
 import "./styles/global.css";
 import { useState } from "react";
 
@@ -25,14 +26,16 @@ export default function Home() {
               <h1 className="font-semibold text-3xl">Find your dream job</h1>
             </div>
             <div className="flex flex-col h-2/3 items-center">
-              <Search></Search>
+
+                <Search></Search>
+              
             </div>
           </div>
           <div className="flex flex-col h-1/3 justify-end items-center ">
             <button className="border-2 border-gray-300 bg-white h-8 px-5 rounded-full w-1/5  focus:outline-none text-black font-semibold">
               Sign up
             </button>
-            <h1 className="pb-5 font-semibold text-xl mt-5">
+            <h1 className="pb-5 font-semibold text-xl text-gray-200 mt-5">
               New ? Sign up for a fresh start !
             </h1>
           </div>
