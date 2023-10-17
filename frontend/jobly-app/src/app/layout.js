@@ -10,7 +10,6 @@ function Layout({ children }) {
       </head>
       <body>
         <SearchProvider>
-          <Header />
           {children}
           <Footer />
         </SearchProvider>
