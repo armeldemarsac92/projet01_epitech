@@ -43,7 +43,7 @@ class Enterprise
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $enterprise_profile_picture = null;
 
-    #[ORM\OneToMany(mappedBy: 'enterprise', targetEntity: ProfesionnalExperience::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'enterprise', targetEntity: ProfessionnalExperience::class, orphanRemoval: true)]
     private Collection $enterprise_related_experience;
 
     #[ORM\OneToMany(mappedBy: 'offer_enterprise', targetEntity: JobOffer::class, orphanRemoval: true)]
@@ -169,14 +169,14 @@ class Enterprise
     }
 
     /**
-     * @return Collection<int, ProfesionnalExperience>
+     * @return Collection<int, ProfessionnalExperience>
      */
     public function getEnterpriseRelatedExperience(): Collection
     {
         return $this->enterprise_related_experience;
     }
 
-    public function addEnterpriseRelatedExperience(ProfesionnalExperience $enterpriseRelatedExperience): static
+    public function addEnterpriseRelatedExperience(ProfessionnalExperience $enterpriseRelatedExperience): static
     {
         if (!$this->enterprise_related_experience->contains($enterpriseRelatedExperience)) {
             $this->enterprise_related_experience->add($enterpriseRelatedExperience);
@@ -186,7 +186,7 @@ class Enterprise
         return $this;
     }
 
-    public function removeEnterpriseRelatedExperience(ProfesionnalExperience $enterpriseRelatedExperience): static
+    public function removeEnterpriseRelatedExperience(ProfessionnalExperience $enterpriseRelatedExperience): static
     {
         if ($this->enterprise_related_experience->removeElement($enterpriseRelatedExperience)) {
             // set the owning side to null (unless already changed)
