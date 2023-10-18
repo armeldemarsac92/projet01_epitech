@@ -7,9 +7,9 @@ function SearchResults({ searchResults }) {
   return (
     <ul className="space-y-4 w-full pt-10 pb-10">
       {searchResults.map((result) => (
-        <li key={result.id} className="bg-white drop-shadow rounded-lg overflow-hidden w-full p-5">
+        <li key={result.id} className="bg-white drop-shadow rounded-lg overflow-hidden w-full p-5 transition-transform hover:scale-[1.01] duration-300">
           <div className="flex justify-between items-start p-4">
-            <div>
+            <div className="flex flex-col w-3/4">
               {/* Display your search result data here */}
               <p className="text-indigo-900 text-transform: uppercase">{result.enterprise}</p>
               <h3 className="font-bold text-3xl mb-2 text-indigo-950">{result.title}</h3>
@@ -25,7 +25,23 @@ function SearchResults({ searchResults }) {
               </div>
               {openCard === result.id && <ExpandedDetails result={result} />}
             </div>
-            <DetailsButton setIsOpen={setOpenCard} isOpen={openCard === result.id} id={result.id} />
+            <div className="flex h-52 w-28 flex-col items-start justify-between">
+              <div className="flex h-1/2 w-full flex-col items-end">
+                  <DetailsButton setIsOpen={setOpenCard} isOpen={openCard === result.id} id={result.id} />
+              </div>
+              <div className="flex h-1/2 w-full flex-row justify-between items-end">
+                  <div className="flex flex-row items-center">
+                      <p className="text-sm text-indigo-600 pr-2">{result.application}</p>
+                      <img className="w-auto h-5" src="/applied.svg"></img>
+                  </div>
+                  <div className="flex flex-row items-center">
+                      <p className="text-sm text-indigo-600 pr-2">{result.favorite}</p>
+                      <img className="w-auto h-5" src="/faved.svg"></img>
+                  </div>
+              </div>
+            </div>
+
+
           </div>
         </li>
       ))}
