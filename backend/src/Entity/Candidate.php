@@ -64,6 +64,9 @@ class Candidate
     #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: HasFaved::class, orphanRemoval: true)]
     private Collection $candidate_favorite;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $password = null;
+
     public function __construct()
     {
         $this->candidate_language = new ArrayCollection();
@@ -394,6 +397,18 @@ class Candidate
                 $candidateFavorite->setCandidate(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(?string $password): static
+    {
+        $this->password = $password;
 
         return $this;
     }

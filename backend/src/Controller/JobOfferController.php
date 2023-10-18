@@ -7,16 +7,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 
 class JobOfferController extends AbstractController
 {
-    /**
-     * @Route("/job-offers/", name="job_offers")
-     */
-    public function fetchJobOffers(JobOfferRepository $jobOfferRepository, Request $request): Response
-    {
-        $searchTerm = $request->query->get('search');
-        $maxResults = $request->query->get('results');
+    #[Route('api/job_offers', name: 'fetch_job_offers')]
+    public function fetchJobOffers(
+        JobOfferRepository $jobOfferRepository,
+        #[MapQueryParameter] ?string $searchTerm = null,
+        #[MapQueryParameter] ?string $maxResults = null
+    ): Response {
+
 
         if (!$searchTerm) {
             $jobOffers = $jobOfferRepository->findByName(null, $maxResults);

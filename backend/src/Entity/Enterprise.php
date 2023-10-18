@@ -49,6 +49,12 @@ class Enterprise
     #[ORM\OneToMany(mappedBy: 'offer_enterprise', targetEntity: JobOffer::class, orphanRemoval: true)]
     private Collection $enterprise_job_offer;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $enterprise_email = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $password = null;
+
     public function __construct()
     {
         $this->enterprise_related_experience = new ArrayCollection();
@@ -224,6 +230,30 @@ class Enterprise
                 $enterpriseJobOffer->setOfferEnterprise(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEnterpriseEmail(): ?string
+    {
+        return $this->enterprise_email;
+    }
+
+    public function setEnterpriseEmail(?string $enterprise_email): static
+    {
+        $this->enterprise_email = $enterprise_email;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(?string $password): static
+    {
+        $this->password = $password;
 
         return $this;
     }
