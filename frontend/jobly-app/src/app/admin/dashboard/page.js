@@ -38,7 +38,7 @@ export default function AdminDashBoard() {
     if (!table || table.length === 0) return null;
   
     return (
-      <div className={`${table.length > 19 ? "w-full h-full overflow-x-scroll overflow-y-scroll":"w-full h-fit"} rounded-lg border border-gray-200 shadow-md`}>
+      <div className={`${table.length > 19 ? "w-full h-full overflow-x-scroll overflow-y-scroll":"w-full h-screen"} rounded-lg border border-gray-200 shadow-md`}>
         <table className="table-auto w-full border-collapse bg-white text-left text-sm text-gray-500 border-gray-200 rounded-lg">
           <thead className="bg-gray-50">
             <tr>
