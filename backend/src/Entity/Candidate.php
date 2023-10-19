@@ -7,9 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: CandidateRepository::class)]
-class Candidate
+class Candidate implements  UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,7 +24,7 @@ class Candidate
     #[ORM\Column(length: 40)]
     private ?string $candidate_last_name = null;
 
-    #[ORM\Column(length: 10)]
+    #[ORM\Column(length: 10, nullable: True)]
     private ?string $candidate_sex = null;
 
     #[ORM\Column(length: 80)]
@@ -40,7 +42,7 @@ class Candidate
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $candidate_profile_picture = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $candidate_status = null;
 
     #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: SpeaksLanguage::class, orphanRemoval: true)]
@@ -67,6 +69,35 @@ class Candidate
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $password = null;
 
+    #[ORM\OneToMany(mappedBy: 'candidate_id', targetEntity: CandidateHasRole::class, orphanRemoval: true)]
+    private Collection $candidate_role;
+
+    public function getRoles(): array
+    {
+        return $this->candidate_role->map(function (CandidateHasRole $candidateHasRole) {
+            return $candidateHasRole->getRoleId()->getRole();
+        })->toArray();
+    }
+    
+
+    public function getSalt(): ?string
+    {
+        // bcrypt and argon2i/s don't require a separate salt, so return null
+        return null;
+    }
+
+    public function eraseCredentials(): void
+    {
+        // This is useful if you store any temporary authentication-related data on the entity.
+        // Most use cases can leave this method empty.
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->candidate_email;
+    }
+
+
     public function __construct()
     {
         $this->candidate_language = new ArrayCollection();
@@ -76,6 +107,7 @@ class Candidate
         $this->candidate_experience = new ArrayCollection();
         $this->candidate_applications = new ArrayCollection();
         $this->candidate_favorite = new ArrayCollection();
+        $this->candidate_role = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -409,6 +441,36 @@ class Candidate
     public function setPassword(?string $password): static
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CandidateHasRole>
+     */
+    public function getCandidateRole(): Collection
+    {
+        return $this->candidate_role;
+    }
+
+    public function addCandidateRole(CandidateHasRole $candidateRole): static
+    {
+        if (!$this->candidate_role->contains($candidateRole)) {
+            $this->candidate_role->add($candidateRole);
+            $candidateRole->setCandidateId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidateRole(CandidateHasRole $candidateRole): static
+    {
+        if ($this->candidate_role->removeElement($candidateRole)) {
+            // set the owning side to null (unless already changed)
+            if ($candidateRole->getCandidateId() === $this) {
+                $candidateRole->setCandidateId(null);
+            }
+        }
 
         return $this;
     }

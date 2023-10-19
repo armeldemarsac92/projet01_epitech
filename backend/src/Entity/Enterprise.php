@@ -7,9 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+
 
 #[ORM\Entity(repositoryClass: EnterpriseRepository::class)]
-class Enterprise
+class Enterprise implements  UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -31,7 +34,7 @@ class Enterprise
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $enterprise_creation_date = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $enterprise_localisation = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -55,10 +58,38 @@ class Enterprise
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $password = null;
 
-    public function __construct()
+    #[ORM\OneToMany(mappedBy: 'enterprise_id', targetEntity: EnterpriseHasRole::class, orphanRemoval: true)]
+    private Collection $enterprise_role;
+    public function getRoles(): array
     {
+        return $this->enterprise_role->map(function (EnterpriseHasRole $enterpriseHasRole) {
+            return $enterpriseHasRole->getRoleId()->getRole();
+        })->toArray();
+    }
+
+    public function getSalt(): ?string
+    {
+        // bcrypt and argon2i/s don't require a separate salt, so return null
+        return null;
+    }
+
+    public function eraseCredentials(): void
+    {
+        // This is useful if you store any temporary authentication-related data on the entity.
+        // Most use cases can leave this method empty.
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->enterprise_email;
+    }
+
+
+    public function __construct()
+    {   
         $this->enterprise_related_experience = new ArrayCollection();
         $this->enterprise_job_offer = new ArrayCollection();
+        $this->enterprise_role = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -254,6 +285,36 @@ class Enterprise
     public function setPassword(?string $password): static
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EnterpriseHasRole>
+     */
+    public function getEnterpriseRole(): Collection
+    {
+        return $this->enterprise_role;
+    }
+
+    public function addEnterpriseRole(EnterpriseHasRole $enterpriseRole): static
+    {
+        if (!$this->enterprise_role->contains($enterpriseRole)) {
+            $this->enterprise_role->add($enterpriseRole);
+            $enterpriseRole->setEnterpriseId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEnterpriseRole(EnterpriseHasRole $enterpriseRole): static
+    {
+        if ($this->enterprise_role->removeElement($enterpriseRole)) {
+            // set the owning side to null (unless already changed)
+            if ($enterpriseRole->getEnterpriseId() === $this) {
+                $enterpriseRole->setEnterpriseId(null);
+            }
+        }
 
         return $this;
     }

@@ -2,8 +2,11 @@
 import Navbar from "../components/Navbar";
 import "../styles/global.css";
 import { useState } from "react";
+import axios from "axios";
 
 export default function SignUpForm() {
+
+    const [error, setError] = useState("");
 
     const [mode, setMode] = useState("candidate");  // Default mode is "candidate"
 
@@ -27,6 +30,7 @@ export default function SignUpForm() {
 
     const fieldsConfig = {
         candidate: {
+            request_type : "candidate",
             form: formDataCandidate,
             setFormData: setFormDataCandidate,
             fields: [
@@ -40,6 +44,7 @@ export default function SignUpForm() {
             textColorClass: "text-white"
         },
         recruiter: {
+            request_type : "enterprise",
             form: formDataRecruiter,
             setFormData: setFormDataRecruiter,
             fields: [
@@ -76,30 +81,44 @@ export default function SignUpForm() {
     }
 
     const handleSubmitClick = () => {
-        event.preventDefault();
-        console.log("Creating a profile for:", currentConfig.fields);
         
-        const baseUrl = "http://localhost:8000/api/job-offers/";
+        
+        const baseUrl = `http://localhost:8000/api/profile/create_${currentConfig.request_type}`;
+        console.log(baseUrl)
 
-    const queryParams = {
-      search: searchValue,
-      maxResults: 10,
-    };
-
-    Axios.get(baseUrl, { params: queryParams })
-      .then((response) => {
-        console.log("Search results:", response.data);
-
-        // Set the searchResults in the shared state
-        setSearchResults(response.data);
-
-        // Navigate to the target page
-        router.push("/job_offers");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-    
+        if (currentConfig.form.password === currentConfig.form.confirm_password) {
+            
+            console.log("Creating a profile for:", currentConfig.form);
+            
+            axios({
+                method: 'post',
+                url: baseUrl,
+                data: currentConfig.form,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            })
+                .then((response) => {
+                    console.log("creation status", response.data);
+        
+                    // Set the searchResults in the shared state
+                    setSearchResults(response.data);
+        
+                    // Navigate to the target page
+                    router.push("/profile");
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    setError("An error occurred while processing your request.");
+                });
+        
+        } else {
+            console.log("password mismatch");
+            setError("Passwords do not match.");
+        }
+        
+        
 
       };
 
@@ -180,6 +199,9 @@ export default function SignUpForm() {
                                         clipRule="evenodd" />
                                 </svg>
                             </button>
+                            <div className="error-message">
+                                {error}
+                            </div>
                         </form>
                     </div>
                 </div>
