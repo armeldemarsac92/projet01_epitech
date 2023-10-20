@@ -13,6 +13,7 @@
     "autoprefixer": "^10.4.16",
     "axios": "^1.5.1",
     "framer-motion": "^10.16.4",
+    "jsonwebtoken": "^9.0.2",
     "next": "^13.5.5",
     "postcss": "^8.4.31",
     "react": "^18",

@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import "../styles/global.css";
 import { useState } from "react";
 import axios from "axios";
+import jwt from "jsonwebtoken";
 
 export default function SignUpForm() {
 
@@ -10,22 +11,16 @@ export default function SignUpForm() {
 
     const [mode, setMode] = useState("candidate");  // Default mode is "candidate"
 
+    const SECRETKEY = process.env.JWT_SECRET_KEY;
+
     const [formDataCandidate, setFormDataCandidate] = useState({
-        first_name: "",
-        last_name: "",
-        phone_number: "",
         email: "",
         password: "",
-        confirm_password: "",
     });
 
     const [formDataRecruiter, setFormDataRecruiter] = useState({
-        enterprise_name: "",
-        enterprise_field: "",
-        creation_date: "",
         email: "",
         password: "",
-        confirm_password: "",
     });
 
     const fieldsConfig = {
@@ -34,12 +29,8 @@ export default function SignUpForm() {
             form: formDataCandidate,
             setFormData: setFormDataCandidate,
             fields: [
-                { label: "First Name", name: "first_name", placeholder: "John" },
-                { label: "Last Name", name: "last_name", placeholder: "Snow" },
-                { label: "Phone number", name: "phone_number", placeholder: "0680010598" },
                 { label: "Email address", name: "email", type: "email", placeholder: "johnsnow@example.com" },
                 { label: "Password", name: "password", type: "password", placeholder: "Enter your password" },
-                { label: "Confirm password", name: "confirm_password", type: "password", placeholder: "Enter your password" }
             ],
             textColorClass: "text-white"
         },
@@ -48,12 +39,8 @@ export default function SignUpForm() {
             form: formDataRecruiter,
             setFormData: setFormDataRecruiter,
             fields: [
-                { label: "Enterprise Name", name: "enterprise_name", placeholder: "Dunder Mifflin Inc." },
-                { label: "Enterprise Field", name: "enterprise_field", placeholder: "Paper sales" },
-                { label: "Date of creation", name: "creation_date", placeholder: "1990-07-23" },
                 { label: "Email address", name: "email", type: "email", placeholder: "enterprise@example.com" },
                 { label: "Password", name: "password", type: "password", placeholder: "Enter your password" },
-                { label: "Confirm password", name: "confirm_password", type: "password", placeholder: "Enter your password" }
             ],
             textColorClass: "text-indigo-950"
         }
@@ -83,12 +70,10 @@ export default function SignUpForm() {
     const handleSubmitClick = () => {
         
         
-        const baseUrl = `http://localhost:8000/api/profile/create_${currentConfig.request_type}`;
+        const baseUrl = `https://localhost:8000/api/profile/login_${currentConfig.request_type}_check`;
         console.log(baseUrl)
-
-        if (currentConfig.form.password === currentConfig.form.confirm_password) {
             
-            console.log("Creating a profile for:", currentConfig.form);
+            console.log("Login for:", currentConfig.form);
             
             axios({
                 method: 'post',
@@ -96,11 +81,14 @@ export default function SignUpForm() {
                 data: currentConfig.form,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                }
+                } 
             })
                 .then((response) => {
-                    console.log("creation status", response.data);
+                    setError("login successful");
+                    if (response.data.token) {
+                        AuthService.saveToken(response.data.token);
+                    }
+
         
                 })
                 .catch((error) => {
@@ -108,14 +96,7 @@ export default function SignUpForm() {
                     setError("An error occurred while processing your request.");
                 });
         
-        } else {
-            console.log("password mismatch");
-            setError("Passwords do not match.");
-        }
-        
-        
-
-      };
+        };
 
     
     return (
@@ -129,11 +110,11 @@ export default function SignUpForm() {
                 <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5 ">
                     <div className="w-full backdrop-blur-sm bg-white/20 p-10 rounded-md">
                         <h1 className={mode === "candidate" ? "text-2xl font-semibold tracking-wider capitalize text-white" : "text-2xl font-semibold tracking-wider capitalize text-indigo-950"}>
-                            Create your account now.
+                            Login now.
                         </h1>
 
                         <p className={mode === "candidate" ? "mt-4 text-white" : "mt-4 text-indigo-950"}>
-                            Let’s get you all set up so you can verify your personal account and begin setting up your profile.
+                            Login to your account to access your latest infos.
                         </p>
 
                         <div className="mt-6">
@@ -186,7 +167,7 @@ export default function SignUpForm() {
                                 onClick={handleSubmitClick}
                                 type="button"
                                 className={`flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide capitalize transition-colors duration-300 transform rounded-md ${mode === "candidate" ? 'bg-white text-indigo-950 hover:bg-slate-200 focus:outline-none focus:ring focus:ring-white focus:ring-opacity-50' : 'bg-indigo-950 text-white hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-white focus:ring-opacity-50'}`}>
-                                <span>Sign Up </span>
+                                <span>Login</span>
 
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
                                     <path fillRule="evenodd"

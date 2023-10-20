@@ -10,3 +10,7 @@ when@prod:
     framework:
         router:
             strict_requirements: null
+
+            
+jwt_routes:
+    resource: ../routes/jwt_routes.yaml

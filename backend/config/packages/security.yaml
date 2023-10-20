@@ -4,38 +4,37 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        candidate_users:
+        enterprise_provider:
             entity:
-                class: 'App\Entity\Candidate'
-                property: 'candidate_email'
-        enterprise_users:
+                class: App\Entity\Enterprise
+                property: enterprise_email
+        candidate_provider:
             entity:
-                class: 'App\Entity\Enterprise'
-                property: 'enterprise_email'
+                class: App\Entity\Candidate
+                property: candidate_email
+
+    # config/packages/security.yaml
+security:
+    enable_authenticator_manager: true
+    # ...
+
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        main:
-            lazy: true
-            provider: candidate_users
-        enterprise:
-            pattern: ^/enterprise
-            lazy: true
-            provider: enterprise_users
+        login:
+            pattern: ^/api/login
+            stateless: true
+            json_login:
+                check_path: /api/login_check
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
+        api:
+            pattern:   ^/api
+            stateless: true
+            jwt: ~
 
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
-
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
-
+        - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
 when@test:
     security:
         password_hashers:

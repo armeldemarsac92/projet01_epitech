@@ -1924,3 +1924,26 @@ VALUES
 (18, 39), (19, 16), (19, 39);
 
 
+UPDATE enterprise
+SET enterprise_email = CASE enterprise_name
+    WHEN 'CloudCrafter' THEN 'info@CloudCrafter.com'
+    WHEN 'DevHub' THEN 'contact@DevHub.com'
+    WHEN 'CircuitryTech' THEN 'support@CircuitryTech.com'
+    WHEN 'AI Innovators' THEN 'hello@AIInnovators.com'
+    WHEN 'WebCrafters' THEN 'service@WebCrafters.com'
+    WHEN 'SecureNet' THEN 'help@SecureNet.com'
+    WHEN 'PixelPerfect' THEN 'queries@PixelPerfect.com'
+    WHEN 'QuantumTech' THEN 'info@QuantumTech.com'
+    WHEN 'NetSolutions' THEN 'contact@NetSolutions.com'
+    WHEN 'GreenTech' THEN 'support@GreenTech.com'
+    WHEN 'BlockBusters' THEN 'hello@BlockBusters.com'
+    WHEN 'VR Visions' THEN 'service@VRVisions.com'
+    WHEN 'NanoNest' THEN 'help@NanoNest.com'
+    WHEN 'OptimaTech' THEN 'queries@OptimaTech.com'
+    WHEN 'MobileMasters' THEN 'info@MobileMasters.com'
+    WHEN 'GigaGrid' THEN 'contact@GigaGrid.com'
+    WHEN 'EcoTronix' THEN 'support@EcoTronix.com'
+    WHEN 'FutureFusion' THEN 'hello@FutureFusion.com'
+    ELSE enterprise_email -- Keep the existing email if no match
+END
+WHERE enterprise_email IS NULL OR enterprise_email = '';

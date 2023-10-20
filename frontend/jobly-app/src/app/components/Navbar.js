@@ -12,9 +12,9 @@ export default function Navbar({ onToggle, mode }) {
                 <img className="w-auto h-12" src="/logo.svg" alt="Logo" />
                 </Link>
               <div className="h-full pl-6 ml-6 border-l border-gray-200 flex flex-row items-center">
-                  <a className="mr-5 font-medium hover:text-gray-900">
+                <Link className="mr-5 font-medium hover:text-gray-900" href={"/login"}>
                       Login
-                  </a>
+                </Link>
                 <CustomSwitch onToggle={onToggle} isChecked={mode === "recruiter"} />
 
               </div>
