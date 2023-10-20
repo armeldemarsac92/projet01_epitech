@@ -2,26 +2,126 @@
 import Navbar from "../components/Navbar";
 import "../styles/global.css";
 import { useState } from "react";
+import axios from "axios";
 
-export default function SignUpForm () {
+export default function SignUpForm() {
+
+    const [error, setError] = useState("");
 
     const [mode, setMode] = useState("candidate");  // Default mode is "candidate"
+
+    const [formDataCandidate, setFormDataCandidate] = useState({
+        first_name: "",
+        last_name: "",
+        phone_number: "",
+        email: "",
+        password: "",
+        confirm_password: "",
+    });
+
+    const [formDataRecruiter, setFormDataRecruiter] = useState({
+        enterprise_name: "",
+        enterprise_field: "",
+        creation_date: "",
+        email: "",
+        password: "",
+        confirm_password: "",
+    });
+
+    const fieldsConfig = {
+        candidate: {
+            request_type : "candidate",
+            form: formDataCandidate,
+            setFormData: setFormDataCandidate,
+            fields: [
+                { label: "First Name", name: "first_name", placeholder: "John" },
+                { label: "Last Name", name: "last_name", placeholder: "Snow" },
+                { label: "Phone number", name: "phone_number", placeholder: "0680010598" },
+                { label: "Email address", name: "email", type: "email", placeholder: "johnsnow@example.com" },
+                { label: "Password", name: "password", type: "password", placeholder: "Enter your password" },
+                { label: "Confirm password", name: "confirm_password", type: "password", placeholder: "Enter your password" }
+            ],
+            textColorClass: "text-white"
+        },
+        recruiter: {
+            request_type : "enterprise",
+            form: formDataRecruiter,
+            setFormData: setFormDataRecruiter,
+            fields: [
+                { label: "Enterprise Name", name: "enterprise_name", placeholder: "Dunder Mifflin Inc." },
+                { label: "Enterprise Field", name: "enterprise_field", placeholder: "Paper sales" },
+                { label: "Date of creation", name: "creation_date", placeholder: "1990-07-23" },
+                { label: "Email address", name: "email", type: "email", placeholder: "enterprise@example.com" },
+                { label: "Password", name: "password", type: "password", placeholder: "Enter your password" },
+                { label: "Confirm password", name: "confirm_password", type: "password", placeholder: "Enter your password" }
+            ],
+            textColorClass: "text-indigo-950"
+        }
+    };
+
+    const currentConfig = fieldsConfig[mode];
+
+    const handleInputChange = (event) => {
+        currentConfig.setFormData({
+            ...currentConfig.form,
+            [event.target.name]: event.target.value,
+        });
+    };
 
     const toggleMode = () => {
         setMode(prevMode => prevMode === "candidate" ? "recruiter" : "candidate");
     }
-    
+
     const setModeToCandidate = () => {
         setMode("candidate");
     }
-    
+
     const setModeToRecruiter = () => {
         setMode("recruiter");
     }
-    
-    
-    
-    
+
+    const handleSubmitClick = () => {
+        
+        
+        const baseUrl = `http://localhost:8000/api/profile/create_${currentConfig.request_type}`;
+        console.log(baseUrl)
+
+        if (currentConfig.form.password === currentConfig.form.confirm_password) {
+            
+            console.log("Creating a profile for:", currentConfig.form);
+            
+            axios({
+                method: 'post',
+                url: baseUrl,
+                data: currentConfig.form,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            })
+                .then((response) => {
+                    console.log("creation status", response.data);
+        
+                    // Set the searchResults in the shared state
+                    setSearchResults(response.data);
+        
+                    // Navigate to the target page
+                    router.push("/profile");
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    setError("An error occurred while processing your request.");
+                });
+        
+        } else {
+            console.log("password mismatch");
+            setError("Passwords do not match.");
+        }
+        
+        
+
+      };
+
     
     return (
         
@@ -70,43 +170,26 @@ export default function SignUpForm () {
                         </div>
 
                         <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
-                            <div>
-                                <label className={`${mode === "candidate" ? "text-white" : "text-indigo-950"} block mb-2 text-sm`}>
-                                    {mode === "candidate" ? "First Name" : "Enterprise Name"}
-                                </label>
-                                <input type="text" placeholder={mode === "candidate" ? "John" : "Dunder Mifflin Inc."} className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
-
-                            <div>
-                                <label className={`${mode === "candidate" ? "text-white" : "text-indigo-950"} block mb-2 text-sm`}>
-                                {mode === "candidate" ? "Last Name" : "Enterprise Field"}
-                                </label>
-                                <input type="text" placeholder={mode === "candidate" ? "Snow" : "Paper sales"} className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
-
-                            <div>
-                                <label className={`${mode === "candidate" ? "text-white" : "text-indigo-950"} block mb-2 text-sm`}>
-                                {mode === "candidate" ? "Phone number" : "Date of creation"}
-                                </label>
-                                <input type="text" placeholder={mode === "candidate" ? "0680010598" : "1990-07-23"} className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
-
-                            <div>
-                                <label className={`${mode === "candidate" ? "text-white" : "text-indigo-950"} block mb-2 text-sm`}>Email address</label>
-                                <input type="email" placeholder="johnsnow@example.com" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
-
-                            <div>
-                                <label className={`${mode === "candidate" ? "text-white" : "text-indigo-950"} block mb-2 text-sm`}>Password</label>
-                                <input type="password" placeholder="Enter your password" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
-
-                            <div>
-                                <label className={`${mode === "candidate" ? "text-white" : "text-indigo-950"} block mb-2 text-sm`}>Confirm password</label>
-                                <input type="password" placeholder="Enter your password" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
+                            {currentConfig.fields.map(field => (
+                                <div key={field.name}>
+                                    <label className={`${currentConfig.textColorClass} block mb-2 text-sm`}>
+                                        {field.label}
+                                    </label>
+                                    <input 
+                                        required
+                                        type={field.type || "text"} 
+                                        name={field.name} 
+                                        onChange={handleInputChange} 
+                                        value={currentConfig.form[field.name]} 
+                                        placeholder={field.placeholder} 
+                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" 
+                                    />
+                                </div>
+                            ))}
 
                             <button
+                                onClick={handleSubmitClick}
+                                type="button"
                                 className={`flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide capitalize transition-colors duration-300 transform rounded-md ${mode === "candidate" ? 'bg-white text-indigo-950 hover:bg-slate-200 focus:outline-none focus:ring focus:ring-white focus:ring-opacity-50' : 'bg-indigo-950 text-white hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-white focus:ring-opacity-50'}`}>
                                 <span>Sign Up </span>
 
@@ -116,6 +199,9 @@ export default function SignUpForm () {
                                         clipRule="evenodd" />
                                 </svg>
                             </button>
+                            <div className="error-message">
+                                {error}
+                            </div>
                         </form>
                     </div>
                 </div>

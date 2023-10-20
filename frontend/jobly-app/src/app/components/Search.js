@@ -11,10 +11,10 @@ export const Search = () => {
   const handleSearchClick = () => {
     console.log("Searching for:", searchValue);
 
-    const baseUrl = "http://localhost:8000/api/job-offers/";
+    const baseUrl = "http://localhost:8000/api/job_offers/";
 
     const queryParams = {
-      search: searchValue,
+      searchTerm: searchValue,
       maxResults: 10,
     };
 
