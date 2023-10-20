@@ -2,6 +2,3 @@ controllers:
     resource: '../src/Controller/'
     type: attribute # or 'annotation' if you are using annotations instead of PHP 8 attributes
 
-job_offers:
-    path: 'api/job-offers/'
-    controller: 'App\Controller\JobOfferController::fetchJobOffers'
