@@ -1,5 +1,5 @@
 import { SearchProvider } from "./context/SearchContext";
-import Header from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function Layout({ children }) {
@@ -17,6 +17,7 @@ function Layout({ children }) {
       </head>
       <body>
         <SearchProvider>
+          <Navbar/>
           {children}
           <Footer />
         </SearchProvider>

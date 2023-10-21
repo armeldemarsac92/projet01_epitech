@@ -4,24 +4,15 @@ import { Search } from "../components/Search";
 import "../styles/global.css";
 import SearchResults from "../components/SearchResult";
 import { SearchContext } from '../context/SearchContext';
-import Navbar from "../components/Navbar";
 
 export default function job_Offers() {
 
-  const [mode, setMode] = useState("candidate");
-
-  // Access the data and functions from the SearchContext
-  const { searchResults, setSearchResults } = useContext(SearchContext);
-
-  const toggleMode = () => {
-    setMode(prevMode => prevMode === "candidate" ? "recruiter" : "candidate");
-}
-
+  const { searchResults, mode} = useContext(SearchContext);
+  
   return (
     <main className={mode === "candidate" ? "bg-gradient-candidate" : "bg-gradient-recruiter"}>
-      <Navbar onToggle={toggleMode} mode={mode} key={mode}/>
-      <div className="h-[40rem] flex flex-col">
-        <div className="flex bg-gradient-candidate h-full z-0 items-center justify-center">
+      <div className="h-[40rem] flex flex-col">      
+        <div className="flex h-full z-0 items-center justify-center">
           <div className="relative w-2/4">
             <Search></Search>
           </div>
@@ -35,5 +26,5 @@ export default function job_Offers() {
           </div>
         </div>
     </main>
-  );
+  )
 }

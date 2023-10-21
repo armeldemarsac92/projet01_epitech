@@ -1,28 +1,49 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import "../../styles/global.css";
-import Axios from "axios";
+import axios from "axios";
+import Cookies from 'js-cookie';
 
 export default function AdminDashBoard() {
   const [tables, setTables] = useState([]);
   const [table, setTable] = useState([]);
   const [asideOpen, setAsideOpen] = useState(true);
+  const token = Cookies.get('token');
+  const router = useRouter();
+
 
   useEffect(() => {
-    const fetchTablesUrl = "http://localhost:8000/api/get/database_tables";
-    Axios.get(fetchTablesUrl)
+    const fetchTablesUrl = "https://localhost:8000/api/admin/get/database_tables";
+    axios({
+      method: 'get',
+      url: fetchTablesUrl,
+      headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+      }
+    })
       .then((reponse) => {
         setTables(reponse.data);
       })
       .catch((error) => {
+        if (error.response.status === 401 || error.response.status === 403) {
+          router.push('/login')
+        }
         console.error("Error fetching data", error);
       });
   }, []);
 
   const loadTable = (tableName) => {
-    const fetchTableUrl = "http://localhost:8000/api/get/table_rows";
-    Axios.get(fetchTableUrl, {
-      params: { tableName: tableName },
+    const fetchTableUrl = "https://localhost:8000/api/admin/get/table_rows";
+    axios({
+      method: 'get',
+      url: fetchTableUrl,
+      params: {tableName: tableName},
+      headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+      }
     })
       .then((response) => {
         setTable(response.data);
@@ -30,6 +51,7 @@ export default function AdminDashBoard() {
       })
       .catch((error) => {
         console.error("Error fetching data", error);
+        Router.push
       });
     
   };
