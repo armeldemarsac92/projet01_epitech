@@ -14,7 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class JobOfferController extends AbstractController
 {
-    #[Route('api/job_offers', name: 'fetch_job_offers')]
+    #[Route('api/public/job_offers', name: 'get_job_offers', methods: ['GET'])]
     public function fetchJobOffers(
         JobOfferRepository $jobOfferRepository,
         EntityManagerInterface $entityManager,

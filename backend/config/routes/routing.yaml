@@ -1,0 +1,5 @@
+candidate_login_check:
+    path: /api/profile/login_candidate_check
+
+candidate_enterprise_check:
+    path: /api/profile/login_enterprise_check

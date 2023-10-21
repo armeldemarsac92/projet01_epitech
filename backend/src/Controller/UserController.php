@@ -14,6 +14,7 @@ use App\Repository\EnterpriseHasRoleRepository;
 use App\Repository\EnterpriseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -41,15 +42,13 @@ class UserController extends AbstractController
 
         $existingUser = $entityManager->getRepository(Candidate::class)->findOneBy(['candidate_email' => $email]);
 
-        dump($first_name,$last_name,$phone_number,$password);
-
         if (!$existingUser) {
             $candidate = new Candidate();
             $candidate->setCandidateFirstName($first_name);
             $candidate->setCandidateLastName($last_name);
             $candidate->setCandidatePhoneNumber($phone_number);
             $candidate->setCandidateEmail($email);
-            $role = $entityManager->getRepository(Role::class)->findOneBy(['role' => 'candidate']);
+            $role = $entityManager->getRepository(Role::class)->findOneBy(['role' => 'ROLE_CANDIDATE']);
             if ($role) {
                 $candidateHasRole = new CandidateHasRole();
                 $candidateHasRole->setCandidateId($candidate);
@@ -77,124 +76,121 @@ class UserController extends AbstractController
         return $response;
     }
 
-    #[Route('api/profile/get_candidate_data', name: 'get_candidate_data', methods: ['POST'])]
-    public function candidateLogin(
-        UserPasswordHasherInterface $passwordHasher,
+
+
+    #[Route('api/candidate/get', name: 'get_candidate_data', methods: ['GET'])]
+    public function getCandidateData(
         EntityManagerInterface $entityManager,
-        Request $request
+        Security $security,
     ): JsonResponse {
 
-        $data = json_decode($request->getContent(), true);
-
-        $email = $data['email'] ?? null;
-        $password = $data['password'] ?? null;
+        $candidate = $security->getUser();
+        if (null === $candidate || !($candidate instanceof Candidate)) {
+            return new JsonResponse(['error' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
+        }
+        
+        $email = $candidate->getUserIdentifier(); 
 
         $candidate = $entityManager->getRepository(Candidate::class)->findOneBy(['candidate_email' => $email]);
 
-        if (($candidate && $passwordHasher->isPasswordValid($candidate, $password)) || (!$candidate->getPassword() && !$password)) {
+        $userData = [];
 
-            $userData = [];
+        $usedTools = [];
+        $usedCompetences = [];
+        $certifications = [];
+        $degrees = [];
+        $hobbies = [];
+        $languages = [];
+        $candidateExperiences = [];
+        $favorites = [];
+        $applications = [];
 
-            $usedTools = [];
-            $usedCompetences = [];
-            $certifications = [];
-            $degrees = [];
-            $hobbies = [];
-            $languages = [];
-            $candidateExperiences = [];
-            $favorites = [];
-            $applications = [];
+        foreach($candidate->getCandidateExperience() as $professionnalExperience) {
 
-            foreach($candidate->getCandidateExperience() as $professionnalExperience) {
-
-                foreach($professionnalExperience->getExperienceTool() as $experienceUsedTool) {
-                    $usedTools[] = $experienceUsedTool->getTool()->getToolName();
-                }
-
-                foreach($professionnalExperience->getExperienceCompetence() as $experienceUsedCompetence) {
-                    $usedCompetences[] = $experienceUsedCompetence->getCompetence()->getCompetenceName();
-                }
-
-                $candidateExperiences[] = [
-                    'enterprise_name' => $professionnalExperience->getEnterprise()->getEnterpriseName(),
-                    'experience_localisation' => $professionnalExperience->getEnterprise()->getEnterpriseLocalisation(),
-                    'experience start_date' => $professionnalExperience->getExperienceStartDate(),
-                    'experience end_date' => $professionnalExperience->getExperienceEndDate(),
-                    'experience_position' => $professionnalExperience->getExperienceJobTitle(),
-                    'experience_description' => $professionnalExperience->getExperienceDescription(),
-                    'experience_used_tools' => $usedTools,
-                    'experience_used_competences' => $usedCompetences,
-                ];
-
+            foreach($professionnalExperience->getExperienceTool() as $experienceUsedTool) {
+                $usedTools[] = $experienceUsedTool->getTool()->getToolName();
             }
 
-            foreach($candidate->getCandidateCertification() as $candidateCertification) {
-                $certifications[] = $candidateCertification->getCertification()->getCertificationName();
+            foreach($professionnalExperience->getExperienceCompetence() as $experienceUsedCompetence) {
+                $usedCompetences[] = $experienceUsedCompetence->getCompetence()->getCompetenceName();
             }
 
-            foreach($candidate->getCandidateDegree() as $candidateDegree) {
-                $degrees[] = [
-                    'degree_name' => $candidateDegree->getDegreeName(),
-                    'degree_school' => $candidateDegree->getDegreeSchool(),
-                    'degree_start_date' =>$candidateDegree->getDegreeStartDate(),
-                    'degree_end_date' =>$candidateDegree->getDegreeEndDate(),
-                ];
-            }
-
-            foreach($candidate->getCandidateHobby() as $candidateHobby) {
-                $hobbies[] = $candidateHobby->getHobby()->getHobbyName();
-            }
-
-            foreach($candidate->getCandidateLanguage() as $candidateLanguage) {
-                $languages[] = [
-                    'language_name' => $candidateLanguage->getLanguage()->getLanguageName(),
-                    'language_level' => $candidateLanguage->getLanguageLevel()->getLanguageLevel(),
-                ];
-            }
-
-            foreach($candidate->getCandidateFavorite() as $candidateFavorite) {
-                $favorites[] = $candidateFavorite->getOffer()->getId();
-            }
-
-            foreach($candidate->getCandidateApplications() as $candidateApplication) {
-                $applications[] = $candidateApplication->getOffer()->getId();
-            }
-
-            foreach($candidate->getCandidateRole() as $role) {
-                $roles[] = $role->getRoleId()->getRole();
-            }
-
-            $userData = [
-                'id'=> $candidate->getId(),
-                'first_name' => $candidate->getCandidateFirstName(),
-                'last_name'=> $candidate->getCandidateLastName(),
-                'sex' => $candidate->getCandidateSex(),
-                'email' => $candidate->getCandidateEmail(),
-                'phone_number' => $candidate->getCandidatePhoneNumber(),
-                'localisation' => $candidate->getCandidateLocalisation(),
-                'about' => $candidate->getCandidateAbout(),
-                'profile_picture' => $candidate->getCandidateProfilePicture(),
-                'status' => $candidate->getCandidateStatus(),
-                'language' => $languages,
-                'hobby' => $hobbies,
-                'degree' => $degrees,
-                'certification' => $certifications,
-                'experience' => $candidateExperiences,
-                'favorite' => $favorites,
-                'application' => $applications,
-                'roles' => $roles
+            $candidateExperiences[] = [
+                'enterprise_name' => $professionnalExperience->getEnterprise()->getEnterpriseName(),
+                'experience_localisation' => $professionnalExperience->getEnterprise()->getEnterpriseLocalisation(),
+                'experience start_date' => $professionnalExperience->getExperienceStartDate(),
+                'experience end_date' => $professionnalExperience->getExperienceEndDate(),
+                'experience_position' => $professionnalExperience->getExperienceJobTitle(),
+                'experience_description' => $professionnalExperience->getExperienceDescription(),
+                'experience_used_tools' => $usedTools,
+                'experience_used_competences' => $usedCompetences,
             ];
 
-            $response = new JsonResponse(['result' => 'login success',$userData]);
-        } else {
-            $response = new JsonResponse(['error' => 'Invalid credentials.'], Response::HTTP_UNAUTHORIZED);
         }
 
-        // Setting CORS headers
-        $response->headers->set('Access-Control-Allow-Origin', '*');
-        $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+        foreach($candidate->getCandidateCertification() as $candidateCertification) {
+            $certifications[] = $candidateCertification->getCertification()->getCertificationName();
+        }
 
-        return $response;
+        foreach($candidate->getCandidateDegree() as $candidateDegree) {
+            $degrees[] = [
+                'degree_name' => $candidateDegree->getDegreeName(),
+                'degree_school' => $candidateDegree->getDegreeSchool(),
+                'degree_start_date' =>$candidateDegree->getDegreeStartDate(),
+                'degree_end_date' =>$candidateDegree->getDegreeEndDate(),
+            ];
+        }
+
+        foreach($candidate->getCandidateHobby() as $candidateHobby) {
+            $hobbies[] = $candidateHobby->getHobby()->getHobbyName();
+        }
+
+        foreach($candidate->getCandidateLanguage() as $candidateLanguage) {
+            $languages[] = [
+                'language_name' => $candidateLanguage->getLanguage()->getLanguageName(),
+                'language_level' => $candidateLanguage->getLanguageLevel()->getLanguageLevel(),
+            ];
+        }
+
+        foreach($candidate->getCandidateFavorite() as $candidateFavorite) {
+            $favorites[] = $candidateFavorite->getOffer()->getId();
+        }
+
+        foreach($candidate->getCandidateApplications() as $candidateApplication) {
+            $applications[] = $candidateApplication->getOffer()->getId();
+        }
+
+        foreach($candidate->getCandidateRole() as $role) {
+            $roles[] = $role->getRoleId()->getRole();
+        }
+
+        $userData = [
+            'id'=> $candidate->getId(),
+            'first_name' => $candidate->getCandidateFirstName(),
+            'last_name'=> $candidate->getCandidateLastName(),
+            'sex' => $candidate->getCandidateSex(),
+            'email' => $candidate->getCandidateEmail(),
+            'phone_number' => $candidate->getCandidatePhoneNumber(),
+            'localisation' => $candidate->getCandidateLocalisation(),
+            'about' => $candidate->getCandidateAbout(),
+            'profile_picture' => $candidate->getCandidateProfilePicture(),
+            'status' => $candidate->getCandidateStatus(),
+            'language' => $languages,
+            'hobby' => $hobbies,
+            'degree' => $degrees,
+            'certification' => $certifications,
+            'experience' => $candidateExperiences,
+            'favorite' => $favorites,
+            'application' => $applications,
+            'roles' => $roles
+        ];
+
+    $response = new JsonResponse($userData);
+
+    $response->headers->set('Access-Control-Allow-Origin', '*');
+    $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
+
+    return $response;
 }
 
 
@@ -222,7 +218,7 @@ class UserController extends AbstractController
             $enterprise->setEnterpriseField($enterprise_field);
             $enterprise->setEnterpriseCreationDate($creation_date);
             $enterprise->setEnterpriseEmail($email);
-            $role = $entityManager->getRepository(Role::class)->findOneBy(['role' => 'enterprise']);
+            $role = $entityManager->getRepository(Role::class)->findOneBy(['role' => 'ROLE_ENTERPRISE']);
             if ($role) {
                 $enterpriseHasRole = new EnterpriseHasRole(); // Assuming you have a similar table for Enterprises
                 $enterpriseHasRole->setEnterpriseId($enterprise);
@@ -243,22 +239,26 @@ class UserController extends AbstractController
         }
     }
 
-    #[Route('api/profile/get_enterprise_data', name: 'get_enterprise_data', methods: ['POST'])]
+    #[Route('api/profile/login_enterprise', name: 'login_enterprise', methods: ['POST'])]
+    public function loginEnterpriseCheck(): void {
+        // This code will never be executed.
+    }
+
+    #[Route('api/enterprise/get', name: 'get_enterprise_data', methods: ['GET'])]
     public function enterpriseLogin(
         JobOfferRepository $jobOfferRepository,
-        UserPasswordHasherInterface $passwordHasher,
         EntityManagerInterface $entityManager,
-        Request $request
+        Security $security
     ): JsonResponse {
 
-        $data = json_decode($request->getContent(), true);
-
-        $email = $data['email'] ?? null;
-        $password = $data['password'] ?? null;
+        $enterprise = $security->getUser();
+        if (null === $enterprise || !($enterprise instanceof Enterprise)) {
+            return new JsonResponse(['error' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
+        }
+        
+        $email = $enterprise->getUserIdentifier();
 
         $enterprise = $entityManager->getRepository(Enterprise::class)->findOneBy(['enterprise_email' => $email]);
-
-        if (($enterprise && $passwordHasher->isPasswordValid($enterprise, $password)) || (!$enterprise->getPassword() && !$password)) {
 
             $userData = [];
             $workers = [];
@@ -329,12 +329,8 @@ class UserController extends AbstractController
                 'roles' => $roles 
             ];
 
-            $response = new JsonResponse(['result' => 'login success',$userData]);
-        } else {
-            $response = new JsonResponse(['error' => 'Invalid credentials.'], Response::HTTP_UNAUTHORIZED);
-        }
+            $response = new JsonResponse($userData);
 
-        // Setting CORS headers
         $response->headers->set('Access-Control-Allow-Origin', '*');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH, OPTIONS');
 

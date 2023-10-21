@@ -1,25 +1,26 @@
 'use client'
-import Navbar from "../components/Navbar";
 import "../styles/global.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
-import jwt from "jsonwebtoken";
+import Cookies from "js-cookie";
+import { encryptData, decryptData } from '../utils/crypto';
+import { SearchContext } from "../context/SearchContext";
+import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
 
+    const { mode, toggleMode, setMode, userRole } = useContext(SearchContext);
+    const router = useRouter();
+
     const [error, setError] = useState("");
 
-    const [mode, setMode] = useState("candidate");  // Default mode is "candidate"
-
-    const SECRETKEY = process.env.JWT_SECRET_KEY;
-
     const [formDataCandidate, setFormDataCandidate] = useState({
-        email: "",
+        username: "",
         password: "",
     });
 
-    const [formDataRecruiter, setFormDataRecruiter] = useState({
-        email: "",
+    const [formDataEnterprise, setFormDataEnterprise] = useState({
+        username: "",
         password: "",
     });
 
@@ -29,17 +30,17 @@ export default function SignUpForm() {
             form: formDataCandidate,
             setFormData: setFormDataCandidate,
             fields: [
-                { label: "Email address", name: "email", type: "email", placeholder: "johnsnow@example.com" },
+                { label: "Email address", name: "username", type: "username", placeholder: "johnsnow@example.com" },
                 { label: "Password", name: "password", type: "password", placeholder: "Enter your password" },
             ],
             textColorClass: "text-white"
         },
-        recruiter: {
+        enterprise: {
             request_type : "enterprise",
-            form: formDataRecruiter,
-            setFormData: setFormDataRecruiter,
+            form: formDataEnterprise,
+            setFormData: setFormDataEnterprise,
             fields: [
-                { label: "Email address", name: "email", type: "email", placeholder: "enterprise@example.com" },
+                { label: "Email address", name: "username", type: "username", placeholder: "enterprise@example.com" },
                 { label: "Password", name: "password", type: "password", placeholder: "Enter your password" },
             ],
             textColorClass: "text-indigo-950"
@@ -55,25 +56,10 @@ export default function SignUpForm() {
         });
     };
 
-    const toggleMode = () => {
-        setMode(prevMode => prevMode === "candidate" ? "recruiter" : "candidate");
-    }
-
-    const setModeToCandidate = () => {
-        setMode("candidate");
-    }
-
-    const setModeToRecruiter = () => {
-        setMode("recruiter");
-    }
-
     const handleSubmitClick = () => {
         
         
         const baseUrl = `https://localhost:8000/api/profile/login_${currentConfig.request_type}_check`;
-        console.log(baseUrl)
-            
-            console.log("Login for:", currentConfig.form);
             
             axios({
                 method: 'post',
@@ -86,13 +72,31 @@ export default function SignUpForm() {
                 .then((response) => {
                     setError("login successful");
                     if (response.data.token) {
-                        AuthService.saveToken(response.data.token);
+                        Cookies.set('token', response.data.token, { expires: 7, secure: true, sameSite: 'Strict' });
+                        axios({
+                            method: 'get',
+                            url: `https://localhost:8000/api/${currentConfig.request_type}/get`,
+                            headers: {
+                                'Authorization': `Bearer ${Cookies.get('token')}`,
+                                'Content-Type': 'application/json',
+                            }
+                        })
+                        .then((response) => {
+                            setError("user informations retrieved");
+                            localStorage.setItem('user_data', encryptData(response.data), {expires: 7, secure:true, sameSite: 'Strict'});
+                            router.push('/')
+                            window.location.reload();
+                        })
+                        .catch((error) => {
+                            setError("data retrieval error.")
+                        })
+
+
                     }
 
         
                 })
                 .catch((error) => {
-                    console.error("Error:", error);
                     setError("An error occurred while processing your request.");
                 });
         
@@ -102,7 +106,6 @@ export default function SignUpForm() {
     return (
         
         <main className={mode === "candidate" ? "bg-gradient-candidate" : "bg-gradient-recruiter"}>
-            <Navbar onToggle={toggleMode} mode={mode} key={mode}/>
             <div className="flex justify-center min-h-screen">
                 <div style={{ backgroundImage: "url('/open_space.png')" }} className="hidden bg-cover lg:block lg:w-2/5">
                 </div>
@@ -122,7 +125,7 @@ export default function SignUpForm() {
 
                             <div className="mt-3 md:flex md:items-center md:-mx-2">
                                 <button className={`flex justify-center w-full px-6 py-3 rounded-md md:w-auto md:mx-2 focus:outline-none ${mode === "candidate" ? "text-white border border-white" : "bg-indigo-950 text-white" }`}
-                                  onClick={setModeToRecruiter}>
+                                  onClick={toggleMode}>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
@@ -133,7 +136,7 @@ export default function SignUpForm() {
                                 </button>
 
                                 <button className={`flex justify-center w-full px-6 py-3 rounded-md md:w-auto md:mx-2 focus:outline-none ${mode === "candidate" ? "bg-white text-indigo-950" : "text-indigo-950 border border-indigo-950"}`}
-                                onClick={setModeToCandidate}>
+                                onClick={toggleMode}>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>
@@ -144,8 +147,7 @@ export default function SignUpForm() {
                                 </button>
                             </div>
                         </div>
-
-                        <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+                            <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                             {currentConfig.fields.map(field => (
                                 <div key={field.name}>
                                     <label className={`${currentConfig.textColorClass} block mb-2 text-sm`}>

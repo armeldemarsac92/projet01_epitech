@@ -1,14 +1,17 @@
 'use client'
-import Navbar from "../components/Navbar";
 import "../styles/global.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import { SearchContext } from "../context/SearchContext";
+import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
 
-    const [error, setError] = useState("");
+    const router = useRouter();
 
-    const [mode, setMode] = useState("candidate");  // Default mode is "candidate"
+    const {mode, toggleMode} = useContext(SearchContext);
+
+    const [error, setError] = useState("");
 
     const [formDataCandidate, setFormDataCandidate] = useState({
         first_name: "",
@@ -19,7 +22,7 @@ export default function SignUpForm() {
         confirm_password: "",
     });
 
-    const [formDataRecruiter, setFormDataRecruiter] = useState({
+    const [formDataEnterprise, setFormDataEnterprise] = useState({
         enterprise_name: "",
         enterprise_field: "",
         creation_date: "",
@@ -43,10 +46,10 @@ export default function SignUpForm() {
             ],
             textColorClass: "text-white"
         },
-        recruiter: {
+        enterprise: {
             request_type : "enterprise",
-            form: formDataRecruiter,
-            setFormData: setFormDataRecruiter,
+            form: formDataEnterprise,
+            setFormData: setFormDataEnterprise,
             fields: [
                 { label: "Enterprise Name", name: "enterprise_name", placeholder: "Dunder Mifflin Inc." },
                 { label: "Enterprise Field", name: "enterprise_field", placeholder: "Paper sales" },
@@ -68,22 +71,10 @@ export default function SignUpForm() {
         });
     };
 
-    const toggleMode = () => {
-        setMode(prevMode => prevMode === "candidate" ? "recruiter" : "candidate");
-    }
-
-    const setModeToCandidate = () => {
-        setMode("candidate");
-    }
-
-    const setModeToRecruiter = () => {
-        setMode("recruiter");
-    }
-
     const handleSubmitClick = () => {
         
         
-        const baseUrl = `http://localhost:8000/api/profile/create_${currentConfig.request_type}`;
+        const baseUrl = `https://localhost:8000/api/profile/create_${currentConfig.request_type}`;
         console.log(baseUrl)
 
         if (currentConfig.form.password === currentConfig.form.confirm_password) {
@@ -96,11 +87,12 @@ export default function SignUpForm() {
                 data: currentConfig.form,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
                 }
             })
                 .then((response) => {
                     console.log("creation status", response.data);
+                    router.push("/login")
+
         
                 })
                 .catch((error) => {
@@ -121,7 +113,6 @@ export default function SignUpForm() {
     return (
         
         <main className={mode === "candidate" ? "bg-gradient-candidate" : "bg-gradient-recruiter"}>
-            <Navbar onToggle={toggleMode} mode={mode} key={mode}/>
             <div className="flex justify-center min-h-screen">
                 <div style={{ backgroundImage: "url('/open_space.png')" }} className="hidden bg-cover lg:block lg:w-2/5">
                 </div>
@@ -141,7 +132,7 @@ export default function SignUpForm() {
 
                             <div className="mt-3 md:flex md:items-center md:-mx-2">
                                 <button className={`flex justify-center w-full px-6 py-3 rounded-md md:w-auto md:mx-2 focus:outline-none ${mode === "candidate" ? "text-white border border-white" : "bg-indigo-950 text-white" }`}
-                                  onClick={setModeToRecruiter}>
+                                  onClick={toggleMode}>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
@@ -152,7 +143,7 @@ export default function SignUpForm() {
                                 </button>
 
                                 <button className={`flex justify-center w-full px-6 py-3 rounded-md md:w-auto md:mx-2 focus:outline-none ${mode === "candidate" ? "bg-white text-indigo-950" : "text-indigo-950 border border-indigo-950"}`}
-                                onClick={setModeToCandidate}>
+                                onClick={toggleMode}>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>

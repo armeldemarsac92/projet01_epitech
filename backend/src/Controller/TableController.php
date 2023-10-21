@@ -8,10 +8,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\DBAL\Connection;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class TableController extends AbstractController
 {
-    #[Route('api/get/database_tables', name: 'fetch_database_tables')]
+    #[Route('api/admin/get/database_tables', name: 'fetch_database_tables', methods: ['GET'])]
+    #[IsGranted('ROLE_ADMIN', statusCode: 403, exceptionCode: 10010)]
     public function FetchDatabaseTables(Connection $connection): Response {
         $tablesData = [];
         $schemaManager = $connection->getSchemaManager();
@@ -31,7 +33,8 @@ class TableController extends AbstractController
     return $this->json($tablesData);
     }
 
-    #[Route('api/get/table_rows', name: 'fetch_table_rows')]
+    #[Route('api/admin/get/table_rows', name: 'fetch_table_rows', methods: ['GET'])]
+    #[IsGranted('ROLE_ADMIN', statusCode:403, exceptionCode: 10010)]
     public function FetchDatabaseRows(
         Connection $connection,
         #[MapQueryParameter] ?string $tableName = null
