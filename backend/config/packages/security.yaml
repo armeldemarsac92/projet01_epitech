@@ -4,37 +4,70 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        candidate_users:
+        enterprise_provider:
             entity:
-                class: 'App\Entity\Candidate'
-                property: 'candidate_email'
-        enterprise_users:
+                class: App\Entity\Enterprise
+                property: enterprise_email
+        candidate_provider:
             entity:
-                class: 'App\Entity\Enterprise'
-                property: 'enterprise_email'
+                class: App\Entity\Candidate
+                property: candidate_email
+        multiple_providers:
+            chain:
+                providers: ['enterprise_provider', 'candidate_provider']
+
+
+    enable_authenticator_manager: true
+    # ...
+
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        main:
+        enterprise_login:
+            pattern: ^/api/profile/login_enterprise
+            stateless: true
             lazy: true
-            provider: candidate_users
-        enterprise:
-            pattern: ^/enterprise
+            provider: enterprise_provider
+            json_login:
+                check_path: /api/profile/login_enterprise_check
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        candidate_login:
+            pattern: ^/api/profile/login_candidate
+            stateless: true
             lazy: true
-            provider: enterprise_users
+            provider: candidate_provider
+            json_login:
+                check_path: /api/profile/login_candidate_check
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+            
 
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
+        api_admin:
+            pattern : ^/api/admin
+            stateless : true
+            provider: multiple_providers
+            jwt: ~
 
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+        api_enterprise:
+            pattern: ^/api/enterprise
+            stateless: true
+            provider: enterprise_provider
+            jwt: ~
 
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
+        api_candidate:
+            pattern: ^/api/candidate
+            stateless: true
+            provider: candidate_provider
+            jwt: ~
+
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/api/profile/create_candidate, roles: PUBLIC_ACCESS}
+        - { path: ^/api/profile/create_enterprise, roles: PUBLIC_ACCESS}
+        - { path: ^/api/profile/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api/candidate/get/, roles: IS_AUTHENTICATED_FULLY}
+        - { path: ^/api/public, roles: PUBLIC_ACCESS}
+        - { path: ^/enterprise, roles: ROLE_ENTERPRISE }
+        - { path: ^/candidate, roles: ROLE_CANDIDATE }
 
 when@test:
     security:

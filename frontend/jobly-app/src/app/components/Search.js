@@ -11,7 +11,7 @@ export const Search = () => {
   const handleSearchClick = () => {
     console.log("Searching for:", searchValue);
 
-    const baseUrl = "http://localhost:8000/api/job_offers/";
+    const baseUrl = "https://localhost:8000/api/public/job_offers/";
 
     const queryParams = {
       searchTerm: searchValue,
@@ -45,7 +45,6 @@ export const Search = () => {
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
-        {/* SVG Magnifying Glass Image */}
         <button onClick={handleSearchClick}>
           <img
             src="/loupe.svg"

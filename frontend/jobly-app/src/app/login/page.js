@@ -1,34 +1,27 @@
 'use client'
 import "../styles/global.css";
-import { useContext, useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { encryptData, decryptData } from '../utils/crypto';
 import { SearchContext } from "../context/SearchContext";
 import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
 
+    const { mode, toggleMode, setMode, userRole } = useContext(SearchContext);
     const router = useRouter();
-
-    const {mode, toggleMode} = useContext(SearchContext);
 
     const [error, setError] = useState("");
 
     const [formDataCandidate, setFormDataCandidate] = useState({
-        first_name: "",
-        last_name: "",
-        phone_number: "",
-        email: "",
+        username: "",
         password: "",
-        confirm_password: "",
     });
 
     const [formDataEnterprise, setFormDataEnterprise] = useState({
-        enterprise_name: "",
-        enterprise_field: "",
-        creation_date: "",
-        email: "",
+        username: "",
         password: "",
-        confirm_password: "",
     });
 
     const fieldsConfig = {
@@ -37,12 +30,8 @@ export default function SignUpForm() {
             form: formDataCandidate,
             setFormData: setFormDataCandidate,
             fields: [
-                { label: "First Name", name: "first_name", placeholder: "John" },
-                { label: "Last Name", name: "last_name", placeholder: "Snow" },
-                { label: "Phone number", name: "phone_number", placeholder: "0680010598" },
-                { label: "Email address", name: "email", type: "email", placeholder: "johnsnow@example.com" },
+                { label: "Email address", name: "username", type: "username", placeholder: "johnsnow@example.com" },
                 { label: "Password", name: "password", type: "password", placeholder: "Enter your password" },
-                { label: "Confirm password", name: "confirm_password", type: "password", placeholder: "Enter your password" }
             ],
             textColorClass: "text-white"
         },
@@ -51,12 +40,8 @@ export default function SignUpForm() {
             form: formDataEnterprise,
             setFormData: setFormDataEnterprise,
             fields: [
-                { label: "Enterprise Name", name: "enterprise_name", placeholder: "Dunder Mifflin Inc." },
-                { label: "Enterprise Field", name: "enterprise_field", placeholder: "Paper sales" },
-                { label: "Date of creation", name: "creation_date", placeholder: "1990-07-23" },
-                { label: "Email address", name: "email", type: "email", placeholder: "enterprise@example.com" },
+                { label: "Email address", name: "username", type: "username", placeholder: "enterprise@example.com" },
                 { label: "Password", name: "password", type: "password", placeholder: "Enter your password" },
-                { label: "Confirm password", name: "confirm_password", type: "password", placeholder: "Enter your password" }
             ],
             textColorClass: "text-indigo-950"
         }
@@ -74,12 +59,7 @@ export default function SignUpForm() {
     const handleSubmitClick = () => {
         
         
-        const baseUrl = `https://localhost:8000/api/profile/create_${currentConfig.request_type}`;
-        console.log(baseUrl)
-
-        if (currentConfig.form.password === currentConfig.form.confirm_password) {
-            
-            console.log("Creating a profile for:", currentConfig.form);
+        const baseUrl = `https://localhost:8000/api/profile/login_${currentConfig.request_type}_check`;
             
             axios({
                 method: 'post',
@@ -87,27 +67,40 @@ export default function SignUpForm() {
                 data: currentConfig.form,
                 headers: {
                     'Content-Type': 'application/json',
-                }
+                } 
             })
                 .then((response) => {
-                    console.log("creation status", response.data);
-                    router.push("/login")
+                    setError("login successful");
+                    if (response.data.token) {
+                        Cookies.set('token', response.data.token, { expires: 7, secure: true, sameSite: 'Strict' });
+                        axios({
+                            method: 'get',
+                            url: `https://localhost:8000/api/${currentConfig.request_type}/get`,
+                            headers: {
+                                'Authorization': `Bearer ${Cookies.get('token')}`,
+                                'Content-Type': 'application/json',
+                            }
+                        })
+                        .then((response) => {
+                            setError("user informations retrieved");
+                            localStorage.setItem('user_data', encryptData(response.data), {expires: 7, secure:true, sameSite: 'Strict'});
+                            router.push('/')
+                            window.location.reload();
+                        })
+                        .catch((error) => {
+                            setError("data retrieval error.")
+                        })
+
+
+                    }
 
         
                 })
                 .catch((error) => {
-                    console.error("Error:", error);
                     setError("An error occurred while processing your request.");
                 });
         
-        } else {
-            console.log("password mismatch");
-            setError("Passwords do not match.");
-        }
-        
-        
-
-      };
+        };
 
     
     return (
@@ -120,11 +113,11 @@ export default function SignUpForm() {
                 <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5 ">
                     <div className="w-full backdrop-blur-sm bg-white/20 p-10 rounded-md">
                         <h1 className={mode === "candidate" ? "text-2xl font-semibold tracking-wider capitalize text-white" : "text-2xl font-semibold tracking-wider capitalize text-indigo-950"}>
-                            Create your account now.
+                            Login now.
                         </h1>
 
                         <p className={mode === "candidate" ? "mt-4 text-white" : "mt-4 text-indigo-950"}>
-                            Let’s get you all set up so you can verify your personal account and begin setting up your profile.
+                            Login to your account to access your latest infos.
                         </p>
 
                         <div className="mt-6">
@@ -154,8 +147,7 @@ export default function SignUpForm() {
                                 </button>
                             </div>
                         </div>
-
-                        <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+                            <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                             {currentConfig.fields.map(field => (
                                 <div key={field.name}>
                                     <label className={`${currentConfig.textColorClass} block mb-2 text-sm`}>
@@ -177,7 +169,7 @@ export default function SignUpForm() {
                                 onClick={handleSubmitClick}
                                 type="button"
                                 className={`flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide capitalize transition-colors duration-300 transform rounded-md ${mode === "candidate" ? 'bg-white text-indigo-950 hover:bg-slate-200 focus:outline-none focus:ring focus:ring-white focus:ring-opacity-50' : 'bg-indigo-950 text-white hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-white focus:ring-opacity-50'}`}>
-                                <span>Sign Up </span>
+                                <span>Login</span>
 
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
                                     <path fillRule="evenodd"
