@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import "../../styles/global.css";
 import axios from "axios";
 import Cookies from 'js-cookie';
+import Modal from 'react-modal';
+
 
 export default function AdminDashBoard() {
   const [tables, setTables] = useState([]);
@@ -11,7 +13,14 @@ export default function AdminDashBoard() {
   const [asideOpen, setAsideOpen] = useState(true);
   const token = Cookies.get('token');
   const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingRow, setEditingRow] = useState(null);
 
+
+  useEffect(() => {
+    {() => loadTable(tableName.name)}
+    
+  }, [table]);
 
   useEffect(() => {
     const fetchTablesUrl = "https://localhost:8000/api/admin/get/database_tables";
@@ -51,20 +60,92 @@ export default function AdminDashBoard() {
       })
       .catch((error) => {
         console.error("Error fetching data", error);
-        Router.push
       });
     
   };
 
+  const openEditForm = (row) => {
+    setEditingRow(row);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setEditingRow(null);  // Reset editingRow when modal is closed
+  };
+
+  const handleInputChange = (e, key) => {
+    const updatedRow = {
+      ...editingRow,
+      [key]: e.target.value,
+    };
+    setEditingRow(updatedRow);
+  };
+
+  const submitEdit = () => {
+
+    axios({
+      method: 'post',  // or 'put'
+      url: 'https://localhost:8000/api/admin/edit/row',
+      data: {
+        'table' : Object.keys(table)[0],
+        'row' : editingRow,
+      },
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
+    })
+    
+      .then((response) => {
+
+        setTable(response.data);
+        
+        setIsModalOpen(false); 
+      })
+      .catch((error) => {
+        console.error("Error updating data", error);
+      });
+  };
+
+  const deleteRow = ($tableName, $rowId) => {
+    axios({
+      method: 'post',  // or 'put'
+      url: 'https://localhost:8000/api/admin/delete/row',
+      data: {
+        'table' : $tableName,
+        'id' : $rowId,
+      },
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
+    })
+    
+      .then((response) => {
+
+        setTable(response.data);
+        
+        setIsModalOpen(false); 
+      })
+      .catch((error) => {
+        console.error("Error updating data", error);
+      });
+  }
+
+
+
   const displayTable = (table) => {
+    console.log("rendering table")
+    const nestedArray = Object.values(table)[0];
     if (!table || table.length === 0) return null;
   
     return (
-      <div className={`${table.length > 19 ? "w-full h-full overflow-x-scroll overflow-y-scroll":"w-full h-screen"} rounded-lg border border-gray-200 shadow-md`}>
+      <div className={`h-full w-full rounded-lg border border-gray-200 shadow-md`}>
         <table className="table-auto w-full border-collapse bg-white text-left text-sm text-gray-500 border-gray-200 rounded-lg">
           <thead className="bg-gray-50">
             <tr>
-              {Object.keys(table[0]).map((header) => (
+              {Object.keys(nestedArray[0]).map((header) => (
                 <th key={header} scope="col" className="px-6 py-4 font-medium text-gray-900">
                   {header}
                 </th>
@@ -73,7 +154,7 @@ export default function AdminDashBoard() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-            {table.map((row, rowIndex) => (
+            {nestedArray.map((row, rowIndex) => (
               <tr key={rowIndex} className="hover:bg-gray-50">
                 {Object.values(row).map((cell, cellIndex) => (
                   <td key={cellIndex} className="px-6 py-4">
@@ -91,6 +172,7 @@ export default function AdminDashBoard() {
                         stroke="currentColor"
                         className="h-6 w-6"
                         x-tooltip="tooltip"
+                        onClick={() => deleteRow(Object.keys(table)[0], rowIndex)}
                       >
                         <path
                           strokeLinecap="round"
@@ -107,7 +189,7 @@ export default function AdminDashBoard() {
                         strokeWidth="1.5"
                         stroke="currentColor"
                         className="h-6 w-6"
-                        x-tooltip="tooltip"
+                        onClick={() => openEditForm(row)}
                       >
                         <path
                           strokeLinecap="round"
@@ -127,7 +209,7 @@ export default function AdminDashBoard() {
   }
 
   return (
-<main className="min-h-screen w-full bg-gray-100 text-gray-700">
+<main className="h-screen w-full bg-gray-100 text-gray-700 z-0 pb-20 mb-20">
       <header className="flex w-full items-center justify-between border-b-2 border-gray-200 bg-white p-2">
         <div className="flex items-center space-x-2">
           <button className="text-3xl" onClick={() => setAsideOpen(!asideOpen)}>
@@ -137,7 +219,49 @@ export default function AdminDashBoard() {
         </div>
       </header>
 
-      <div className="flex h-screen ">
+       <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Edit Row"
+        style={{
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.75)'
+          },
+          content: {
+            color: 'lightsteelblue',
+            width: '70%',
+            height: '70%',
+            margin: 'auto'
+          }
+        }}
+      >
+        {editingRow && (
+          <>
+            {Object.keys(editingRow).map(key => (
+              <div className="flex flex-row flex-wrap" key={key}>
+                <label className="block text-gray-600 p-1 text-sm w-full md:w-1/4" htmlFor={key}>{key}</label>
+                <input
+                  id={key}
+                  type="text"
+                  value={editingRow[key]}
+                  onChange={(e) => handleInputChange(e, key)}
+                  className="block w-1/3 md:w-3/4 px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  disabled={key === 'id'}  // Disable the input field if the key is 'id'
+                />
+              </div>
+            ))}
+            <button className='m-5 flex items-center justify-between w-fit px-6 py-3 text-sm tracking-wide capitalize transition-colors duration-300 transform rounded-md bg-indigo-950 text-white hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-white focus:ring-opacity-50'
+                onClick={submitEdit}> Save</button>
+            <button className='m-5 flex items-center justify-between w-fit px-6 py-3 text-sm tracking-wide capitalize transition-colors duration-300 transform rounded-md bg-indigo-950 text-white hover:bg-indigo-800 focus:outline-none focus:ring focus:ring-white focus:ring-opacity-50'
+                onClick={closeModal}>Cancel</button>
+          </>
+        )}
+
+      </Modal>
+
+      
+
+      <div className="flex h-s{() => loadTable(tableName.name)}creen ">
         <aside className={`h-screen overflow-y-scroll flex w-72 flex-col space-y-2 border-r-2 border-gray-200 bg-white p-2 ${asideOpen ? '' : 'hidden'}`}>
           {tables.map((tableName) => (
             <a
@@ -153,10 +277,12 @@ export default function AdminDashBoard() {
             </a>
           ))}
         </aside>
-        <div className="bg-gray-200 w-full h-screen flex justify-center items-start p-10">
+
+        <div className="bg-gray-200 w-full h-screen overflow-x-scroll overflow-y-scroll flex justify-center items-start p-10 pb-20">
         {displayTable(table)}
         </div>
       </div>
+
     </main>
   );
 }
