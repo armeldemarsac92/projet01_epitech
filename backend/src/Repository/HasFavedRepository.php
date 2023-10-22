@@ -21,6 +21,19 @@ class HasFavedRepository extends ServiceEntityRepository
         parent::__construct($registry, HasFaved::class);
     }
 
+    public function findByCandidateAndOffer($candidate, $offerId)
+    {
+        return $this->createQueryBuilder('a')
+            ->innerJoin('a.offer', 'j')
+            ->innerJoin('a.candidate', 'c')
+            ->where('c.id = :candidateId')
+            ->andWhere('j.id = :offerId')
+            ->setParameter('candidateId', $candidate->getId())
+            ->setParameter('offerId', $offerId)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 //    /**
 //     * @return HasFaved[] Returns an array of HasFaved objects
 //     */

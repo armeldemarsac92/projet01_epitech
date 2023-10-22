@@ -14,6 +14,7 @@ export const SearchProvider = ({ children }) => {
   useEffect(() => {
     const decryptedData = decryptData(localStorage.getItem('user_data'));
     setUserData(decryptedData);
+    console.log(decryptedData)
   }, []);  // The empty array means this useEffect runs once, similar to componentDidMount
 
   const toggleMode = () => {
@@ -27,8 +28,60 @@ export const SearchProvider = ({ children }) => {
     }
   }, [userData]);
 
+  const updateUserApplications = (updatedApplications) => {
+    setUserData(prevUserData => ({
+        ...prevUserData,
+        application: updatedApplications
+    }));
+    console.log(updatedApplications)
+    console.log(userData)
+  };
+
+  const updateUserFavorites = (updatedFavorites) => {
+    setUserData(prevUserData => ({
+        ...prevUserData,
+        favorite: updatedFavorites
+    }));
+    console.log(updatedFavorites)
+    console.log(userData)
+  };
+  
+  const updateJobOfferApplications = (updatedOfferApplications, offer_id) => {
+    console.log(offer_id,updatedOfferApplications)
+    setSearchResults(prevSearchResults => {
+        return prevSearchResults.map(offer => {
+            if (offer.id === offer_id) {
+                return {
+                    ...offer,
+                    application: updatedOfferApplications
+                };
+            }
+            return offer;
+        });
+    });
+};
+
+
+const updateJobOfferFavorites = (updatedOfferFavorites, offer_id) => {
+  console.log(offer_id,updatedOfferFavorites)
+  setSearchResults(prevSearchResults => {
+      return prevSearchResults.map(offer => {
+          if (offer.id === offer_id) {
+              return {
+                  ...offer,
+                  favorite: updatedOfferFavorites
+              };
+          }
+          return offer;
+      });
+  });
+};
+
+
+
+
   return (
-    <SearchContext.Provider value={{ searchResults, setSearchResults, mode, setMode, toggleMode, userData}}>
+    <SearchContext.Provider value={{ searchResults, setSearchResults, mode, setMode, toggleMode, userData, updateUserApplications, updateJobOfferApplications, updateJobOfferFavorites, updateUserFavorites}}>
       {children}
     </SearchContext.Provider>
   );
