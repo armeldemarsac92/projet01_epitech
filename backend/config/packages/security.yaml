@@ -66,8 +66,8 @@ security:
         - { path: ^/api/profile/login, roles: PUBLIC_ACCESS }
         - { path: ^/api/candidate/get/, roles: IS_AUTHENTICATED_FULLY}
         - { path: ^/api/public, roles: PUBLIC_ACCESS}
-        - { path: ^/enterprise, roles: ROLE_ENTERPRISE }
-        - { path: ^/candidate, roles: ROLE_CANDIDATE }
+        - { path: ^/enterprise, roles: ROLE_ENTERPRISE}
+        - { path: ^/candidate, roles: ROLE_CANDIDATE}
 
 when@test:
     security:

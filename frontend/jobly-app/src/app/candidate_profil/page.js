@@ -1,8 +1,14 @@
 "use client";
 import "../styles/global.css";
 import Navbar from "../components/Navbar";
+import ProfessionnalExperience from "../components/ProfessionnalExperience";
+import { SearchContext } from "../context/SearchContext";
+import { Search } from "../components/Search";
+import { useContext } from "react";
 
 export default function candidateProfil() {
+  const { professionnalExperience, mode } = useContext(SearchContext);
+
   return (
     <main className="w-screen h-screen">
       <div>
@@ -28,15 +34,20 @@ export default function candidateProfil() {
         </div>
         <div className="flex col w-full h-2/5 p-10 z-0">
           <div className="bg-gray-200 w-2/5 min-h-full rounded-lg mx-10 p-5 z-0">
-            <div className="text-xl font-semibold pl-4 text"><h1>Degrees</h1></div>
-            <div className="text-xl font-semibold pl-4"><h1>Certifications</h1></div>
-            <div className="text-xl font-semibold pl-4"><h1>Languages</h1></div>
+            <div className="text-xl font-semibold pl-4 text">
+              <h1>Degrees</h1>
+            </div>
+            <div className="text-xl font-semibold pl-4">
+              <h1>Certifications</h1>
+            </div>
+            <div className="text-xl font-semibold pl-4">
+              <h1>Languages</h1>
+            </div>
           </div>
           <div className="bg-gray-200 w-2/3 min-h-full rounded-lg mx-10 p-5 z-0">
-            <div className="text-xl font-semibold pl-4"><h1>Frontend Developer</h1></div>
-            <div className="text-xl font-semibold pl-4"><h1>Description des missions</h1></div>
-            <div className="text-xl font-semibold pl-4"><h1>Compétences acquises</h1></div>
-            <div className="text-xl font-semibold pl-4"><h1>Tools used</h1></div>
+            <ProfessionnalExperience
+              professionnalExperience={professionnalExperience}
+            />
           </div>
         </div>
       </div>
