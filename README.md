@@ -81,7 +81,7 @@ No project is complete without some solid database architecture. Here's what our
 This isn't just code; it's a statement. Brought to you by the code warriors:
   
 - **Armel Tandeau de Marsac**: The Guardian of Backend Realms
-- **Mathieu Behan**: The Whisperer of Frontend Elements
+- **Mathieu Dehan**: The Whisperer of Frontend Elements
 
 ---
 
