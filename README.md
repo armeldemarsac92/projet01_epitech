@@ -33,7 +33,7 @@ For the nerds and geeks, we're building this beast using:
 
 No project is complete without some solid database architecture. Here's what our data dungeon looks like:
 
-![Database Dungeon](https://raw.githubusercontent.com/armeldemarsac92/projet01_epitech/new-version-branch/informations/MCD.svg)
+![Database Dungeon](https://raw.githubusercontent.com/armeldemarsac92/projet01_epitech/informations/schema.png)
 
 ## Relationships Unraveled 🌀🔗
 
